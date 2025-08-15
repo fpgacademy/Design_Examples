@@ -50,3 +50,14 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# VI
+*.swp
+
+# Quartus
+*.sof
+
+# Build and Release Paths
+out/
+rel/
+
