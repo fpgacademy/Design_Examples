@@ -53,6 +53,7 @@ dkms.conf
 
 # VI
 *.swp
+*.*~
 
 # Quartus
 *.sof
