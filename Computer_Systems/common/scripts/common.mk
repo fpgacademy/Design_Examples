@@ -44,7 +44,9 @@ release:
 	cp $(DSTPATH)/*.sopcinfo $(RELPATH)
 	cp $(DSTPATH)/*.amp $(RELPATH)
 	cp $(DSTPATH)/*.sof $(RELPATH)
+ifeq ($(GEN_RBF), 1)
 	cp $(DSTPATH)/*.rbf $(RELPATH)
+endif
 
 
 grep_for_errors:
