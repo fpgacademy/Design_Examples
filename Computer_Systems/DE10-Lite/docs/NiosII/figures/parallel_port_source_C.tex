@@ -1,0 +1,58 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* This program demonstrates the use of parallel ports in the DE10-Lite Computer\\
+\>* It performs the following: \\
+\>* \>1. displays the SW switch values on the red lights LEDR\\
+\>* \>2. displays a rotating pattern on the HEX displays\\
+\>* \>3. if KEY[1..0] is pressed, uses the SW switches as the pattern\\
+\=\kill
+\>********************************************************************************/\\
+{\bf int} main({\bf void})\\
+\{\\
+ZZ\=/\=* \=\kill
+\>/* Declare volatile pointers to I/O registers (volatile means that the locations will
+not be cached,\\
+\>\>* even in registers) */\\
+ZZ\={\bf volatile} {\bf int} * HEX3\_HEX0\_ptr	Z\== ({\bf int} *) 0xFF200000;ZZZ\=\kill
+\>{\bf volatile} {\bf int} * LED\_ptr \>= ({\bf int} *) 0xFF200000; \>// red LED address\\
+\>{\bf volatile} {\bf int} * HEX3\_HEX0\_ptr	\>= ({\bf int} *) 0xFF200020; \>// HEX3\_HEX0 address\\
+\>{\bf volatile} {\bf int} * SW\_switch\_ptr	\>= ({\bf int} *) 0xFF200040; \>// SW slider switch address\\
+\>{\bf volatile} {\bf int} * KEY\_ptr \>= ({\bf int} *) 0xFF200050;	\>// pushbutton KEY address\\
+\rule{6.0in}{0in}~\\
+ZZ\=ZZZ\=ZZZ\=HEX\_bits = HEX\_bits z 0xFFFFFFFF;ZZ\=// initial pattern for HEX displays\kill
+\>{\bf int} HEX\_bits = 0x0000000F; \>\>\>// initial pattern for HEX displays\\
+\>{\bf int} SW\_value;\\
+\>{\bf volatile int} delay\_count;\>\>\>// volatile so C compiler does not remove loop\\
+~\\
+\>{\bf while} (1)\\
+\>\{\\
+\>\>SW\_value = *(SW\_switch\_ptr); \>\>// read the SW slider switch values\\
+\>\>*(LED\_ptr) = SW\_value; \>\>// light up the red LEDs\\
+~\\
+\>\>{\bf if} (*KEY\_ptr != 0) \>\>// check if any KEY was pressed\\
+\>\>\{\\
+\>\>\>HEX\_bits = SW\_value; \>// set pattern using SW values\\
+\>\>\>{\bf while} (*KEY\_ptr != 0); \>// wait for pushbutton KEY release\\
+\>\>\}\\
+\>\>*(HEX3\_HEX0\_ptr) = HEX\_bits; \>\>// display pattern on HEX3 ... HEX0\\
+~\\
+\>\>/* rotate the pattern shown on the HEX displays */\\
+\>\>{\bf if} (HEX\_bits \& 0x80000000)\\
+\>\>\>HEX\_bits = (HEX\_bits $<<$ 1) $\mid$ 1;\\
+\>\>{\bf else}\\
+\>\>\>HEX\_bits = HEX\_bits $<<$ 1;\\
+~\\
+\>\>{\bf for} (delay\_count = 100000; delay\_count != 0; $-\,-$delay\_count);\hspace{.75
+cm}// delay loop\\
+\>\} \\
+\}\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of C code that uses parallel ports.}
+   \label{fig:getting_started_C}
+\end{figure}

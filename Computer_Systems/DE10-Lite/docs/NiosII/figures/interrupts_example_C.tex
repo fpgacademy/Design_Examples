@@ -1,0 +1,63 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+{\bf volatile}	{\bf int} pattern = 0x0000000F;ZZZ\=// pattern for HEX displays\kill
+\#{\bf include} "nios2\_ctrl\_reg\_macros.h"\\
+\#{\bf include} "key\_codes.h"\>// defines values for KEY0, KEY1, $\ldots$\\
+~\\
+/\=* \kill
+/* key\_pressed and pattern are written by interrupt service routines; we have to declare \\
+\>* these as volatile to avoid the compiler caching their values in registers */\\
+{\bf volatile}	{\bf int} pattern = 0x0000000F;ZZZ\=// pattern for HEX displays\kill
+{\bf volatile} {\bf int} key\_pressed = KEY1;\>// shows which key was last pressed\\
+{\bf volatile}	{\bf int} pattern = 0x0000000F;\>// pattern for HEX displays\\
+{\bf volatile}	{\bf int} shift\_dir = LEFT;	\>// direction to shift the pattern\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* This program demonstrates use of interrupts in the DE10-Lite Computer. It first starts the \\
+\>* interval timer with 33 msec timeouts, and then enables interrupts from the interval
+timer\\
+\>* and pushbutton KEYs\\
+\>*\\
+\>* The interrupt service routine for the interval timer displays a pattern on the HEX3-0\\
+\>* displays, and rotates this pattern either left or right:\\
+\>* ~~~~~KEY[0]: loads a new pattern from the SW switches\\
+\>* ~~~~~KEY[1]: rotates the displayed pattern to the right\\
+\>* ~~~~~KEY[2]: rotates the displayed pattern to the left\\
+\>* ~~~~~KEY[3]: stops the rotation\\
+\=\kill
+\>********************************************************************************/\\
+{\bf int} main({\bf void})\\
+\{\\
+ZZ\=/\=* Declare volatile pointers to I/O registers (volatile means that IO load\kill
+\>/* Declare volatile pointers to I/O registers (volatile means that IO load and store instructions\\
+\>\>* will be used to access these pointer locations instead of regular memory loads and stores) */\\
+ZZ\={\bf volatile} {\bf int} * interval\_timer\_ptr = ({\bf int} *) 0xFF202000;ZZ\=// interval timer base address\kill
+\>{\bf volatile} {\bf int} * interval\_timer\_ptr = ({\bf int} *) 0xFF202000;\>// interval timer base address\\
+\>{\bf volatile} {\bf int} * KEY\_ptr = ({\bf int} *) 0xFF200050;\>// pushbutton KEY address\\
+ZZ\=NIOS2\_WRITE\_IENABLE( 0x3 );ZZZ\=/\=* set interrupt mask bits for levels 0 (interval\kill
+\rule{6.0in}{0in}~\\
+\>/* set the interval timer period for scrolling the HEX displays */\\
+\>{\bf int} counter = 5000000; \>// 1/(100 MHz) $\times$ (5000000) = 50 msec\\
+\>*(interval\_timer\_ptr + 0x2) = (counter \& 0xFFFF);\\
+\>*(interval\_timer\_ptr + 0x3) = (counter $>>$ 16) \& 0xFFFF;\\
+~\\
+\>/* start interval timer, enable its interrupts */\\
+\>*(interval\_timer\_ptr + 1) = 0x7;\>// STOP = 0, START = 1, CONT = 1, ITO = 1 \\
+~\\
+\>*(KEY\_ptr + 2) = 0xF; \>/* write to the pushbutton interrupt mask register, and\\
+\>\>\>* set mask bits to 1 */\\
+~\\
+\>NIOS2\_WRITE\_IENABLE( 0x3 ); \>/* set interrupt mask bits for levels 0 (interval timer)\\
+\>\>* and level 1 (pushbuttons) */\\
+\>NIOS2\_WRITE\_STATUS( 1 ); \>// enable Nios II interrupts\\
+~\\
+\>{\bf while}(1); \>// main program simply idles\\
+\}\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of C code that uses interrupts.}
+   \label{fig:interrupt_example_C}
+\end{figure}

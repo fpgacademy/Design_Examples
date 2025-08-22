@@ -1,0 +1,70 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+.{\bf include} \>\>"key\_codes.s" \>/* includes .{\bf equ} for KEY0, KEY1, $\ldots$ */\\
+.{\bf extern} \>\>PATTERN \>/* externally defined variables */\\
+.{\bf extern} \>\>KEY\_PRESSED\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* Pushbutton - Interrupt Service Routine                                \\
+\>* This routine checks which KEY has been pressed. It writes this value to the global variable KEY\_PRESSED. \\
+\=\kill
+\>********************************************************************************/\\
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf global} \>PUSHBUTTON\_ISR\\
+PUSHBUTTON\_ISR:\\
+\>{\bf subi} \>sp, sp, 20 \>/* reserve space on the stack */\\
+\>{\bf stw} \>ra, 0(sp)\\
+\>{\bf stw} \>r10, 4(sp)\\
+\>{\bf stw} \>r11, 8(sp)\\
+\>{\bf stw} \>r12, 12(sp)\\
+\>{\bf stw} \>r13, 16(sp)\\
+\rule{6.0in}{0in}~\\
+\>{\bf movia} \>r10, 0xFF200050 \>/* base address of pushbutton KEY parallel port */\\
+\>{\bf ldwio} \>r11, 0xC(r10) \>/* read edge capture register */\\
+\>{\bf stwio} \>r0,  0xC(r10) \>/* clear the interrupt */                  \\
+~\\
+\>{\bf movia} \>r10, KEY\_PRESSED \>/* global variable to return the result */\\
+CHECK\_KEY0:\\
+\>{\bf andi} \>r13, r11, 0b0001 \>/* check KEY0 */\\
+\>{\bf beq} \>r13, zero, CHECK\_KEY1\\
+\>{\bf movi} \>r12, KEY0\\
+\>{\bf stw} \>r12, 0(r10) \>/* return KEY0 value */\\
+\>{\bf br} \>END\_PUSHBUTTON\_ISR\\
+~\\
+CHECK\_KEY1:\\
+\>{\bf andi} \>r13, r11, 0b0010 \>/* check KEY1 */\\
+\>{\bf beq} \>r13, zero, END\_PUSHBUTTON\_ISR\\
+\>{\bf movi} \>r12, KEY1\\
+\>{\bf stw} \>r12, 0(r10) \>/* return KEY1 value */\\
+~\\
+END\_PUSHBUTTON\_ISR:\\
+\>{\bf ldw} \>ra, 0(sp) \>/* Restore all used register to previous values */\\
+\>{\bf ldw} \>r10, 4(sp)\\
+\>{\bf ldw} \>r11, 8(sp)\\
+\>{\bf ldw} \>r12, 12(sp)\\
+\>{\bf ldw} \>r13, 16(sp)\\
+\>{\bf addi} \>sp, sp, 20\\
+\>{\bf ret}\\
+\>.{\bf end}\\
+~\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+\vspace{-0.6 cm}\caption{Interrupt service routine for the pushbutton keys.}
+   \label{fig:pushbutton_isr_s}
+\end{figure}
+
+
+%\pagebreak
+%\clearpage
+
+%\begin{center}
+%\begin{minipage}[t]{12.5 cm}
+%\begin{tabbing}
+%Figure \ref{fig:pushbutton_isr_s}. Interrupt service routine for the pushbutton keys (Part {\it b}).
+%\end{tabbing}
+%\end{minipage}
+%\end{center}

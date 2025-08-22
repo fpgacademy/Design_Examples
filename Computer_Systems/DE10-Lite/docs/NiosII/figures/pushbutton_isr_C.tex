@@ -1,0 +1,39 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\=ZZZ\=pattern = *(slider\_switch\_ptr);ZZZZ\=//\kill
+\#{\bf include} "key\_codes.h" \>\>\>// defines values for KEY0, KEY1, $\ldots$\\
+\\
+{\bf extern} {\bf volatile} {\bf int} key\_pressed;\\
+\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* Pushbutton - Interrupt Service Routine                                \\
+\>*                                                                          \\
+\>* This routine checks which KEY has been pressed. It writes this value to the global \\
+\>* variable KEY\_PRESSED.\\
+\=\kill
+\>********************************************************************************/\\
+ZZ\=ZZZ\=pattern = *(slider\_switch\_ptr);ZZZZ\=//\kill
+{\bf void} pushbutton\_ISR( {\bf void} )\\
+\{\\
+\>{\bf volatile} {\bf int} * KEY\_ptr = (int *) 0xFF200050;\\
+\>{\bf int} press;\\
+\\
+\>press = *(KEY\_ptr + 3); \>\>// read the pushbutton interrupt register\\
+\>*(KEY\_ptr + 3) = press; \>\>// clear the interrupt\\
+\\
+\>{\bf if} (press \& 0x1) \>\>// KEY0\\
+\>\>key\_pressed = KEY0;\\
+\>{\bf else if} (press \& 0x2) \>\>// KEY1\\
+\>\>key\_pressed = KEY1;\\
+\\
+\>{\bf return};\\
+\}\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\caption{Interrupt service routine for the pushbutton keys.}
+   \label{fig:pushbutton_isr_C}
+\end{figure}

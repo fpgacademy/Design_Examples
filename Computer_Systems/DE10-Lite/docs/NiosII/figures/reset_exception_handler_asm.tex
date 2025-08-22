@@ -1,0 +1,90 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* RESET SECTION\\
+\>* The Monitor Program automatically places the ".reset" section at the reset location\\
+\>* specified in the CPU settings in Qsys.\\
+\>* Note: "ax" is REQUIRED to designate the section as allocatable and executable.\\
+\=\kill
+\>*/\\
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf section} \>.reset, "ax"\\
+\>{\bf movia} \>r2, \_start\\
+\>{\bf jmp} \>r2 \>/* branch to main program */\\
+\rule{6.0in}{0in}~\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* EXCEPTIONS SECTION\\
+\>* The Monitor Program automatically places the ".exceptions" section at the\\
+\>* exception location specified in the CPU settings in Qsys.\\
+\>* Note: "ax" is REQUIRED to designate the section as allocatable and executable.\\
+\=\kill
+\>*/\\
+ZZ\={\bf movia}ZZZ\=et, r0, CHECK\_LEVEL\_0ZZZ\=/* interrupt is an external interrupt */\kill
+\>.{\bf section} \>.exceptions, "ax"\\
+\>.{\bf global} \>EXCEPTION\_HANDLER\\
+EXCEPTION\_HANDLER:\\
+\>{\bf subi} \>sp, sp, 16 \>/* make room on the stack */\\
+\>{\bf stw} \>et, 0(sp)\\
+~\\
+\>{\bf rdctl} \>et, ctl4\\
+\>{\bf beq} \>et, r0, SKIP\_EA\_DEC \>/* interrupt is not external */\\
+~\\
+\>{\bf subi} \>ea, ea, 4 \>/* must decrement ea by one instruction */\\
+\>\>\>/* for external interrupts, so that the */\\
+\>\>\>/* interrupted instruction will be run after eret */\\
+~\\
+SKIP\_EA\_DEC:\\
+\>{\bf stw} \>ea, 4(sp) \>/* save all used registers on the Stack */\\
+\>{\bf stw} \>ra, 8(sp) \>/* needed if call inst is used */\\
+\>{\bf stw} \>r22, 12(sp)\\
+~\\
+\>{\bf rdctl} \>et, ctl4\\
+\>{\bf bne} \>et, r0, CHECK\_LEVEL\_0 \>/* exception is an external interrupt */\\
+~\\
+NOT\_EI: \>\>\>/* exception must be unimplemented instruction or TRAP */\\
+\>{\bf br} \>END\_ISR \>/* instruction. This code does not handle those cases */\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\caption{Reset and exception handler assembly language code (Part $a$).}
+   \label{fig:exception_handler_s}
+\end{figure}
+\pagebreak
+\clearpage
+\newpage
+
+
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+CHECK\_LEVEL\_0: \>\>\>/* interval timer is interrupt level 0 */\\
+\>{\bf andi} \>r22, et, 0b1\\
+\>{\bf beq} \>r22, r0, CHECK\_LEVEL\_1\\
+\>{\bf call} \>INTERVAL\_TIMER\_ISR				\\
+\>{\bf br} \>END\_ISR\\
+\rule{6.0in}{0in}~\\
+CHECK\_LEVEL\_1: \>\>\>/* pushbutton port is interrupt level 1 */\\
+\>{\bf andi} \>r22, et, 0b10\\
+\>{\bf beq} \>r22, r0, END\_ISR \>/* other interrupt levels are not handled in this code */\\
+\>{\bf call} \>PUSHBUTTON\_ISR				\\
+~\\
+END\_ISR:\\
+\>{\bf ldw} \>et, 0(sp) \>/* restore all used register to previous values */\\
+\>{\bf ldw} \>ea, 4(sp) \\
+\>{\bf ldw} \>ra, 8(sp) \>/* needed if call inst is used */\\
+\>{\bf ldw} \>r22, 12(sp)\\
+\>{\bf addi} \>sp, sp, 16\\
+~\\
+\>{\bf eret}\\
+\>.{\bf end}\\
+~\\
+~\\
+Figure \ref{fig:exception_handler_s}. Reset and exception handler assembly language code (Part {\it b}).
+\end{tabbing}
+\end{minipage}
+\end{center}

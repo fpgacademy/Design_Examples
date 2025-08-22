@@ -1,0 +1,166 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+\#{\bf include} "nios2\_ctrl\_reg\_macros.h"\\
+\\
+/* function prototypes */\\
+{\bf void} main({\bf void});\\
+{\bf void} interrupt\_handler({\bf void});\\
+{\bf void} interval\_timer\_isr({\bf void});\\
+{\bf void} pushbutton\_ISR({\bf void});\\
+\rule{6.0in}{0in}~\\
+/* The assembly language code below handles Nios II reset processing */\\
+{\bf void} the\_reset ({\bf void}) \_\_{\bf attribute}\_\_ (({\bf section} (".reset")));\\
+{\bf void} the\_reset ({\bf void})\\
+/\=**************************************\=****************************************\=\kill
+/*******************************************************************************\\
+\>* Reset code; by using the section attribute with the name ".reset" we allow the linker program\>\>\\
+\>* to locate this code at the proper reset vector address. This code just calls the main program\>\>\\
+\>******************************************************************************/\\
+ZZ\={\bf asm} ( "{\bf beq}ZZ\=et, r0, SKIP\_EA\_DEC"); ZZ\= Interrupt is not external\kill 
+\{\\
+\>{\bf asm} (".{\bf set} \>{\bf noat}"); \>// magic, for the C compiler\\
+\>{\bf asm} (".{\bf set} \>{\bf nobreak}"); \>// magic, for the C compiler\\
+\>{\bf asm} ("{\bf movia} \>r2, main"); \>// call the C language main program\\
+\>{\bf asm} ("{\bf jmp}	\>r2"); \\
+\}\\\\
+/\=ZZZ\=ZZZ\=ZZZ\=\kill
+/* The assembly language code below handles Nios II exception processing. This code should not be\\
+\>*  modified; instead, the C language code in the function interrupt\_handler() can be modified as \\
+\>* needed for a given application. */\\
+{\bf void} the\_exception ({\bf void}) \_\_{\bf attribute}\_\_ (({\bf section} (".exceptions")));\\
+{\bf void} the\_exception ({\bf void})\\
+/\=**************************************\=****************************************\=\kill
+/*******************************************************************************\\
+\>* Exceptions code; by giving the code a section attribute with the name ".exceptions" we allow\\
+\>* the linker to locate this code at the proper exceptions vector address. This code calls the\\
+\>* interrupt handler and later returns from the exception.\\
+\>******************************************************************************/\\
+\{\\
+ZZ\={\bf asm} ( "{\bf beq}ZZ\=et, r0, SKIP\_EA\_DEC"); ZZ\= Interrupt is not external\kill 
+\>{\bf asm} (".{\bf set} \>{\bf noat}"); \>// magic, for the C compiler\\
+\>{\bf asm} (".{\bf set} \>{\bf nobreak}"); \>// magic, for the C compiler\\
+\>{\bf asm} ( "{\bf subi} \>sp, sp, 128");\\
+\>{\bf asm} ( "{\bf stw} \>et, 96(sp)");\\
+\>{\bf asm} ( "{\bf rdctl}	\>et, ctl4");\\
+\>{\bf asm} ( "{\bf beq} \>et, r0, SKIP\_EA\_DEC"); \>// interrupt is not external\\
+ZZ\={\bf asm} ( "{\bf beq}ZZ\=et, r0, SKIP\_EA\_DEC"); ZZ\=/\=\kill 
+\>{\bf asm} ( "{\bf subi} \>ea, ea, 4"); \>/* must decrement ea by one instruction for external\\
+\>\>\>\>* interrupts, so that the instruction will be run */\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{Reset and exception handler C code (Part $a$).}
+   \label{fig:exception_handler_C}
+\end{figure}
+\pagebreak
+\clearpage
+\newpage
+
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf asm} ( "{\bf beq}ZZ\=et, r0, SKIP\_EA\_DEC" ); ZZ\= Interrupt is not external\kill 
+\>{\bf asm} ( "SKIP\_EA\_DEC:" );\\
+\>{\bf asm} ( "{\bf stw} \>r1,  4(sp)" );			\>// save all registers \\
+\>{\bf asm} ( "{\bf stw} \>r2,  8(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r3,  12(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r4,  16(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r5,  20(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r6,  24(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r7,  28(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r8,  32(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r9,  36(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r10, 40(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r11, 44(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r12, 48(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r13, 52(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r14, 56(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r15, 60(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r16, 64(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r17, 68(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r18, 72(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r19, 76(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r20, 80(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r21, 84(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r22, 88(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r23, 92(sp)" );\\
+\>{\bf asm} ( "{\bf stw} \>r25, 100(sp)" ); \>// r25 = bt (skip r24 = et, because it was saved above)\\
+\>{\bf asm} ( "{\bf stw} \>r26, 104(sp)" ); \>// r26 = gp\\
+\>// skip r27 because it is sp, and there is no point in saving this\\
+\>{\bf asm} ( "{\bf stw} \>r28, 112(sp)" ); \>// r28 = fp\\
+\>{\bf asm} ( "{\bf stw} \>r29, 116(sp)" ); \>// r29 = ea\\
+\>{\bf asm} ( "{\bf stw} \>r30, 120(sp)" ); \>// r30 = ba\\
+\>{\bf asm} ( "{\bf stw} \>r31, 124(sp)" ); \>// r31 = ra\\
+\>{\bf asm} ( "{\bf addi} \>fp,  sp, 128" );\\
+~\rule{6.0in}{0in}~\\
+\>{\bf asm} ( "{\bf call} \>interrupt\_handler" );		\>// call the C language interrupt handler\\
+~\\
+\>{\bf asm} ( "{\bf ldw} \>r1,  4(sp)" );				\>// restore all registers\\
+\>{\bf asm} ( "{\bf ldw} \>r2,  8(sp)" );\\
+\>{\bf asm} ( "{\bf ldw} \>r3,  12(sp)" );\\
+\>{\bf asm} ( "{\bf ldw} \>r4,  16(sp)" );\\
+\>{\bf asm} ( "{\bf ldw} \>r5,  20(sp)" );\\
+\>{\bf asm} ( "{\bf ldw} \>r6,  24(sp)" );\\
+\>{\bf asm} ( "{\bf ldw} \>r7,  28(sp)" );\\
+~\\
+Figure \ref{fig:exception_handler_C}. Reset and exception handler C language code (Part {\it b}).
+\end{tabbing}
+\end{minipage}
+\end{center}
+
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf asm} ( "{\bf beq}ZZ\=et, r0, SKIP\_EA\_DEC" ); ZZ\= Interrupt is not external\kill 
+\>{\bf asm} (	"{\bf ldw}	\>r8,  32(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r9,  36(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r10, 40(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r11, 44(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r12, 48(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r13, 52(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r14, 56(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r15, 60(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r16, 64(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r17, 68(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r18, 72(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r19, 76(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r20, 80(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r21, 84(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r22, 88(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r23, 92(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r24, 96(sp)" );\\
+\>{\bf asm} (	"{\bf ldw}	\>r25, 100(sp)" ); \>// r25 = bt\\
+\>{\bf asm} (	"{\bf ldw}	\>r26, 104(sp)" ); \>// r26 = gp\\
+\>// skip r27 because it is sp, and we did not save this on the stack\\
+\>{\bf asm} (	"{\bf ldw}	\>r28, 112(sp)" ); \>// r28 = fp\\
+\>{\bf asm} (	"{\bf ldw}	\>r29, 116(sp)" ); \>// r29 = ea\\
+\>{\bf asm} (	"{\bf ldw}	\>r30, 120(sp)" ); \>// r30 = ba\\
+\>{\bf asm} (	"{\bf ldw}	\>r31, 124(sp)" ); \>// r31 = ra\\
+~\rule{6.0in}{0in}~\\
+\>{\bf asm} (	"{\bf addi}	\>sp, sp, 128" );\\
+\>{\bf asm} (	"{\bf eret}" );\\
+\}\\
+~\\
+/\=***\=***\=***\=**********************************************************************\=\kill
+/********************************************************************************\\
+\>* Interrupt Service Routine: Determines the interrupt source and calls the appropriate subroutine\\
+\>*******************************************************************************/\\
+{\bf void} interrupt\_handler({\bf void})\\
+\{\\
+ZZ\=ZZZ\=f asm ( "{\bf beq}ZZ\=et, r0, SKIP\_EA\_DEC" ); ZZ\= Interrupt is not external\kill 
+\>{\bf int} ipending;\\
+\>NIOS2\_READ\_IPENDING(ipending);\\
+\>{\bf if} ( ipending \& 0x1 ) \>\>\>// interval timer is interrupt level 0\\
+\>\>interval\_timer\_isr( );\\
+\>{\bf if} ( ipending \& 0x2 ) \>\>\>// pushbuttons are interrupt level 1\\
+\>\>pushbutton\_ISR( );\\
+\>// else, ignore the interrupt\\
+\>{\bf return};\\
+\}\\
+~\\
+Figure \ref{fig:exception_handler_C}. Reset and exception handler C code (Part {\it c}).
+\end{tabbing}
+\end{minipage}
+\end{center}

@@ -1,0 +1,85 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\=ZZ\=ZZ\=HEX\_bits = HEX\_bits z 0xFFFFFFFF;ZZ\=// invert pattern for HEX displays\kill
+/* function prototypes */\\
+{\bf void} put\_jtag({\bf char});\\
+{\bf char} get\_jtag({\bf void});\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* This program demonstrates use of the JTAG UART port in the DE10-Lite Computer\\
+\>* It performs the following: \\
+\>* \>1. sends a text string to the JTAG UART\\
+\>* \>2. reads and echos character data from/to the JTAG UART\\
+\=\kill
+\>********************************************************************************/\\
+{\bf int} main({\bf void})\\
+\{\\
+ZZ\=ZZ\=ZZ\=HEX\_bits = HEX\_bits z 0xFFFFFFFF;ZZ\=// invert pattern for HEX displays\kill
+\>{\bf char} text\_string[$\,$] = "$\backslash$nJTAG UART example code$\backslash$n$>$ $\backslash$0";\\
+\>{\bf char} *str, c;\\
+~\\
+\>/* print a text string */\\
+\>{\bf for} (str = text\_string; *str != 0; ++str)\\
+\>\>put\_jtag (*str);
+~\\
+\>/* read and echo characters */\\
+\>{\bf while} (1)\\
+\>\{\\
+\>\>c = get\_jtag ( );\\
+\>\>{\bf if} (c != '$\backslash$0')\\
+\>\>\>put\_jtag (c);\\
+\>\}\\
+\}
+\rule{6.0in}{0in}~\\\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* Subroutine to send a character to the JTAG UART\\
+\=\kill
+\>********************************************************************************/\\
+ZZ\=ZZZ\=ZZZ\=HEX\_bits = HEX\_bits z ;ZZ\=// invert pattern for HEX displays\kill
+{\bf void} put\_jtag( {\bf char} c )\\
+\{\\
+\>{\bf volatile int} * JTAG\_UART\_ptr 	= (int *) 0xFF201000;  // JTAG UART address\\
+\>{\bf int} control;\\
+\>control = *(JTAG\_UART\_ptr + 1);	\>\>\>// read the JTAG\_UART control register\\
+\>{\bf if} (control \& 0xFFFF0000) \>\>\>// if space, echo character, else ignore \\
+\>\>*(JTAG\_UART\_ptr) = c;\\
+\}\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of C code that uses the JTAG UART (Part {\it a}).}
+   \label{fig:jtag_uart_C}
+\end{figure}
+\pagebreak
+\clearpage
+\newpage
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* Subroutine to read a character from the JTAG UART\\
+\>* Returns $\backslash$0 if no character, otherwise returns the character\\
+\=\kill
+\>********************************************************************************/\\
+ZZ\=ZZZ\=ZZZ\=HEX\_bits = HEX\_bits z ;ZZ\=// invert pattern for HEX displays\kill
+{\bf char} get\_jtag( {\bf void} )\\
+\{\\
+\>{\bf volatile int} * JTAG\_UART\_ptr	= ({\bf int} *) 0xFF201000;	// JTAG UART address\\
+\>{\bf int} data;\\
+\>data = *(JTAG\_UART\_ptr); \>\>\>// read the JTAG\_UART data register\\
+\>{\bf if} (data \& 0x00008000) \>\>\>// check RVALID to see if there is new data\\
+\>\>{\bf return} (({\bf char}) data \& 0xFF);\\
+\>{\bf else}\\
+\>\>{\bf return} ('$\backslash$0');\\
+\}
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of C code that uses the JTAG UART (Part {\it b}).}
+   \label{fig:jtag_uart_C}
+\end{figure}

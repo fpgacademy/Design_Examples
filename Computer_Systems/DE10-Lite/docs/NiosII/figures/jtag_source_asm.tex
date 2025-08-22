@@ -1,0 +1,93 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* This program demonstrates use of the JTAG UART port in the DE10-Lite Computer\\
+\>*\\
+\>* It performs the following: \\
+\>* \>1. sends a text string to the JTAG UART\\
+\>* \>2. reads character data from the JTAG UART\\
+\>* \>3. echos the character data back to the JTAG UART\\
+\=\kill
+\>********************************************************************************/\\
+ZZZZZZZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf text}	\>\>/* executable code follows */\\
+\>.{\bf global}\>\_start\\
+\_start:\\
+\>/* set up stack pointer */\\
+\>{\bf movia} \>sp, 0x03FFFFFC \>/* put stack at top of SDRAM */\\
+\rule{6.0in}{0in}~\\
+\>{\bf movia} \>r6, 0xFF201000 \>/* JTAG UART base address */\\
+\\
+\>/* print a text string */\\
+\>{\bf movia} \>r8, TEXT\_STRING\\
+LOOP:\\
+\>{\bf ldb} \>r5, 0(r8)\\
+\>{\bf beq} \>r5, zero, GET\_JTAG \>/* string is null-terminated */\\
+\>{\bf call} \>PUT\_JTAG\\
+\>{\bf addi} \>r8, r8, 1\\
+\>{\bf br} \>LOOP\\
+~\\
+\>/* read and echo characters */\\
+GET\_JTAG:\\
+\>{\bf ldwio} \>r4, 0(r6) \>/* read the JTAG UART Data register */\\
+\>{\bf andi} \>r8, r4, 0x8000 \>/* check if there is new data */\\
+\>{\bf beq} \>r8, r0, GET\_JTAG \>/* if no data, wait */\\
+\>{\bf andi} \>r5, r4, 0x00ff \>/* the data is in the least significant byte */\\
+~\\
+\>{\bf call} \>PUT\_JTAG \>/* echo character */\\
+\>{\bf br} \>GET\_JTAG\\
+\>.{\bf end}\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of assembly language code that uses the JTAG UART
+	(Part {\it a}).}
+   \label{fig:jtag_uart_s}
+\end{figure}
+\pagebreak
+\clearpage
+\newpage
+
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+/\=*****\=***\=******************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* Subroutine to send a character to the JTAG UART\\
+\>* \>r5 \>= character to send\\
+\>* \>r6 \>= JTAG UART base address\\
+\=\kill
+\>********************************************************************************/\\
+ZZZZZZZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf global} \>PUT\_JTAG\\
+PUT\_JTAG:\\
+\>/* save any modified registers */\\
+\>{\bf subi} \>sp, sp, 4 \>/* reserve space on the stack */\\
+\>{\bf stw} \>r4, 0(sp) \>/* save register */\\
+\\
+\>{\bf ldwio} \>r4, 4(r6) \>/* read the JTAG UART Control register */\\
+\>{\bf andhi} \>r4, r4, 0xffff \>/* check for write space */\\
+\>{\bf beq} \>r4, r0, END\_PUT \>/* if no space, ignore the character */\\
+\>{\bf stwio} \>r5, 0(r6) \>/* send the character */\\
+\rule{6.0in}{0in}~\\
+END\_PUT:\\
+\>/* restore registers */\\
+\>{\bf ldw} \>r4, 0(sp)\\
+\>{\bf addi} \>sp, sp, 4\\
+\\
+\>{\bf ret}\\
+\\
+\>.{\bf data} \>\>/* data follows */\\
+TEXT\_STRING:\\
+\>.{\bf asciz} "$\backslash$nJTAG UART example code$\backslash$n$>$ "\\
+\\
+\>.{\bf end}\\
+~\\
+Figure \ref{fig:jtag_uart_s}. An example of assembly language code that uses the JTAG
+UART (Part {\it b}).
+\end{tabbing}
+\end{minipage}
+\end{center}

@@ -1,0 +1,305 @@
+   % This include all the settings that we should use for the document
+\newcommand{\PDFTitle}{DE10-Lite Computer System with Nios\textsuperscript{\textregistered} II Manual}
+\newcommand{\commonPath}{../../../common/doc}
+\newcommand{\templatePath}{../../../common/templates}
+\newcommand{\sampleProgramsPath}{../../../sample_programs}
+\input{\templatePath/defaulttext.tex}
+\input{\templatePath/preamble.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add title
+\newcommand{\doctitle}{DE10-Lite Computer System\\ with Nios\textsuperscript{\textregistered} II}
+\newcommand{\dochead}{DE10-Lite Computer System with Nios\textsuperscript{\textregistered} II}
+% Usually no need to change these two lines
+\title{\fontfamily{phv}\selectfont{\doctitle} }
+\chead{ \small{\textsc{\bfseries \dochead} } }
+% Customizations
+\newcommand{\DEBoard}{DE10-Lite}
+\newcommand{\systemName}{DE10-Lite Computer}
+\newcommand{\systemNameFull}{DE10-Lite Computer with Nios~II}
+\newcommand{\FPGADeviceFamily}{Max\textsuperscript{\textregistered} 10}
+\newcommand{\processor}{Nios~II}
+\newcommand{\aProcessor}{a Nios~II}
+\newcommand{\baseAddressOffset}{0}
+\newcommand{\GIC}{processor}
+\newcommand{\videoOutDevice}{VGA}
+\newcommand{\pixelBufferInfo}{160120_16}
+\newcommand{\expansionPortA}{JP1}
+\newcommand{\processorStyle}{defaultNiosStyle}
+\newcommand{\processorLower}{nios2}
+\raggedbottom
+\widowpenalty 10000
+\clubpenalty 10000
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{table}
+    \centering
+    \begin{tabular}{p{5cm}p{4cm}}
+        \hspace{-3cm}
+        &
+        \raisebox{1\height}{\parbox[h]{0.5\textwidth}{\Large\fontfamily{phv}\selectfont{\textbf{\doctitle}}}}
+    \end{tabular}
+    \label{tab:logo}
+\end{table}
+
+\colorbox[rgb]{0,0.384,0.816}{\parbox[h]{\textwidth}{\color{white}\textbf{\textit{\textBar}}}}
+
+\thispagestyle{plain}
+
+% Section: Introduction
+\input{\commonPath/Introduction.tex}
+To support such experiments, the system contains
+embedded processors, memory, audio and video devices, and some simple I/O peripherals. 
+The FPGA programming file that implements this system, as well as its 
+design source files, can be obtained from the FPGAcademy's Design Example GitHub repository.
+
+% Section: Contents
+\section{DE10-Lite Computer Contents}
+A block diagram of the DE10-Lite Computer system is shown in 
+Figure \ref{fig:block_diagram}.  As indicated in the figure, the components in this system 
+are implemented utilizing the FPGA inside the Max$^{\registered}$10 chip. 
+The FPGA implements two Nios\textsuperscript{\textregistered}~II processors and several peripheral ports including: An Arduino* header, 
+memory, timer modules, VGA, GPIO, and parallel ports connected to switches, push-buttons and lights.
+
+\input{\commonPath/Block_Diagram_Old.tex}
+
+\input{\commonPath/FPGA_NiosII.tex}
+\input{\commonPath/FPGA_NiosII_Extended.tex}
+
+\subsection{Memory Components}
+
+The DE10-Lite Computer has an SDRAM port, as well as two memory modules implemented 
+using the on-chip memory inside the FPGA. These memories are described below.
+
+\input{\commonPath/FPGA_SDRAM.tex}
+
+\subsubsection{On-Chip Memory}
+The DE10-Lite Computer includes a 64-Kbyte memory that is implemented inside the FPGA.  This 
+memory is organized as 2K {\sf x} 32 bits, and spans addresses in the range 
+{\sf 0x08000000} to {\sf 0x0800FFFF}. The memory is used as a pixel buffer for the
+video-out and video-in ports.
+
+\input{\commonPath/FPGA_Char_Buffer.tex}
+
+\input{\commonPath/FPGA_PP.tex}
+\input{\commonPath/FPGA_PP_Red_LEDs_10.tex}
+\input{\commonPath/FPGA_PP_7_Segs_6.tex}
+\input{\commonPath/FPGA_PP_Switches_10.tex}
+\input{\commonPath/FPGA_PP_Keys_2.tex}
+\input{\commonPath/FPGA_PP_Single_40_Pin_Header.tex}
+\input{\commonPath/FPGA_PP_Arduino.tex}
+
+\input{\commonPath/FPGA_PP_Examples.tex}
+
+\input{\commonPath/FPGA_JTAG_UART.tex}
+
+\input{\commonPath/FPGA_Interval_Timers.tex}
+Each Nios II processor has exclusive access to two interval timers.
+\input{\commonPath/FPGA_Accelerometer.tex}
+\input{\commonPath/FPGA_FP.tex}
+\input{\commonPath/FPGA_System_ID.tex}
+
+% Section: Exceptions and Interrupts
+\input{\commonPath/Interrupts_FPGA.tex}
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{l|l}
+            \textbf{I/O Peripheral} &
+            \textbf{IRQ \#}
+        \\\hline
+            Interval timer & 0 \\
+            Pushbutton switch parallel port & 1 \\
+            Second Interval timer & 2 \\
+            JTAG port & 8 \\
+            JP1 Expansion parallel port & 11 \\
+           	Arduino Header & 13 \\
+    \end{tabular}
+    \caption{Hardware IRQ interrupt assignment for the DE10-Lite Computer.}
+	 \label{tab:irq}
+    \end{center}
+\end{table}
+
+\input{\commonPath/Interrupts_FPGA_PP.tex}
+\input{\commonPath/Interrupts_FPGA_PP_Keys.tex}
+\input{\commonPath/Interrupts_FPGA_JTAG_UART.tex}
+\input{\commonPath/Interrupts_FPGA_Interval_Timer.tex}
+
+\input{\commonPath/Interrupts_NiosII_ASM.tex}
+\input{\commonPath/Interrupts_NiosII_C.tex}
+
+% Section: Media Components
+\section{Media Components}
+\label{sec:multi}
+
+This section describes the video-out port.
+
+\input{\commonPath/Media_FPGA_Video_Out.tex}
+
+% Section: Modifying the System
+\input{\commonPath/System_Modifying.tex}
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{l|l}
+            \textbf{I/O Peripheral}
+            & \textbf{Qsys Core}
+        \\\hline
+            SDRAM
+            & SDRAM Controller
+        \\
+            SRAM
+        &   SRAM Controller
+        \\
+            On-chip memory character buffer
+				& Character Buffer for VGA Display
+        \\
+            Red LED parallel port
+				& Parallel Port
+        \\
+            7-segment displays parallel port
+				& Parallel Port
+        \\
+            Expansion parallel ports
+				& Parallel Port
+        \\
+						Arduino GPIO
+				& Parallel Port
+				\\
+            Slider switch parallel port
+				& Parallel Port
+        \\
+            Pushbutton parallel port
+				& Parallel Port
+        \\
+            JTAG port
+				& JTAG UART
+        \\
+            Interval timer
+				& Interval timer 
+				\\
+						Accelerometer
+			  & Accelerometer SPI Mode
+				\\
+						System ID
+				& System ID Peripheral
+        \\
+            Audio/video configuration port
+				& Audio and Video Config
+        \\
+            Video port
+				& Pixel Buffer DMA Controller
+        \\
+    \end{tabular}
+    \caption{Qsys cores used in the \systemName.}
+    \label{tab:sopcnames}
+    \end{center}
+\end{table}
+
+\clearpage
+% Section: Making the System the Default Configuration
+\input{\commonPath/System_Default_Config.tex}
+
+\section{Memory Layout}
+
+\noindent
+Table \ref{tab:memorylayout} summarizes the memory map used in the DE10-Lite Computer.
+~\\
+~\\
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{c|c|l}
+            \textbf{Base Address}
+            & \textbf{End Address}
+            & \textbf{I/O Peripheral}
+				\\\hline\vspace{-3mm}\\
+            0x00000000
+            & 0x03FFFFFF
+            & SDRAM
+        \\
+            0x08000000
+            & 0x0800FFFF
+            & FPGA On-chip Memory
+        \\
+            0x09000000
+            & 0x09001FFF
+            & FPGA On-chip Memory Character Buffer
+        \\
+            0xFF200000
+            & 0xFF20000F
+            & Red LEDs
+        \\
+            0xFF200020
+            & 0xFF20002F
+            & 7-segment HEX3$-$HEX0 Displays
+        \\
+            0xFF200030
+            & 0xFF20003F
+            & 7-segment HEX5$-$HEX4 Displays
+        \\
+            0xFF200040
+            & 0xFF20004F
+            & Slider Switches
+        \\
+            0xFF200050
+            & 0xFF20005F
+            & Pushbutton KEYs
+        \\
+            0xFF200060
+            & 0xFF20006F
+            & JP1 Expansion
+        \\
+        	0xFF200100
+        	& 0xFF200100
+        	& Arduino GPIO
+        \\
+        	0xFF200110
+        	& 0xFF20011F
+        	& Arduino Reset\_N
+        \\
+            0xFF201000
+            & 0xFF201007
+            & JTAG UART
+        \\
+            0xFF202000
+            & 0xFF20201F
+            & Interval Timer
+        \\  
+            0xFF202020
+            & 0xFF20202F
+            & Second Interval Timer
+        \\
+            0xFF203020
+            & 0xFF20302F
+            & Pixel Buffer Control
+        \\
+            0xFF203030
+            & 0xFF203037
+            & Character Buffer Control
+        \\
+    \end{tabular}
+    \caption{Memory layout used in the DE10-Lite Computer.}
+    \label{tab:memorylayout}
+    \end{center}
+\end{table}
+
+\newpage
+
+% Section: AMP Integration
+\input{\commonPath/AMP_Integration.tex}
+\clearpage
+
+% Appendix
+\input{\commonPath/appendix.tex}
+\input{\commonPath/Code_FPGA_PP_Examples.tex}
+\input{\commonPath/Code_FPGA_JTAG_UART.tex}
+\input{\commonPath/Code_Interrupts_NiosII.tex}
+\input{\commonPath/Code_Media_FPGA_Video_Out.tex}
+\newpage
+\input{\commonPath/Code_Media_FPGA_FP.tex}
+
+\input{\templatePath/copyright.tex}
+
+\end{document}
+

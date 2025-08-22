@@ -1,0 +1,44 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+\#{\bf ifndef} \_\_NIOS2\_CTRL\_REG\_MACROS\_\_\\
+\#{\bf define} \_\_NIOS2\_CTRL\_REG\_MACROS\_\_\\
+~\\
+/****************************************************************************\=/\kill
+/*****************************************************************************/\\
+/* Macros for accessing the control registers. \>*/\\
+/*****************************************************************************/\\
+~\\
+ZZ\=ZZZ\=ZZZ\=ZZZ\=ZZZ\=ZZZ\=\kill
+\#{\bf define} NIOS2\_READ\_STATUS(dest) $\backslash$\\
+\>{\bf do} \{ dest = \_\_builtin\_rdctl(0); \} {\bf while} (0)\\
+~\\
+\#{\bf define} NIOS2\_WRITE\_STATUS(src) $\backslash$\\
+\>{\bf do} \{ \_\_builtin\_wrctl(0, src); \} {\bf while} (0)\\
+~\\
+\#{\bf define} NIOS2\_READ\_ESTATUS(dest) $\backslash$\\
+\>{\bf do} \{ dest = \_\_builtin\_rdctl(1); \} {\bf while} (0)\\
+~\\
+\#{\bf define} NIOS2\_READ\_BSTATUS(dest) $\backslash$\\
+\>{\bf do} \{ dest = \_\_builtin\_rdctl(2); \} {\bf while} (0)\\
+~\\
+\#{\bf define} NIOS2\_READ\_IENABLE(dest) $\backslash$\\
+\>{\bf do} \{ dest = \_\_builtin\_rdctl(3); \} {\bf while} (0)\\
+~\\
+\#{\bf define} NIOS2\_WRITE\_IENABLE(src) $\backslash$\\
+\>{\bf do} \{ \_\_builtin\_wrctl(3, src); \} {\bf while} (0)\\
+~\\
+\#{\bf define} NIOS2\_READ\_IPENDING(dest) $\backslash$\\
+\>{\bf do} \{ dest = \_\_builtin\_rdctl(4); \} {\bf while} (0)\\
+~\\
+\#{\bf define} NIOS2\_READ\_CPUID(dest) $\backslash$\\
+\>{\bf do} \{ dest = \_\_builtin\_rdctl(5); \} {\bf while} (0)\\
+\rule{6.0in}{0in}~\\
+\#{\bf endif}
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\caption{Macros for accessing Nios II status and control registers.}
+   \label{fig:macros}
+\end{figure}

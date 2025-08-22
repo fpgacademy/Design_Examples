@@ -1,0 +1,324 @@
+% This include all the settings that we should use for the document
+\newcommand{\PDFTitle}{DE10-Nano Computer System with Nios\textsuperscript{\textregistered} II Manual}
+\newcommand{\commonPath}{../../../common/doc}
+\newcommand{\templatePath}{../../../common/templates}
+\newcommand{\sampleProgramsPath}{../../../sample_programs}
+\input{\templatePath/defaulttext.tex}
+\input{\templatePath/preamble.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add title
+\newcommand{\doctitle}{DE10-Nano Computer System\\ with Nios\textsuperscript{\textregistered} II}
+\newcommand{\dochead}{DE10-Nano Computer System with Nios\textsuperscript{\textregistered} II}
+% Usually no need to change these two lines
+\title{\fontfamily{phv}\selectfont{\doctitle} }
+\chead{ \small{\textsc{\bfseries \dochead} } }
+% Customizations
+\newcommand{\DEBoard}{DE10-Nano}
+\newcommand{\systemName}{DE10-Nano Computer}
+\newcommand{\systemNameFull}{DE10-Nano Computer with Nios~II}
+\newcommand{\FPGADeviceFamily}{Cyclone\textsuperscript{\textregistered} V SoC}
+\newcommand{\processor}{Nios~II}
+\newcommand{\aProcessor}{a Nios~II}
+\newcommand{\baseAddressOffset}{0}
+\newcommand{\GIC}{processor}
+\newcommand{\RotatingDisplay}{LED lights}
+\newcommand{\videoOutDevice}{HDMI}
+\newcommand{\pixelBufferInfo}{320240_8}
+\newcommand{\expansionPortA}{JP1}
+\newcommand{\expansionPortB}{JP7}
+\newcommand{\processorStyle}{defaultNiosStyle}
+\newcommand{\processorLower}{nios2}
+\raggedbottom
+\widowpenalty 10000
+\clubpenalty 10000
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{table}
+    \centering
+    \begin{tabular}{p{5cm}p{4cm}}
+        \hspace{-3cm}
+        &
+        \raisebox{1\height}{\parbox[h]{0.5\textwidth}{\Large\fontfamily{phv}\selectfont{\textbf{\doctitle}}}}
+    \end{tabular}
+    \label{tab:logo}
+\end{table}
+
+\colorbox[rgb]{0,0.384,0.816}{\parbox[h]{\textwidth}{\color{white}\textbf{\textit{\textBar}}}}
+
+\thispagestyle{plain}
+
+% Section: Introduction
+\input{\commonPath/Introduction.tex}
+To support these beginning experiments, the system contains 
+a processor, memory, an analog-to-digital converter, an accelerometer and some simple I/O peripherals. 
+The FPGA programming file that implements this system, as well as its 
+design source files, can be obtained from the FPGAcademy's Design Example GitHub repository.
+
+% Section: Contents
+\section{\systemName~Contents}
+A block diagram of the \systemName~ system is shown in Figure \ref{fig:block_diagram}. As indicated in the figure, the components in this system 
+are implemented utilizing both the FPGA and the {\it Hard Processor System} (HPS) inside 
+Cyclone$^{\registered}$V SoC chip.  The FPGA implements two Nios\textsuperscript{\textregistered}~II processors 
+and several peripheral ports: memory, timer modules, analog-to-digital, 
+parallel ports connected to switches and lights, and HDMI*.  The HPS comprises an ARM* Cortex* A9 dual-core 
+processor and a set of peripheral devices.  Instructions for using the HPS and ARM processor
+are provided in a separate document, called {\it DE1-Nano Computer System with ARM Cortex A9}.
+
+\input{\commonPath/Block_Diagram.tex}
+\input{\commonPath/FPGA_Components.tex}
+
+\input{\commonPath/FPGA_NiosII.tex}
+\input{\commonPath/FPGA_NiosII_Extended.tex}
+
+\subsection{Memory Components}
+
+The \systemName~has a DDR3 port, as well as three memory modules implemented 
+using the on-chip memory inside the FPGA. These memories are described below.
+
+\input{\commonPath/FPGA_DDR3.tex}
+
+\subsubsection{On-Chip Memory}
+
+The DE10-Nano Computer includes a 256-Kbyte memory that is implemented inside the FPGA.  This 
+memory is organized as 64K {\sf x} 32 bits.  This memory is accessible by both Nios II
+processors using addresses {\sf 0x08000000} to {\sf 0x0803FFFF}. 
+
+\subsubsection{On-Chip Memories}
+The DE10-Nano Computer includes two additional 32-Kbyte memories that are implemented in the
+Cyclone V FPGA chip.  Each of these memories is organized as 8K {\sf x} 32 bits, and 
+can be accessed using either word, halfword, or byte operations. Each Nios II processor is
+connected to only one of these memories and can access the memory in the address range
+{\sf 0x00000000} to {\sf 0x00007FFF}. Each Nios II processor uses this memory to access its
+reset and exception code, as well as other code or data.
+
+\input{\commonPath/FPGA_Char_Buffer.tex}
+\input{\commonPath/FPGA_PP.tex}
+\input{\commonPath/FPGA_PP_Green_LEDs_8.tex}
+\input{\commonPath/FPGA_PP_Switches_4.tex}
+\input{\commonPath/FPGA_PP_Keys_2.tex}
+\input{\commonPath/FPGA_PP_Dual_40_Pin_Headers.tex}
+\input{\commonPath/FPGA_PP_Arduino.tex}
+
+\input{\commonPath/FPGA_PP_Examples.tex}
+
+\input{\commonPath/FPGA_JTAG_UART.tex}
+
+\input{\commonPath/FPGA_Interval_Timers.tex}
+Each Nios II processor has exclusive access to two interval timers.
+\input{\commonPath/FPGA_HPS_GSensor.tex}
+\input{\commonPath/FPGA_SD_Card.tex}
+\input{\commonPath/FPGA_System_ID.tex}
+
+% Section: Exceptions and Interrupts
+\input{\commonPath/Interrupts_FPGA.tex}
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{l|l}
+            \textbf{I/O Peripheral} &
+            \textbf{IRQ \#}
+        \\\hline
+            Interval timer & 0
+        \\
+            Pushbutton switch parallel port & 1
+        \\
+            Second Interval timer & 2
+        \\
+            JTAG port & 8
+        \\
+            JP1 Expansion parallel port & 11
+        \\
+            JP7 Expansion parallel port & 12
+        \\
+            Arduino port & 13
+        \\
+    \end{tabular}
+    \caption{Hardware IRQ interrupt assignment for the DE10-Nano Computer.}
+	 \label{tab:irq}
+    \end{center}
+\end{table}
+
+\input{\commonPath/Interrupts_FPGA_PP.tex}
+\input{\commonPath/Interrupts_FPGA_PP_Keys_2.tex}
+\input{\commonPath/Interrupts_FPGA_JTAG_UART.tex}
+\input{\commonPath/Interrupts_FPGA_Interval_Timer.tex}
+
+\input{\commonPath/Interrupts_NiosII_ASM.tex}
+\input{\commonPath/Interrupts_NiosII_C.tex}
+
+% Section: Media Components
+\section{Media Components}
+\label{sec:multi}
+
+This section describes the HDMI audio-out, video-out, and ADC ports.
+
+\input{\commonPath/Media_FPGA_Audio_HDMI.tex}
+\input{\commonPath/Media_FPGA_Video_Out.tex}
+\input{\commonPath/FPGA_ADC.tex}
+
+\newpage
+% Section: Modifying the System
+\input{\commonPath/System_Modifying.tex}
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{l|l}
+            \textbf{I/O Peripheral}
+            & \textbf{Qsys Core}
+        \\\hline
+            On-chip memory character buffer
+				& Character Buffer for Video Display
+        \\
+            SD Card
+        &   SD Card Interface
+        \\
+            Red LED parallel port
+				& Parallel Port
+        \\
+            Expansion parallel ports
+				& Parallel Port
+        \\
+            Slider switch parallel port
+				& Parallel Port
+        \\
+            Pushbutton parallel port
+				& Parallel Port
+        \\
+            JTAG port
+				& JTAG UART
+        \\
+            Interval timer
+				& Interval timer 
+        \\
+            System ID
+				& System ID Peripheral
+        \\
+            Audio port
+				& Audio
+        \\
+            Video port
+				& Pixel Buffer DMA Controller
+        \\
+    \end{tabular}
+    \caption{Qsys cores used in the \systemName.}
+    \label{tab:sopcnames}
+    \end{center}
+\end{table}
+
+% Section: Making the System the Default Configuration
+\input{\commonPath/System_Default_Config.tex}
+
+\section{Memory Layout}
+
+\noindent
+Table \ref{tab:memorylayout} summarizes the memory map used in the \systemName.
+~\\
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{c|c|l}
+            \textbf{Base Address}
+            & \textbf{End Address}
+            & \textbf{I/O Peripheral}
+				\\\hline\vspace{-3mm}\\
+            0x00000000
+            & 0x00007FFF
+            & FPGA On-chip Memory
+        \\
+            0x08000000
+            & 0x0803FFFF
+            & FPGA On-chip Memory
+        \\
+            0x40000000
+            & 0x7FFFFFFF
+            & DDR3 Memory
+        \\
+            0xFF200000
+            & 0xFF20000F
+            & Green LEDs
+        \\
+            0xFF200040
+            & 0xFF20004F
+            & Slider Switches
+        \\
+            0xFF200050
+            & 0xFF20005F
+            & Pushbutton KEYs
+        \\
+            0xFF200060
+            & 0xFF20006F
+            & JP1 Expansion
+        \\
+            0xFF200070
+            & 0xFF20007F
+            & JP7 Expansion
+        \\
+            0xFF200100
+            & 0xFF20010F
+            & Arduino Expansion
+        \\
+            0xFF200110
+            & 0xFF20011F
+            & Arduino Reset
+        \\
+            0xFF201000
+            & 0xFF201007
+            & JTAG UART
+        \\
+            0xFF201008
+            & 0xFF20100F
+            & Second JTAG UART
+        \\
+            0xFF202000
+            & 0xFF20201F
+            & Interval Timer
+        \\
+            0xFF202020
+            & 0xFF20202F
+            & Second Interval Timer
+				\\
+						0xFF203000
+						& 0xFF20301F
+						& Audio/video Configuration
+				\\
+						0xFF203020
+						& 0xFF20302F
+						& Pixel Buffer Control
+				\\
+						0xFF203030
+						& 0xFF203037
+						& Character Buffer Control
+				\\ 
+						0xFF203040
+						& 0xFF20304F
+						& Audio
+        \\
+            0xFF204000
+            & 0xFF20401F
+            & ADC
+        \\
+    \end{tabular}
+    \caption{Memory layout used in the \systemName.}
+    \label{tab:memorylayout}
+    \end{center}
+\end{table}
+
+\newpage
+
+% Section: AMP Integration
+\input{\commonPath/AMP_Integration.tex}
+\clearpage
+
+% Appendix
+\input{\commonPath/appendix.tex}
+\input{\commonPath/Code_FPGA_PP_Examples.tex}
+\input{\commonPath/Code_FPGA_JTAG_UART.tex}
+\input{\commonPath/Code_Interrupts_NiosII.tex}
+\input{\commonPath/Code_Media_FPGA_Video_Out.tex}
+
+\input{\templatePath/copyright.tex}
+
+\end{document}
+

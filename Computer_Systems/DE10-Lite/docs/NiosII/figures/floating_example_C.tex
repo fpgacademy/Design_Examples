@@ -1,0 +1,42 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+\rule{6.0in}{0in}~\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* This program demonstrates use of floating-point numbers in the DE10-Lite Computer\\
+\>*\\
+\>* It performs the following: \\
+\>* 	\>1. reads two FP numbers from the Terminal window\\
+\>* 	\>2. performs +, 1, *, and / on the numbers, then prints results on Terminal window\\
+\=\kill
+\>********************************************************************************/\\
+ZZZ\=ZZZ\=printf ("\%f ", x);ZZZ\=// echo the typed data to the Terminal window\kill
+{\bf int} main({\bf void})\\
+\{\\
+\>{\bf float} x, y, add, sub, mult, div;\\
+~\\
+\>{\bf while}(1)\\
+\>\{\\
+\>\>printf ("Enter FP values X Y:$\backslash$n");\\
+\>\>scanf ("\%f", \&x);\\
+\>\>printf ("\%f ", x);		// echo the typed data to the Terminal window\\
+\>\>scanf ("\%f", \&y);\\
+\>\>printf ("\%f$\backslash$n", y);		// echo the typed data to the Terminal window\\
+\>\>add = x + y;\\
+\>\>sub = x $-$ y;\\
+\>\>mult = x * y;\\
+\>\>div = x / y;\\
+\>\>printf ("X + Y = \%f$\backslash$n", add);\\
+\>\>printf ("X - Y = \%f$\backslash$n", sub);\\
+\>\>printf ("X * Y = \%f$\backslash$n", mult);\\
+\>\>printf ("X / Y = \%f$\backslash$n", div);\\
+\>\}\\
+\}
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of code that uses floating-point variables.}
+   \label{fig:fp}
+\end{figure}

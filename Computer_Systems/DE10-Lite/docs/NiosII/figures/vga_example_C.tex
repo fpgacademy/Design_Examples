@@ -1,0 +1,34 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZZ\=ZZ\=ZZ\=*(pixel\_buffer + offset) = pixel\_color;ZZZZZZZ\= \kill
+{\bf volatile} {\bf short} * pixel\_buffer = ({\bf short} *) 0x08000000;\>\>\>\>// Pixel buffer\\
+{\bf volatile} {\bf char} * character\_buffer = ({\bf char} *) 0x09000000;\>\>\>\>// Character buffer\\
+{\bf int} x1, {\bf int} y1, {\bf int} x2, {\bf int} y2, {\bf short} pixel\_color;\\
+{\bf int} offset, row, col;\\
+{\bf int} x, {\bf int} y, {\bf char} * text\_ptr;\\
+$\ldots$\\
+/* Draw a box; assume that the coordinates are valid */\\
+{\bf for} (row = y1; row $<$= y2; row++)\\
+ZZZ\=ZZ\=ZZ\=*(pixel\_buffer + offset) = pixel\_color;ZZZZZZZ\= \kill
+\>{\bf for} (col = x1; col <= x2; ++col)\\
+\>\{\\
+\>\>offset = (row $<<$ 9) + col;\\
+\>\>*(pixel\_buffer + offset) = pixel\_color;	\>\>// compute halfword address, set pixel\\
+\>\}\\
+\\
+/* Display a text string; assume that it fits on one line */\\
+offset = (y $<<$ 7) + x;\\
+{\bf while} ( *(text\_ptr) )\\
+\{\\
+\>*(character\_buffer + offset) = *(text\_ptr);	\>\>\>// write to the character buffer\\
+\>++text\_ptr;\\
+\>++offset;\\
+\}\rule{6.0in}{0in}~\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of code that uses the video-out port.}
+   \label{fig:video_C}
+\end{figure}

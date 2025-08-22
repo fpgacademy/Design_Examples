@@ -1,0 +1,91 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf equ} \>KEY, 1\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* This program demonstrates use of interrupts in the DE10-Lite Computer. It first starts the \\
+\>* interval timer with 33 msec timeouts, and then enables interrupts from the interval
+timer\\
+\>* and pushbutton KEYs\\
+\>*\\
+\>* The interrupt service routine for the interval timer displays a pattern on the HEX3-0\\
+\>* displays, and rotates this pattern either left or right:\\
+\>* ~~~~~KEY[0]: loads a new pattern from the SW switches\\
+\>* ~~~~~KEY[1]: toggles the direction of the rotation\\
+\=\kill
+\>********************************************************************************/\\
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf text}	\>\>/* executable code follows */\\
+\>.{\bf global}\>\_start\\
+\_start:\\
+\>/* set up stack pointer */\\
+\>{\bf movia} \>sp, 0x03FFFFFC \>/* stack starts from highest memory address in SDRAM */\\
+\rule{6.0in}{0in}~\\
+\>{\bf movia} \>r16, 0xFF202000 \>/* internal timer base address */\\
+\>/* set the interval timer period for scrolling the HEX displays */\\
+\>{\bf movia} \>r12, 5000000 \>/* 1/(100 MHz) $\times$ (5000000) = 50 msec */\\
+\>{\bf sthio} \>r12, 8(r16) \>/* store the low halfword of counter start value */ \\
+\>{\bf srli} \>r12, r12, 16\\
+\>{\bf sthio} \>r12, 0xC(r16) \>/* high halfword of counter start value */ \\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of assembly language code that uses interrupts
+	(Part {\it a}).}
+   \label{fig:interrupt_example_s}
+\end{figure}
+\pagebreak
+\clearpage
+\newpage
+
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+/\=*****\=*********************************\=****************************************\=\kill
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>/* start interval timer, enable its interrupts */\\
+\>{\bf movi} \>r15, 0b0111 \>/* START = 1, CONT = 1, ITO = 1 */\\
+\>{\bf sthio} \>r15, 4(r16)\\
+\rule{6.0in}{0in}~\\
+\>/* write to the pushbutton port interrupt mask register */\\
+\>{\bf movia} \>r15, 0xFF200050 \>/* pushbutton key base address */\\
+\>{\bf movi} \>r7, 0b1111 \>/* set interrupt mask bits */\\
+\>{\bf stwio} \>r7, 8(r15) \>/* interrupt mask register is (base + 8) */\\
+~\\
+\>/* enable Nios II processor interrupts */\\
+\>{\bf movi} \>r7, 0b011 \>/* set interrupt mask bits for levels 0 (interval */\\
+\>{\bf wrctl} \>ienable, r7 \>/* timer) and level 1 (pushbuttons) */\\
+\>{\bf movi} \>r7, 1\\
+\>{\bf wrctl} \>status, r7 \>/* turn on Nios II interrupt processing */\\
+~\\
+IDLE:\\
+\>{\bf br} \>IDLE \>/* main program simply idles */\\
+~\\
+\>.{\bf data}\\
+/\=* The two global variables \kill
+/* The global variables used by the interrupt service routines for the interval timer and the\\
+\>* pushbutton keys are declared below */\\
+~\\
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf global} \>PATTERN\\
+PATTERN:\\
+\>.{\bf word} \>0x0000000F \>/* pattern to show on the HEX displays */\\
+~\\
+\>.{\bf global} \>KEY\_PRESSED\\
+KEY\_PRESSED:\\
+\>.{\bf word} \>KEY \>/* stores code representing pushbutton key pressed */\\
+~\\
+\>.{\bf global} \>SHIFT\_DIR\\
+SHIFT\_DIR:\\
+\>.{\bf word} \>2 \>/* default shift direction (2 == right) */\\
+~\\
+\>.{\bf end}
+~\\
+~\\
+Figure \ref{fig:interrupt_example_s}. An example of assembly language code that uses interrupts (Part {\it b}).
+\end{tabbing}
+\end{minipage}
+\end{center}

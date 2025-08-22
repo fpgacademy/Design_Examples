@@ -1,0 +1,116 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+.{\bf include} \>\>"key\_codes.s" \>/* includes .{\bf equ} for KEY0, KEY1, $\ldots$ */\\
+.{\bf extern} \>\>PATTERN \>/* externally defined variables */\\
+.{\bf extern} \>\>KEY\_PRESSED\\
+.{\bf extern} \>\>SHIFT\_DIR\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* Interval timer interrupt service routine\\
+\>*                                                                          \\
+\>* Shifts a PATTERN being displayed on the HEX displays. The shift direction \\
+\>* is determined by the external variable KEY\_PRESSED.\\
+\=\kill
+\>********************************************************************************/\\
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf global} \>INTERVAL\_TIMER\_ISR\\
+INTERVAL\_TIMER\_ISR:					\\
+\>{\bf subi} \>sp,  sp, 40 \>/* reserve space on the stack */\\
+\>{\bf stw} \>ra, 0(sp) \>/* save registers */\\
+\>{\bf stw}	\>r4, 4(sp)\\
+\>{\bf stw}	\>r5, 8(sp)\\
+\>{\bf stw}	\>r6, 12(sp)\\
+\rule{6.0in}{0in}~\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{Interrupt service routine for the interval timer (Part $a$).}
+   \label{fig:interval_timer_isr_s}
+\end{figure}
+\pagebreak
+\clearpage
+
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\rule{6.0in}{0in}~\\
+\>{\bf stw}		\>r8, 16(sp)\\
+\>{\bf stw}		\>r10, 20(sp)\\
+\>{\bf stw}		\>r20, 24(sp)\\
+\>{\bf stw}		\>r21, 28(sp)\\
+\>{\bf stw}		\>r22, 32(sp)\\
+\>{\bf stw}		\>r23, 36(sp)\\\\
+\>{\bf movia} \>r10, 0xFF202000 \>/* interval timer base address */\\
+\>{\bf sthio} \>r0,  0(r10) \>/* clear the interrupt */\\
+~\\
+\>{\bf movia} \>r20, 0xFF200020 \>/* HEX3\_HEX0 base address */\\
+\>{\bf movia} \>r21, PATTERN \>/* set up a pointer to the pattern for HEX displays */\\
+\>{\bf movia} \>r22, KEY\_PRESSED \>/* set up a pointer to the key pressed */\\
+\>{\bf movia} \>r23, SHIFT\_DIR \>/* set up a pointer to the shift direction variable */\\
+~\\
+\>{\bf ldw} \>r6, 0(r21) \>/* load pattern for HEX displays */\\
+\>{\bf stwio} \>r6, 0(r20) \>/* store to HEX3 ... HEX0 */\\
+~\\
+\>{\bf ldw} \>r4, 0(r22) \>/* check which key has been pressed */\\
+CHK\_KEY0:	\\
+\>{\bf movi}	\>r8, KEY0	\>/* code to check for KEY1 */\\
+\>{\bf bne}	\>r4, r8, CHK\_KEY1\\
+\>{\bf movia}	\>r20, SLIDER\_SWITCH\_BASE\\
+\>{\bf ldw}	\>r6, 0(r20)	\>/* load a new pattern from the SW switches */\\
+\>{\bf br}	\>SHIFT\\
+CHK\_KEY1:	\\
+\>{\bf movi}	\>r8, KEY1	\>/* code to check for KEY1 */\\
+\>{\bf bne}	\>r4, r8, SHIFT\\
+\>{\bf ldw}	\>r5, 0(r23)	\>/* KEY1 toggles rotation direction */\\
+\>{\bf xori}	\>r5, r5, 1 \\
+\>{\bf stw}		\>r5, 0(r23) \\
+~\\
+Figure \ref{fig:interval_timer_isr_s}. Interrupt service routine for the interval timer (Part {\it b}).
+\end{tabbing}
+\end{minipage}
+\end{center}
+
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZ\=/* RED\_LED base address */\kill
+\rule{6.0in}{0in}~\\
+SHIFT:\\
+\>{\bf movi}	\>r5, NONE\\
+\>{\bf stw}	\>r5, 0(r22)	\>/* key press handled, so clear */\\
+\>{\bf ldw}	\>r5, 0(r23)	\>/* get shift direction */\\
+\>{\bf movi}	\>r8, RIGHT\\
+\>{\bf bne}		r5, r8, SHIFT\_L	\\
+\>{\bf movi}	\>r5, 1	\>/* set r5 to the constant value 1 */\\
+\>{\bf ror}	\>r6, r6, r5	\>/* rotate the displayed pattern right */\\
+\>{\bf br}	\>END\_INTERVAL\_TIMER\_ISR\\
+SHIFT\_L:\\
+\>{\bf movi}	\>r8, LEFT\\
+\>{\bf bne}	\>r5, r8, END\_INTERVAL\_TIMER\_ISR	\\
+\>{\bf movi}	\>r5, 1	\>/* set r5 to the constant value 1 */\\
+\>{\bf rol}	\>r6, r6, r5	\>/* shift left */\\
+~\\
+END\_INTERVAL\_TIMER\_ISR:\\
+\>{\bf stw} \>r6, 0(r21) \>/* store HEX display pattern */\\
+\>{\bf ldw} \>ra, 0(sp) \>/* Restore registers */\\
+\>{\bf ldw}	\>r4, 4(sp)\\
+\>{\bf ldw}	\>r5, 8(sp)\\
+\>{\bf ldw}	\>r6, 12(sp)\\
+\>{\bf ldw}	\>r8, 16(sp)\\
+\>{\bf ldw}	\>r10, 20(sp)\\
+\>{\bf ldw}	\>r20, 24(sp)\\
+\>{\bf ldw}	\>r21, 28(sp)\\
+\>{\bf ldw}	\>r22, 32(sp)\\
+\>{\bf ldw}	\>r23, 36(sp)	\\
+\>{\bf addi} \>sp, sp, 40 \>/* release the reserved space on the stack */\\
+\>{\bf ret}\\\\
+\>.{\bf end}\\
+~\\
+Figure \ref{fig:interval_timer_isr_s}. Interrupt service routine for the interval timer (Part {\it c}).
+\end{tabbing}
+\end{minipage}
+\end{center}

@@ -1,0 +1,54 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+ZZ\=*(HEX3\_HEX0\_ptr) = pattern;ZZZZZZZ\=// display pattern on HEX3 ... HEX0\kill
+\#{\bf include} "key\_codes.h" \>\>// defines values for KEY0, KEY1, $\ldots$\\
+~\\
+{\bf extern} {\bf volatile} {\bf int} key\_pressed, pattern, shift\_dir;\\
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* Interval timer interrupt service routine\\
+\>* Shifts a pattern being displayed on the HEX displays. The shift direction is determined \\
+\>* by the external variable key\_pressed.\\
+\=\kill
+\>********************************************************************************/\\
+{\bf void} interval\_timer\_isr( )\\
+\{\\
+ZZ\={\bf volatile} {\bf int} * HEX3\_HEX0\_ptr	= ({\bf int} *) 0xFF200020;ZZZZ\=// HEX3\_HEX0\kill
+\>{\bf volatile} {\bf int} * interval\_timer\_ptr = ({\bf int} *) 0xFF202000;\>// interval timer base address\\
+\>{\bf volatile} {\bf int} * slider\_switch\_ptr = ({\bf int} *) 0xFF200040;\>// SW base address\\
+\>{\bf volatile} {\bf int} * HEX3\_HEX0\_ptr	= ({\bf int} *) 0xFF200020;\>// HEX3\_HEX0 address\\
+\rule{6.0in}{0in}~\\
+ZZ\=*(HEX3\_HEX0\_ptr) = pattern;ZZZZZZZ\=// display pattern on HEX3 ... HEX0\kill
+\>*(interval\_timer\_ptr) = 0; \>// clear the interrupt\\
+\>*(HEX3\_HEX0\_ptr) = pattern; \>// display pattern on HEX3 ... HEX0\\
+\\
+\>/* rotate the pattern shown on the HEX displays */\\
+\>{\bf if} (key\_pressed == KEY0)	\>// for KEY0 load a new pattern\\
+ZZ\=ZZZ\=ZZZ\=ZZZ\=\kill
+\>\>pattern = *(slider\_switch\_ptr);\\
+\>{\bf else if} (key\_pressed == KEY1)		\\
+\>\>shift\_dir = shift\_dir \verb|^| 1;\\
+ZZ\=*(HEX3\_HEX0\_ptr) = pattern;ZZZZZZZ\=// display pattern on HEX3 ... HEX0\kill
+\>key\_pressed = NONE; \> // key press handled, so clear\\\\
+ZZ\=ZZZ\=ZZZ\=ZZZ\=\kill
+\>{\bf if} (shift\_dir == LEFT)\\
+\>\>{\bf if} (pattern \& 0x80000000)\\
+\>\>\>pattern = (pattern $<<$ 1) | 1;\\
+\>\>{\bf else}\\
+\>\>\>pattern = pattern $<<$ 1;\\
+\>{\bf else if} (shift\_dir == RIGHT)\\
+\>\>{\bf if} (pattern \& 0x00000001)			\\
+\>\>\>pattern = (pattern $>>$ 1) $\mid$ 0x80000000;\\
+\>\>{\bf else}\\
+\>\>\>pattern = (pattern $>>$ 1) \& 0x7FFFFFFF;\\
+\>// else don't shift\\
+\>{\bf return};\\
+\}
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{Interrupt service routine for the interval timer.}
+   \label{fig:interval_timer_isr_C}
+\end{figure}

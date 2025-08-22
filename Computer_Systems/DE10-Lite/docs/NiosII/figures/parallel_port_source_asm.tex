@@ -1,0 +1,52 @@
+\begin{figure}[h!]
+\begin{center}
+\begin{minipage}[t]{12.5 cm}
+\begin{tabbing}
+/\=*****\=*********************************\=****************************************\=\kill
+/********************************************************************************\\
+\>* This program demonstrates the use of parallel ports in the DE10-Lite Computer:\\
+\>* \>1. displays the SW switch values on the red LEDR\\
+\>* \>2. displays a rotating pattern on the HEX displays\\
+\>* \>3. if KEY[1..0] is pressed, uses the SW switches as the pattern\\
+\=\kill
+\>********************************************************************************/\\
+ZZZZZZZZ\={\bf movia}ZZZ\=r16, 0xFF200000ZZZZZZZZ\=/* RED\_LED base address */\kill
+\>.{\bf text}	\>\>/* executable code follows */\\
+\>.{\bf global} \>\_start\\
+\_start:\\
+\>/* initialize base addresses of parallel ports */\\
+\>{\bf movia} \>r15, 0xFF200040 \>/* SW slider switch base address */\\
+\>{\bf movia} \>r16, 0xFF200000 \>/* red LED base address */\\
+\>{\bf movia} \>r17, 0xFF200050 \>/* pushbutton KEY base address */\\
+\>{\bf movia} \>r20, 0xFF200020 \>/* HEX3\_HEX0 base address */\\
+\>{\bf movia} \>r19, HEX\_bits\\
+\>{\bf ldwio} \>r6, 0(r19) \>/* load pattern for HEX displays */\\
+\rule{6.0in}{0in}~\\
+DO\_DISPLAY:\\
+\>{\bf ldwio} \>r4, 0(r15) \>/* load input from slider switches */\\
+\>{\bf stwio} \>r4, 0(r16) \>/* write to red LEDs */\\
+\>{\bf ldwio} \>r5, 0(r17) \>/* load input from pushbuttons */\\
+\>{\bf beq} \>r5, r0, NO\_BUTTON\\
+\>{\bf mov} \>r6, r4 \>/* copy SW switch values onto HEX displays */\\
+WAIT:\\
+\>{\bf ldwio} \>r5, 0(r17) \>/* load input from pushbuttons */\\
+\>{\bf bne} \>r5, r0, WAIT \>/* wait for button release */\\
+NO\_BUTTON:\\
+\>{\bf stwio} \>r6, 0(r20) \>/* store to HEX3 ... HEX0 */\\
+\>{\bf roli} \>r6, r6, 1 \>/* rotate the displayed pattern */\\
+\>{\bf movia} \>r7, 500000 \>/* delay counter */\\
+DELAY:	\\
+\>{\bf subi} \>r7, r7, 1\\
+\>{\bf bne} \>r7, r0, DELAY	\\
+\>{\bf br} \>DO\_DISPLAY\\
+~\\
+\>.{\bf data}	\>\>/* data follows */\\
+HEX\_bits:\\
+\>.{\bf word} \>0x0000000F\\
+\>.{\bf end}\\
+\end{tabbing}
+\end{minipage}
+\end{center}
+	\vspace{-0.33in}\caption{An example of assembly language code that uses parallel ports.}
+   \label{fig:getting_started_s}
+\end{figure}

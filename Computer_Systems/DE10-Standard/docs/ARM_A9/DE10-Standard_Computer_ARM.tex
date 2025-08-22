@@ -1,0 +1,406 @@
+% This include all the settings that we should use for the document
+\newcommand{\PDFTitle}{DE10-Standard Computer System with ARM* Cortex* A9 Manual}
+\newcommand{\commonPath}{../../../common/doc}
+\newcommand{\templatePath}{../../../common/templates}
+\newcommand{\sampleProgramsPath}{../../../sample_programs}
+\input{\templatePath/defaulttext.tex}
+\input{\templatePath/preamble.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add title
+\newcommand{\doctitle}{DE10-Standard Computer System\\ with ARM* Cortex* A9}
+\newcommand{\dochead}{DE10-Standard Computer System with ARM* Cortex* A9}
+% Usually no need to change these two lines
+\title{\fontfamily{phv}\selectfont{\doctitle} }
+\chead{ \small{\textsc{\bfseries \dochead} } }
+% Customizations
+\newcommand{\DEBoard}{DE10-Standard}
+\newcommand{\systemName}{DE10-Standard Computer}
+\newcommand{\systemNameFull}{DE10-Standard Computer with ARM A9}
+\newcommand{\FPGADeviceFamily}{Cyclone\textsuperscript{\textregistered} V SoC}
+\newcommand{\processor}{ARM A9}
+\newcommand{\aProcessor}{an ARM A9}
+\newcommand{\baseAddressOffset}{C}
+\newcommand{\GIC}{GIC}
+\newcommand{\videoOutDevice}{VGA}
+\newcommand{\expansionPortA}{JP1}
+\newcommand{\pixelBufferInfo}{320240_16}
+\newcommand{\processorStyle}{defaultArmStyle}
+\newcommand{\processorLower}{arm}
+\clubpenalty 10000
+\widowpenalty 10000
+\raggedbottom
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{table}
+    \centering
+    \begin{tabular}{p{5cm}p{4cm}}
+        \hspace{-3cm}
+        &
+        \raisebox{1\height}{\parbox[h]{0.5\textwidth}{\Large\fontfamily{phv}\selectfont{\textbf{\doctitle}}}}
+    \end{tabular}
+    \label{tab:logo}
+\end{table}
+
+\colorbox[rgb]{0,0.384,0.816}{\parbox[h]{\textwidth}{\color{white}\textbf{\textit{\textBar}}}}
+
+\thispagestyle{plain}
+
+% Section: Introduction
+\input{\commonPath/Introduction.tex}
+
+% Section: Contents
+\input{\commonPath/Contents_HPS_FPGA.tex}
+
+\input{\commonPath/HPS.tex}
+\input{\commonPath/Block_Diagram.tex}
+\input{\commonPath/HPS_Memory.tex}
+\input{\commonPath/HPS_GPIO1.tex}
+\input{\commonPath/HPS_Timers.tex}
+\input{\commonPath/HPS_FPGA_Bridges.tex}
+\input{\commonPath/HPS_GSensor.tex}
+
+\subsection{FPGA Components}
+\label{sec:fpga}
+As shown in Figure \ref{fig:block_diagram} a number of components in the \systemName~are 
+implemented inside the FPGA in the \FPGADeviceFamily~chip.  Several of these components 
+are described in this section, and the others are presented in Section~\ref{sec:multi}.
+
+\input{\commonPath/FPGA_NiosII.tex}
+\input{\commonPath/FPGA_NiosII_Other_Processor.tex}
+
+\subsection{Memory Components}
+The \systemName~has an SDRAM port, as well as two memory modules implemented using the 
+on-chip memory inside the FPGA. These memories are described below.
+
+\input{\commonPath/FPGA_SDRAM.tex}
+\input{\commonPath/FPGA_OnChip_Memory.tex}
+\input{\commonPath/FPGA_Char_Buffer.tex}
+
+\input{\commonPath/FPGA_PP.tex}
+\input{\commonPath/FPGA_PP_Red_LEDs_10.tex}
+\input{\commonPath/FPGA_PP_7_Segs_6.tex}
+\input{\commonPath/FPGA_PP_Switches_10.tex}
+\input{\commonPath/FPGA_PP_Keys_4.tex}
+
+\input{\commonPath/FPGA_PP_Single_40_Pin_Header.tex}
+\input{\commonPath/FPGA_PP_Examples.tex}
+
+\input{\commonPath/FPGA_JTAG_UART.tex}
+\input{\commonPath/FPGA_JTAG_UART_2nd.tex}
+\input{\commonPath/FPGA_Interval_Timers.tex}
+\input{\commonPath/FPGA_System_ID.tex}
+
+% Section: Exceptions and Interrupts
+\input{\commonPath/Interrupts_ARM.tex}
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{l|c}
+          \textbf{I/O Peripheral} &
+          \textbf{Interrupt ID \#}        \\
+          \hline\vspace{-3mm}             \\
+          A9 Private Timer & 29           \\
+          HPS GPIO1 & 197                 \\
+          HPS Timer 0 & 199               \\
+          HPS Timer 1 & 200               \\
+          HPS Timer 2 & 201               \\
+          HPS Timer 3 & 202               \\
+		  FPGA Interval Timer & 72        \\
+		  FPGA Pushbutton KEYs & 73       \\
+		  FPGA Second Interval Timer & 74 \\
+		  FPGA Audio & 78                 \\
+		  FPGA PS/2 & 79                  \\
+		  FPGA JTAG & 80                  \\
+		  FPGA Infrared (IrDA) & 81       \\
+		  FPGA JP1 Expansion & 83         \\
+		  FPGA PS/2 Dual & 89             \\
+    \end{tabular}
+    \caption{Interrupt IDs in the \systemName.}
+	\label{tab:irq}
+    \end{center}
+\end{table}
+
+\input{\commonPath/Interrupts_ARM_Private_Timer.tex}
+\input{\commonPath/Interrupts_HPS_Timers.tex}
+\input{\commonPath/Interrupts_FPGA_Interval_Timer.tex}
+
+\input{\commonPath/Interrupts_FPGA_PP.tex}
+\input{\commonPath/Interrupts_FPGA_PP_Keys.tex}
+\input{\commonPath/Interrupts_FPGA_JTAG_UART.tex}
+
+\input{\commonPath/Interrupts_ARM_ASM.tex}
+\input{\commonPath/Interrupts_ARM_C.tex}
+
+% Section: Media Components
+\section{Media Components}
+\label{sec:multi}
+
+This section describes the audio in/out, video-out, video-in, LCD, PS/2, IrDA*, and ADC ports.
+
+\input{\commonPath/Media_FPGA_Audio.tex}
+\input{\commonPath/Media_FPGA_Video_Out.tex}
+\input{\commonPath/Media_FPGA_Video_In.tex}
+\input{\commonPath/Media_FPGA_AV_Config.tex}
+\input{\commonPath/Media_HPS_LCD.tex}
+\input{\commonPath/Media_FPGA_PS2.tex}
+\input{\commonPath/Media_FPGA_IrDA.tex}
+\input{\commonPath/FPGA_ADC.tex}
+
+% Section: Modifying the System
+\input{\commonPath/System_Modifying.tex}
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{l|l}
+            \textbf{I/O Peripheral}
+            & \textbf{Qsys Core}
+        \\\hline
+            SDRAM
+            & SDRAM Controller
+        \\
+            SRAM
+        &   SRAM Controller
+        \\
+            On-chip memory character buffer
+				& Character Buffer for VGA Display
+        \\
+            SD Card
+        &   SD Card Interface
+        \\
+            Red LED parallel port
+				& Parallel Port
+        \\
+            7-segment displays parallel port
+				& Parallel Port
+        \\
+            Expansion parallel ports
+				& Parallel Port
+        \\
+            Slider switch parallel port
+				& Parallel Port
+        \\
+            Pushbutton parallel port
+				& Parallel Port
+        \\
+            PS/2 port
+				& PS2 Controller
+        \\
+            JTAG port
+				& JTAG UART
+        \\
+            IrDA port
+				& IrDA UART
+        \\
+            Interval timer
+				& Interval timer 
+        \\
+            System ID
+				& System ID Peripheral
+        \\
+            Audio/video configuration port
+				& Audio and Video Config
+        \\
+            Audio port
+				& Audio
+        \\
+            Video port
+				& Pixel Buffer DMA Controller
+        \\
+            Video In port
+				& DMA Controller
+        \\
+    \end{tabular}
+    \caption{Qsys cores used in the \systemName.}
+    \label{tab:sopcnames}
+    \end{center}
+\end{table}
+
+% Section: Making the System the Default Configuration
+\input{\commonPath/System_Default_Config.tex}
+
+\newpage
+\section{Memory Layout}
+\label{sec:mm}
+
+\noindent
+Table \ref{tab:memorylayout} summarizes the memory map used in the \systemName.
+~\\
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{c|c|l}
+            \textbf{Base Address}
+            & \textbf{End Address}
+            & \textbf{I/O Peripheral}
+				\\\hline\vspace{-3mm}\\
+            0x00000000
+            & 0x3FFFFFFF
+            & DDR3 Memory
+        \\
+            0xFFFF0000
+            & 0xFFFFFFFF
+            & A9 On-chip Memory
+        \\
+            0xC0000000
+            & 0xC3FFFFFF
+            & SDRAM
+        \\
+            0xC8000000
+            & 0xC803FFFF
+            & FPGA On-chip Memory
+        \\
+            0xC9000000
+            & 0xC9001FFF
+            & FPGA On-chip Memory Character Buffer
+        \\
+            0xFF200000
+            & 0xFF20000F
+            & Red LEDs
+        \\
+            0xFF200020
+            & 0xFF20002F
+            & 7-segment HEX3$-$HEX0 Displays
+        \\
+            0xFF200030
+            & 0xFF20003F
+            & 7-segment HEX5$-$HEX4 Displays
+
+        \\
+            0xFF200040
+            & 0xFF20004F
+            & Slider Switches
+        \\
+            0xFF200050
+            & 0xFF20005F
+            & Pushbutton KEYs
+        \\
+            0xFF200060
+            & 0xFF20006F
+            & JP1 Expansion
+        \\
+            0xFF200100
+            & 0xFF200107
+            & PS/2
+        \\
+            0xFF200108
+            & 0xFF20010F
+            & PS/2 Dual
+        \\
+            0xFF201000
+            & 0xFF201007
+            & JTAG UART
+        \\
+            0xFF201008
+            & 0xFF20100F
+            & Second JTAG UART
+        \\
+            0xFF201020
+            & 0xFF201027
+				& Infrared (IrDA)
+        \\
+            0xFF202000
+            & 0xFF20201F
+            & Interval Timer
+        \\
+            0xFF202020
+            & 0xFF20202F
+            & Second Interval Timer
+        \\
+            0xFF203000
+            & 0xFF20301F
+            & Audio/video Configuration
+        \\
+            0xFF203020
+            & 0xFF20302F
+            & Pixel Buffer Control
+        \\
+            0xFF203030
+            & 0xFF203037
+            & Character Buffer Control
+        \\
+            0xFF203040
+            & 0xFF20304F
+            & Audio
+        \\
+            0xFF203060
+            & 0xFF203070
+            & Video-in
+        \\
+            0xFF204000
+            & 0xFF20401F
+            & ADC
+        \\
+            0xFF709000
+            & 0xFF709063
+            & HPS GPIO1
+        \\
+            0xFFC04000
+            & 0xFFC040FC
+            & HPS I2C0
+        \\
+            0xFFC08000
+            & 0xFFC08013
+            & HPS Timer0
+        \\
+            0xFFC09000
+            & 0xFFC09013
+            & HPS Timer1
+        \\
+            0xFFD00000
+            & 0xFFD00013
+            & HPS Timer2
+        \\
+            0xFFD01000
+            & 0xFFD01013
+            & HPS Timer3
+        \\
+            0xFFD0501C
+            & 0xFFD0501F
+            & FPGA Bridge
+        \\
+            0xFFFEC100
+            & 0xFFFEC1FC
+            & GIC CPU Interface
+        \\
+            0xFFFED000
+            & 0xFFFEDFFC
+            & GIC Distributor Interface
+        \\
+            0xFFFEC600
+            & 0xFFFEC60F
+            & ARM A9 Private Timer
+        \\
+    \end{tabular}
+    \caption{Memory layout used in the \systemName.}
+    \label{tab:memorylayout}
+    \end{center}
+\end{table}
+
+
+% Section: AMP Integration
+\input{\commonPath/AMP_Integration.tex}
+
+\clearpage
+\input{\commonPath/Appendix.tex}
+%\section{Appendix A: Timers}
+\input{\commonPath/Code_HPS_Timers.tex}
+%\section{Appendix B: Parallel Ports}
+\input{\commonPath/Code_FPGA_PP_Examples.tex}
+%\section{Appendix C: JTAG UART}
+\input{\commonPath/Code_FPGA_JTAG_UART.tex}
+%\section{Appendix D: Interrupts}
+\input{\commonPath/Code_Interrupts_ARM.tex}
+%\section{Appendix E: Audio}
+\input{\commonPath/Code_Media_FPGA_Audio.tex}
+%\section{Appendix F: Video Out}
+\input{\commonPath/Code_Media_FPGA_Video_Out.tex}
+\input{\commonPath/Code_Media_HPS_LCD.tex}
+
+%\section{Appendix G: PS/2}
+\input{\commonPath/Code_Media_FPGA_PS2.tex}
+
+\input{\templatePath/copyright.tex}
+
+\end{document}
