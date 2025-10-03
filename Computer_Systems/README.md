@@ -28,7 +28,7 @@ This repository contains the source code for the Computer Systems, the associate
             +-- <Programming Language>
                     -Sample program demostrating how to write software for the given processor and programming language
 
-## Modifying the Computer Systems
+## Compiling or Modifying the Computer Systems
 
 The Computer Systems are build using a set of TCL scripts that run within Altera's Platform Designer software. Complete each of the following sections to modify and update the Computer Systems.
 
@@ -39,7 +39,7 @@ Download a copy of this _Design Example Repository_ to your computer, using a to
 ### Quartus Prime Software
 
 Download and install an appropriate version of the Quartus Prime software. Links to the download pages for the various versions of the software are found at https://www.altera.com/products/development-tools/quartus-prime. 
-We recommend using the latest version of the *Quartus Prime **Pro** Edition* software when targetting the DE25-Standard, DE25-Nano or DE23-Lite boards. We recommend using the latest version of the *Quartus Prime **Standard** Edition* software when targetting the DE10-Standard, DE10-Nano, DE10-Lite or DE1-SoC boards, unless you are using the Nios II processor. In this case, we recommend using version 23.1 of the *Quartus Prime **Standard** Edition* software.
+We recommend using the latest version of the *Quartus Prime **Pro** Edition* software when targetting the DE25-Standard, DE25-Nano or DE23-Lite boards. We recommend using the latest version of the *Quartus Prime **Standard** Edition* software when targetting the DE10-Standard, DE10-Nano, DE10-Lite or DE1-SoC boards, unless you are using the Nios II processor. In this case, we recommend using version 23.1 of the *Quartus Prime **Standard** Edition* software (Nios II is not included in releases after 23.1).
 
 ### IP Cores
 
