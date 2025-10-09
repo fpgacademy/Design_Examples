@@ -30,7 +30,7 @@ This repository contains the source code for the Computer Systems, the associate
 
 ## Compiling or Modifying the Computer Systems
 
-The Computer Systems are build using a set of TCL scripts that run within Altera's Platform Designer software. Complete each of the following sections to modify and update the Computer Systems.
+The Computer Systems are build using a set of TCL scripts that run within Altera's Platform Designer software. Complete each of the following sections to modify and update the Computer Systems. Note that you may require licenses for some of Altera's Intellectual Property (IP) core to compile the Computer Systems. Altera University Program members can request IP licenses via the Members section of the Altera University Program website.
 
 ### Source Code
 
