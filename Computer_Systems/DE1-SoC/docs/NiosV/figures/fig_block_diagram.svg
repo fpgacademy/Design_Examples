@@ -8,7 +8,7 @@
    height="477.67068"
    viewBox="0 0 674.32562 477.67068"
    sodipodi:docname="fig_block_diagram.svg"
-   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -34,12 +34,12 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="1.3974247"
-     inkscape:cx="416.12261"
-     inkscape:cy="385.35172"
-     inkscape:window-width="2560"
-     inkscape:window-height="1387"
-     inkscape:window-x="3432"
-     inkscape:window-y="25"
+     inkscape:cx="416.4804"
+     inkscape:cy="385.35171"
+     inkscape:window-width="3440"
+     inkscape:window-height="1351"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="g24">
     <inkscape:page
@@ -47,7 +47,9 @@
        y="0"
        id="page22"
        width="674.32562"
-       height="477.67068" />
+       height="477.67068"
+       margin="0"
+       bleed="0" />
   </sodipodi:namedview>
   <g
      id="g24"
@@ -58,7 +60,10 @@
     <path
        d="m 70.14,332.04 h 154.8 V 531.96 H 70.14 Z"
        style="fill:#e6e6e6;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="path30" />
+       id="path30"
+       inkscape:export-filename="fig_block_diagram.pdf"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        d="m 196.02,348.9 h 0.59999 v 0.29999 H 196.02 Z"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -1520,8 +1525,8 @@
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path748" />
     <path
-       d="m 198.9,495.18 h 93 v 0.60001 h -93 z"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="M 244.51963,495.18 H 291.9 v 0.60001 h -47.38037 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.999998"
        id="path750" />
     <path
        d="m 196.02,351.6 h 0.59999 v 97.2 H 196.02 Z"
@@ -1857,14 +1862,10 @@
        transform="matrix(1,0,0,-1,302.16,493.98)"
        style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.96px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRomanPSMT;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text916"><tspan
-         x="0 7.2000842 10.021752 15.010716 18.894119"
-         y="0"
+         x="0"
          sodipodi:role="line"
-         id="tspan912">Nios V</tspan><tspan
-         x="-101.69957 -96.157822 -90.616081 -83.420975 -76.225868 -73.731888 -67.084587 -63.76392 -60.991055 -56.007072 -50.967312 -46.52615 -42.647724"
-         y="58.379543"
-         sodipodi:role="line"
-         id="tspan914">FPGA Bridges </tspan></text>
+         id="tspan914"
+         y="0">Nios V </tspan></text>
     <path
        d="m 144.78,358.2 h 0.59999 v 90.6 H 144.78 Z"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -2017,14 +2018,10 @@
        transform="matrix(1,0,0,-1,363,365.88)"
        style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.96px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRomanPSMT;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text994"><tspan
-         x="0 5.5198321 10.559592 13.858344"
+         x="0"
          y="0"
          sodipodi:role="line"
-         id="tspan990">Port</tspan><tspan
-         x="-53.879616 -50.580864 -45.542099 -42.243347"
-         y="-117.05988"
-         sodipodi:role="line"
-         id="tspan992">(2) </tspan></text>
+         id="tspan992">Port</tspan></text>
     <path
        d="m 90.9,448.5 h 0.59999 v 0.29999 H 90.9 Z"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"

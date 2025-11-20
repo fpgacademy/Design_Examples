@@ -62,3 +62,13 @@ dkms.conf
 out/
 rel/
 
+# latex
+*.aux
+*.log
+*.out
+*.gz
+
+# outputs produced by the scripts
+Computer_Systems/*/scripts/o_*.txt
+Computer_Systems/*/scripts/*.qsys
+

@@ -1,4 +1,4 @@
-#include    "address_map_niosV.h" 
+#include    "address_map_niosv.h" 
 
 #define clock_rate 100000000
 #define quarter_clock clock_rate / 4

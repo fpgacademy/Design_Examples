@@ -7,7 +7,7 @@ pixel buffer provides an image resolution of
 160 $\times$ 120 pixels, with the coordinate 0,0 being at the top-left corner of the image. 
 Since the video-out port supports the screen resolution of 640 $\times$ 480, each of the
 pixel values in
-the pixel buffer is replicated 3 times in both the {\it x} and {\it y} dimensions when it is being
+the pixel buffer is replicated 4 times in both the {\it x} and {\it y} dimensions when it is being
 displayed on the screen.
 
 \begin{figure}[h!]
@@ -52,15 +52,4 @@ process of being displayed.  However, it is also possible to avoid making change
 the pixel buffer while it is being displayed, by using the concept of {\it
 double-buffering}.  In this scheme, two pixel buffers are involved, called the {\it front} 
 and {\it back} buffers, described below.
-
-\subsubsection{RGB Resampling}
-The \systemName~contains an RGB Resampler for converting video streams between RGB color
-formats. Reading from the 32-bit \textit{Status} register at address {\sf 0xFF203010}
-provides information about alpha/no alpha, color/grayscale, and mode for the incoming and
-outgoing formats. The incoming format for the \systemName~ video stream is {\sf 0x14},
-which corresponds to no alpha, color, 16-bit RGB (5-bit Red, 6-bit Green, 5-bit Blue). 
-More information can be found in the documentation called 
-{\it Video IP Cores for Altera DE-Series Computer Systems}, available as part of the
-\texttt{Hardware Components} tutorials on the 
-{\small \href{https://www.fpgacademy.org/tutorials.html} {FPGAcademy.org}} website.
 

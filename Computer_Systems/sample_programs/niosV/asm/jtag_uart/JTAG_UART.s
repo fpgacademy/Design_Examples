@@ -1,4 +1,4 @@
-.include    "address_map_niosV.s" 
+.include    "address_map_niosv.s" 
 
 /******************************************************************************
  * This program demonstrates use of the JTAG UART port

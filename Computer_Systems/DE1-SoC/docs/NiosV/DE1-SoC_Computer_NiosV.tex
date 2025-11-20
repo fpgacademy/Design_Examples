@@ -1,15 +1,19 @@
+\documentclass[11pt, twoside, pdftex]{article}
+
 % This include all the settings that we should use for the document
-\newcommand{\PDFTitle}{DE1-SoC Computer with Nios~V Manual}
-\newcommand{\commonPath}{../../../common/doc}
-\newcommand{\templatePath}{../../../common/templates}
+\newcommand{\PDFTitle}{Altera\textsuperscript{\textregistered} DE10-Lite Computer with Nios~V}
+\newcommand{\commonFiles}{../../../common/doc}
+\newcommand{\commonFigs}{../../../common/figs}
 \newcommand{\sampleProgramsPath}{../../../sample_programs}
+\newcommand{\commonPath}{../../../../../Tutorials/Common}
 \newcommand{\includesPath}{../../software}
-\input{\templatePath/defaulttext.tex}
-\input{\templatePath/preamble.tex}
+\newcommand{\templatePath}{../../../../../Tutorials/Common}
+\input{\templatePath/Docs/defaulttext.tex}
+\input{\templatePath/Docs/preamble.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Add title
-\newcommand{\doctitle}{DE1-SoC Computer System\\ with Nios\textsuperscript{\textregistered} V}
+\newcommand{\doctitle}{DE1-SoC Computer System with Nios\textsuperscript{\textregistered} V}
 \newcommand{\dochead}{DE1-SoC Computer System with Nios\textsuperscript{\textregistered} V}
 % Usually no need to change these two lines
 %\title{\fontfamily{phv}\selectfont{\doctitle} }
@@ -18,13 +22,14 @@
 \newcommand{\DEBoard}{DE1-SoC}
 \newcommand{\systemName}{DE1-SoC Computer}
 \newcommand{\systemNameFull}{DE1-SoC Computer with Nios~V}
+\newcommand{\systemBuilder}{Platform Designer}
 \newcommand{\FPGADeviceFamily}{Cyclone\textsuperscript{\textregistered} V SoC}
 \newcommand{\processor}{Nios~V}
-\newcommand{\aProcessor}{a Nios~V}
 \newcommand{\baseAddressOffset}{0}
+\newcommand{\BaseAddressOffset}{0}
 \newcommand{\GIC}{processor}
 \newcommand{\videoOutDevice}{VGA}
-\newcommand{\pixelBufferInfo}{320240_16}
+\newcommand{\PixelBufferInfo}{320240_16}
 \newcommand{\expansionPortA}{JP1}
 \newcommand{\expansionPortB}{JP2}
 \newcommand{\processorStyle}{defaultNiosVStyle}
@@ -52,18 +57,40 @@
 
 \thispagestyle{plain}
 
-% Section: Introduction
-\input{\commonPath/Introduction.tex}
+\input{\commonFiles/Introduction.tex}
+
 To support such experiments, the computer system contains
-embedded processors, memory, basic I/O devices like switches and lights,
+an embedded processor, memory, basic I/O devices like switches and lights,
 audio and video devices, and various other I/O peripherals. 
 The FPGA programming file that implements this system, as well as its 
-design source files, can be obtained from its GitHub repository.
+design source files, can be obtained from its 
+\href{https://github.com/fpgacademy/Design_Examples/tree/main/Computer_Systems} 
+{GitHub repository}.
 
-% Section: Contents
-\input{\commonPath/Contents_HPS_FPGA.tex}
-\input{\commonPath/Contents_FPGA_HPS.tex}
-\input{\commonPath/Block_Diagram_Old.tex} % the figure
+\section{\systemNameFull~Contents}
+
+A block diagram that displays the components available in the {\it \systemNameFull}~is shown 
+in Figure~\ref{fig:block_diagram}. The \processor\textsuperscript{\textregistered} 
+processor and ports connected to its peripherals are implemented in the {\it Field-Programmable Gate Array}
+(FPGA) part of Altera's \FPGADeviceFamily~chip, which is the part of the figure that has a blue color in
+the background.  The peripheral ports include: memory, timer modules, audio-in/out, 
+video-in/out, PS/2, analog-to-digital, infrared receive/transmit, and parallel ports connected to switches and 
+lights.  
+
+As indicated in Figure \ref{fig:block_diagram}, in addition to the FPGA the \FPGADeviceFamily~chip
+also contains a {\it Hard Processor System} (HPS), which is the area in the figure
+with a grey background.  The HPS comprises an ARM* Cortex* A9 dual-core processor and a set of peripheral 
+devices. The HPS is not part of the {\it \systemNameFull}, but instructions for using the HPS with the 
+ARM processor can be found in the document entitled {\it \systemName~System with ARM* Cortex* A9},
+which is available on the \href{https://www.fpgacademy.org/tutorials.html} {FPGAcademy.org} website.
+
+\begin{figure}[h!]
+   \begin{center}
+        \includegraphics[height=.4\paperheight]{figures/fig_block_diagram.pdf}
+   \end{center}
+   \caption{Block diagram of the {\it \systemNameFull}.}
+	\label{fig:block_diagram}
+\end{figure}
 
 \subsection{Getting Started with the \systemNameFull}
 
@@ -110,15 +137,15 @@ these GDB tools are given in the tutorial called {\it Using GDB with Nios V}, wh
 as part of the \texttt{Computer Organization and System Design} tutorials in the 
 {\small \href{https://www.fpgacademy.org/tutorials.html} {FPGAcademy.org}} website.
 
-\subsection{Nios\textsuperscript{\textregistered} V Processor}
+\subsection{Nios\textsuperscript{\textregistered} V processor}
 \label{sec:niosV}
 The Altera Nios\textsuperscript{\textregistered}~V processor 
 is an implementation of the 32-bit RISC-V processor architecture. Three versions of 
 Nios~V exist, each with different features and capabilities.  Documentation for these 
 three versions, designated as {\it compact} (Nios~V/c), {\it microcontroller} (Nios~V/m),
 and {\it general purpose} (Nios~V/g), can be found by searching on the Internet for keywords 
-such as \texttt{Nios~V versions}. The {\it \systemNameFull}~includes two instances of 
-the Nios~V/m version. An overview of the \processor~processor can be found in the 
+such as \texttt{Nios~V versions}. The {\it \systemNameFull}~includes 
+the Nios~V/g version. An overview of the \processor~processor can be found in the 
 document {\it Introduction to \processor}, which is available in the 
 Tutorials tab of the 
 {\small \href{https://www.fpgacademy.org/tutorials.html} {FPGAcademy.org}} website.
@@ -157,26 +184,24 @@ register in the {\it \systemNameFull}.
 The {\it \systemNameFull} has SDRAM and DDR3 memory ports, as well as two memory modules 
 implemented using the on-chip memory inside the FPGA. These memories are described below.
 
-\input{\commonPath/FPGA_SDRAM.tex}
-\input{\commonPath/FPGA_DDR3.tex}
-\input{\commonPath/FPGA_OnChip_Memory.tex}
-\input{\commonPath/FPGA_Char_Buffer.tex}
+\input{\commonFiles/FPGA_SDRAM.tex}
+\input{\commonFiles/FPGA_DDR3.tex}
+\input{\commonFiles/FPGA_OnChip_Memory.tex}
+\input{\commonFiles/FPGA_Char_Buffer.tex}
 
-\input{\commonPath/FPGA_PP.tex}
-\input{\commonPath/FPGA_PP_Red_LEDs_10.tex}
-\input{\commonPath/FPGA_PP_7_Segs_6.tex}
-\input{\commonPath/FPGA_PP_Switches_10.tex}
-\input{\commonPath/FPGA_PP_Keys_4.tex}
-\input{\commonPath/FPGA_PP_Dual_40_Pin_Headers.tex}
-\input{\commonPath/FPGA_PP_Examples.tex}
+\input{\commonFiles/FPGA_PP.tex}
+\input{\commonFiles/FPGA_PP_Red_LEDs_10.tex}
+\input{\commonFiles/FPGA_PP_7_Segs_6.tex}
+\input{\commonFiles/FPGA_PP_Switches_10.tex}
+\input{\commonFiles/FPGA_PP_Keys_4.tex}
+\input{\commonFiles/FPGA_PP_Dual_40_Pin_Headers.tex}
+\input{\commonFiles/FPGA_PP_Examples.tex}
 
-\input{\commonPath/FPGA_JTAG_UART.tex}
+\input{\commonFiles/FPGA_JTAG_UART.tex}
 
-\input{\commonPath/FPGA_Interval_Timers.tex}
-Each {\processor} processor has exclusive access to two interval timers, at the addresses
-given above.
-\input{\commonPath/FPGA_HPS_GSensor.tex}
+\input{\commonFiles/FPGA_Interval_Timers.tex}
 
+\newpage
 \section{Exceptions and Interrupts}
 \label{sec:exceptions}
 
@@ -211,7 +236,6 @@ with the Nios V machine timer, the FPGA interval timer, parallel ports, and seri
 	 \label{tab:irq}
     \end{center}
 \end{table}
-\newpage
 
 \subsection{Interrupts from the Nios V Software Interrupts and Machine Timer}
 The IRQ numbers for the Nios V software interrupts register and machine timer are not
@@ -221,10 +245,10 @@ document {\it Introduction to \processor}, which is available as part of the
 \texttt{Computer Organization and System Design} tutorials in the 
 {\small \href{https://www.fpgacademy.org/tutorials.html} {FPGAcademy.org}} website.
 
-\input{\commonPath/Interrupts_FPGA_Interval_Timer.tex}
-\input{\commonPath/Interrupts_FPGA_PP.tex}
-\input{\commonPath/Interrupts_FPGA_PP_Keys.tex}
-\input{\commonPath/Interrupts_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Interrupts_FPGA_Interval_Timer.tex}
+\input{\commonFiles/Interrupts_FPGA_PP.tex}
+\input{\commonFiles/Interrupts_FPGA_PP_Keys.tex}
+\input{\commonFiles/Interrupts_FPGA_JTAG_UART.tex}
 
 \subsection{Using Interrupts with Assembly Language Code}
 
@@ -308,14 +332,14 @@ handler is declared with the \texttt{interrupt ("machine")} attribute.
 This section describes the audio in/out, video-out, video-in, PS/2, IrDA*, and ADC ports,
 as well as floating point support.
 
-\input{\commonPath/Media_FPGA_Audio.tex}
-\input{\commonPath/Media_FPGA_Video_Out.tex}
+\input{\commonFiles/Media_FPGA_Audio.tex}
+\input{\commonFiles/Media_FPGA_Video_Out.tex}
 
-\input{\commonPath/Media_FPGA_Video_In.tex}
-\input{\commonPath/Media_FPGA_AV_Config.tex}
-\input{\commonPath/Media_FPGA_PS2.tex}
-\input{\commonPath/Media_FPGA_IrDA_Serial.tex}
-\input{\commonPath/FPGA_ADC.tex}
+\input{\commonFiles/Media_FPGA_Video_In.tex}
+\input{\commonFiles/Media_FPGA_AV_Config.tex}
+\input{\commonFiles/Media_FPGA_PS2.tex}
+\input{\commonFiles/Media_FPGA_IrDA_Serial.tex}
+\input{\commonFiles/FPGA_ADC.tex}
 
 \subsection{Floating-point Hardware}
 \label{sec:fp}
@@ -328,7 +352,7 @@ to pass special argument to the C compiler to instruct it to
 use the floating-point hardware support.
 
 % Section: Modifying the System
-\input{\commonPath/System_Modifying.tex}
+\input{\commonFiles/System_Modifying.tex}
 \begin{table}[h]
     \begin{center}
     \begin{tabular}{l|l}
@@ -394,7 +418,7 @@ use the floating-point hardware support.
 \clearpage
 
 % Section: Making the System the Default Configuration
-\input{\commonPath/System_Default_Config.tex}
+\input{\commonFiles/System_Default_Config.tex}
 
 \section{Memory Layout}
 
@@ -421,10 +445,6 @@ Table \ref{tab:memorylayout} summarizes the memory map used in the \systemName.
             0x09000000
             & 0x09001FFF
             & FPGA On-chip Memory Character Buffer
-        \\
-            0x40000000
-            & 0x7FFFFFFF
-            & DDR3 Memory
         \\
             0xFF200000
             & 0xFF20000F
@@ -507,32 +527,28 @@ Table \ref{tab:memorylayout} summarizes the memory map used in the \systemName.
             & 0xFF20401F
             & ADC
         \\
-            0xFFC04000
-            & 0xFFC040FC
-            & HPS I2C0
-        \\
     \end{tabular}
-    \caption{Memory layout used in the \systemNameFull.}
+    \caption{Memory layout used in the \systemName.}
     \label{tab:memorylayout}
     \end{center}
 \end{table}
 
 % Section: AMP Integration
-% \input{\commonPath/AMP_Integration.tex}
+% \input{\commonFiles/AMP_Integration.tex}
 \clearpage
 
-% Section: Appendix
-\input{\commonPath/appendix.tex}
-\input{\commonPath/Code_FPGA_PP_Examples.tex}
-\input{\commonPath/Code_FPGA_JTAG_UART.tex}
-\input{\commonPath/Code_Interrupts_NiosV.tex}
-\input{\commonPath/Code_Media_FPGA_Audio.tex}
-\input{\commonPath/Code_Media_FPGA_Video_Out.tex}
-\input{\commonPath/Code_Media_FPGA_PS2.tex}
-\input{\commonPath/Code_Media_FPGA_FP.tex}
-\input{\commonPath/Code_IncludeFiles.tex}
+% Appendix
+\input{\commonFiles/appendix.tex}
+\input{\commonFiles/Code_FPGA_PP_Examples.tex}
+\input{\commonFiles/Code_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Code_Interrupts_NiosV.tex}
+\input{\commonFiles/Code_Media_FPGA_Audio.tex}
+\input{\commonFiles/Code_Media_FPGA_Video_Out.tex}
+\input{\commonFiles/Code_Media_FPGA_PS2.tex}
+\input{\commonFiles/Code_Media_FPGA_FP.tex}
+\input{\commonFiles/Code_IncludeFiles.tex}
 
-\input{\templatePath/copyright.tex}
+\input{\templatePath/Docs/copyright.tex}
 
 \end{document}
 

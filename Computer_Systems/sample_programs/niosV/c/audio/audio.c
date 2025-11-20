@@ -1,4 +1,4 @@
-#include "address_map_niosV.h"
+#include "address_map_niosv.h"
 
 /* globals */
 #define BUF_SIZE 80000  // about 10 seconds of buffer (@ 8K samples/sec)

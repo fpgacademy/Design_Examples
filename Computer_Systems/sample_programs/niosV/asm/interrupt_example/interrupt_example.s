@@ -1,4 +1,4 @@
-.include    "address_map_niosV.s" 
+.include    "address_map_niosv.s" 
 /***************************************************************************
  * This program demonstrates use of interrupts with assembly code. It first
  * sets up interrupts from three devices: the Nios V machine timer, an FPGA 

@@ -2,9 +2,9 @@
 \label{sec:jtag_port}
 
 The JTAG* port implements a communication link between the \DEBoard~board and its host computer.  
-This link can be used by the Quartus\textsuperscript{\textregistered} Prime software to transfer FPGA programming files 
-into the \DEBoard~board, and by the \productNameMed{}, discussed in 
-Section~\ref{sec:monitor_program}.  The JTAG port also
+This link can be used by the Altera Quartus\textsuperscript{\textregistered} Prime software to 
+transfer FPGA programming files into the \DEBoard~board, and by software development tools 
+that are used to develop and debug \processor~programs.  The JTAG port also
 includes a UART, which can be used to transfer character data between the host computer and
 programs that are executing on the \processor~processor.
 The programming interface 
@@ -58,12 +58,7 @@ code perform the same function, which is to first send an ASCII string to the JT
 and then enter an endless loop. In the loop, the code reads character data that has 
 been received by the JTAG UART, and echoes this data back to the UART for transmission. In
 the {\it CPUlator} simulator, there is a JTAG window that allows text to be typed and
-echoed. If the program is executed by using the \productNameMed{}, then any keyboard character that 
-is typed into the {\it Terminal Window} of the Monitor Program will be 
-echoed back, causing the character to appear in the {\it Terminal Window}.
-
-The source code files shown in Listings \ref{lst:jtag_uart_s} and \ref{lst:jtag_uart_C}
-are made available as part of the  
-\productNameMed{}. The files can be found under the heading {\it sample programs}, 
-and are identified by the name {\it JTAG UART}.
+echoed. If the program is executed in a hardware system, then the software developmemt
+tools being used would provide a {\it Terminal Window} that is used to display any 
+keyboard characters typed.
 

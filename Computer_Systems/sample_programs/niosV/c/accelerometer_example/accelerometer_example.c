@@ -1,4 +1,4 @@
-#include "address_map_niosV.h"
+#include "address_map_niosv.h"
 /********************************************************************************
  * This program demonstrates the use of the Accelerometer in the Computer
 *System.

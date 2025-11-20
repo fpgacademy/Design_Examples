@@ -1,4 +1,4 @@
-#include "address_map_niosV.h"
+#include "address_map_niosv.h"
 
 /* function prototypes */
 void video_text(int, int, char *);

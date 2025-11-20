@@ -1,5 +1,5 @@
 #include "JTAG_UART.h"
-#include "address_map_niosV.h"
+#include "address_map_niosv.h"
 
 /*******************************************************************************
  * Subroutine to send a character to the JTAG UART
