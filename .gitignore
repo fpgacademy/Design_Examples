@@ -67,6 +67,17 @@ rel/
 *.log
 *.out
 *.gz
+DE1-SoC_Computer_ARM.pdf
+DE1-SoC_Computer_NiosII.pdf
+DE1-SoC_Computer_NiosV.pdf
+DE10-Lite_Computer_NiosII.pdf
+DE10-Lite_Computer_NiosV.pdf
+DE10-Standard_Computer_ARM.pdf
+DE10-Standard_Computer_NiosII.pdf
+DE10-Standard_Computer_NiosV.pdf
+DE10-Nano_Computer_ARM.pdf
+DE10-Nano_Computer_NiosII.pdf
+DE10-Nano_Computer_NiosV.pdf
 
 # outputs produced by the scripts
 Computer_Systems/*/scripts/o_*.txt
