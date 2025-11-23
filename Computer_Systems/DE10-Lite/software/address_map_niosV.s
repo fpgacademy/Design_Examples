@@ -25,6 +25,8 @@
 	.equ	TIMER_2_BASE,			0xFF202020
 	.equ	PIXEL_BUF_CTRL_BASE,	0xFF203020
 	.equ	CHAR_BUF_CTRL_BASE,		0xFF203030
+	.equ	ADC_BASE,       		0xFF204000
+	.equ	ACCELEROMETER_BASE,     0xFF204020
 
 /* Nios V memory-mapped registers */
     .equ    MTIME_BASE,             0xFF202100

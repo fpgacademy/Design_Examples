@@ -1,10 +1,15 @@
+\documentclass[11pt, twoside, pdftex]{article}
+
 % This include all the settings that we should use for the document
-\newcommand{\PDFTitle}{DE1-SoC Computer with ARM* Cortex* A9 Manual}
-\newcommand{\commonPath}{../../../common/doc}
-\newcommand{\templatePath}{../../../common/templates}
+\newcommand{\PDFTitle}{DE1-SoC Computer System with Nios\textsuperscript{\textregistered} II Manual}
+\newcommand{\commonFiles}{../../../common/doc}
+\newcommand{\commonFigs}{../../../common/figs}
 \newcommand{\sampleProgramsPath}{../../../sample_programs}
-\input{\templatePath/defaulttext.tex}
-\input{\templatePath/preamble.tex}
+\newcommand{\commonPath}{../../../../../Tutorials/Common}
+\newcommand{\includesPath}{../../software}
+\newcommand{\templatePath}{../../../../../Tutorials/Common}
+\input{\templatePath/Docs/defaulttext.tex}
+\input{\templatePath/Docs/preamble.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Add title
@@ -17,9 +22,10 @@
 \newcommand{\DEBoard}{DE1-SoC}
 \newcommand{\systemName}{DE1-SoC Computer}
 \newcommand{\systemNameFull}{DE1-SoC Computer with ARM A9}
+\newcommand{\systemBuilder}{Platform Designer}
 \newcommand{\FPGADeviceFamily}{Cyclone\textsuperscript{\textregistered} V SoC}
-\newcommand{\processor}{ARM A9}
-\newcommand{\aProcessor}{an ARM A9}
+\newcommand{\processor}{ARM~A9}
+\newcommand{\aProcessor}{an~ARM~A9}
 \newcommand{\baseAddressOffset}{C}
 \newcommand{\GIC}{GIC}
 \newcommand{\videoOutDevice}{VGA}
@@ -48,17 +54,17 @@
 \thispagestyle{plain}
 
 % Section: Introduction
-\input{\commonPath/Introduction.tex}
+\input{\commonFiles/Introduction.tex}
 
 % Section: Contents
-\input{\commonPath/Contents_HPS_FPGA.tex}
+\input{\commonFiles/Contents_HPS_FPGA.tex}
 
-\input{\commonPath/HPS.tex}
-\input{\commonPath/Block_Diagram_Old.tex}
-\input{\commonPath/HPS_Memory.tex}
-\input{\commonPath/HPS_GPIO1.tex}
-\input{\commonPath/HPS_Timers.tex}
-\input{\commonPath/HPS_FPGA_Bridges.tex}
+\input{\commonFiles/HPS.tex}
+\input{\commonFiles/Block_Diagram_Old.tex}
+\input{\commonFiles/HPS_Memory.tex}
+\input{\commonFiles/HPS_GPIO1.tex}
+\input{\commonFiles/HPS_Timers.tex}
+\input{\commonFiles/HPS_FPGA_Bridges.tex}
 
 
 \subsection{FPGA Components}
@@ -68,34 +74,34 @@ implemented inside the FPGA in the \FPGADeviceFamily~chip.  Several of these com
 are described in this section, and the others are presented in Section~\ref{sec:multi}.
 
 
-\input{\commonPath/FPGA_NiosII.tex}
-\input{\commonPath/FPGA_NiosII_Other_Processor.tex}
+\input{\commonFiles/FPGA_NiosII.tex}
+\input{\commonFiles/FPGA_NiosII_Other_Processor.tex}
 
 \subsection{Memory Components}
 The \systemNameFull~has an SDRAM port, as well as two memory modules implemented using the 
 on-chip memory inside the FPGA. These memories are described below.
 
-\input{\commonPath/FPGA_SDRAM.tex}
-\input{\commonPath/FPGA_OnChip_Memory.tex}
-\input{\commonPath/FPGA_Char_Buffer.tex}
+\input{\commonFiles/FPGA_SDRAM.tex}
+\input{\commonFiles/FPGA_OnChip_Memory.tex}
+\input{\commonFiles/FPGA_Char_Buffer.tex}
 
-\input{\commonPath/FPGA_PP.tex}
-\input{\commonPath/FPGA_PP_Red_LEDs_10.tex}
-\input{\commonPath/FPGA_PP_7_Segs_6.tex}
-\input{\commonPath/FPGA_PP_Switches_10.tex}
-\input{\commonPath/FPGA_PP_Keys_4.tex}
-\input{\commonPath/FPGA_PP_Dual_40_Pin_Headers.tex}
-\input{\commonPath/FPGA_PP_Examples.tex}
+\input{\commonFiles/FPGA_PP.tex}
+\input{\commonFiles/FPGA_PP_Red_LEDs_10.tex}
+\input{\commonFiles/FPGA_PP_7_Segs_6.tex}
+\input{\commonFiles/FPGA_PP_Switches_10.tex}
+\input{\commonFiles/FPGA_PP_Keys_4.tex}
+\input{\commonFiles/FPGA_PP_Dual_40_Pin_Headers.tex}
+\input{\commonFiles/FPGA_PP_Examples.tex}
 
-\input{\commonPath/FPGA_JTAG_UART.tex}
-\input{\commonPath/FPGA_JTAG_UART_2nd.tex}
-\input{\commonPath/FPGA_Interval_Timers.tex}
-\input{\commonPath/FPGA_System_ID.tex}
+\input{\commonFiles/FPGA_JTAG_UART.tex}
+\input{\commonFiles/FPGA_JTAG_UART_2nd.tex}
+\input{\commonFiles/FPGA_Interval_Timers.tex}
+\input{\commonFiles/FPGA_System_ID.tex}
 
 
 
 % Section: Exceptions and Interrupts
-\input{\commonPath/Interrupts_ARM.tex}
+\input{\commonFiles/Interrupts_ARM.tex}
 
 \begin{table}[h]
     \begin{center}
@@ -125,16 +131,16 @@ on-chip memory inside the FPGA. These memories are described below.
     \end{center}
 \end{table}
 
-\input{\commonPath/Interrupts_ARM_Private_Timer.tex}
-\input{\commonPath/Interrupts_HPS_Timers.tex}
-\input{\commonPath/Interrupts_FPGA_Interval_Timer.tex}
+\input{\commonFiles/Interrupts_ARM_Private_Timer.tex}
+\input{\commonFiles/Interrupts_HPS_Timers.tex}
+\input{\commonFiles/Interrupts_FPGA_Interval_Timer.tex}
 
-\input{\commonPath/Interrupts_FPGA_PP.tex}
-\input{\commonPath/Interrupts_FPGA_PP_Keys.tex}
-\input{\commonPath/Interrupts_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Interrupts_FPGA_PP.tex}
+\input{\commonFiles/Interrupts_FPGA_PP_Keys.tex}
+\input{\commonFiles/Interrupts_FPGA_JTAG_UART.tex}
 
-\input{\commonPath/Interrupts_ARM_ASM.tex}
-\input{\commonPath/Interrupts_ARM_C.tex}
+\input{\commonFiles/Interrupts_ARM_ASM.tex}
+\input{\commonFiles/Interrupts_ARM_C.tex}
 
 \newpage
 % Section: Media Components
@@ -143,17 +149,17 @@ on-chip memory inside the FPGA. These memories are described below.
 
 This section describes the audio in/out, video-out, video-in, PS/2, IrDA*, and ADC ports.
 
-\input{\commonPath/Media_FPGA_Audio.tex}
-\input{\commonPath/Media_FPGA_Video_Out.tex}
-\input{\commonPath/Media_FPGA_Video_In.tex}
-\input{\commonPath/Media_FPGA_AV_Config.tex}
-\input{\commonPath/Media_FPGA_PS2.tex}
-\input{\commonPath/Media_FPGA_IrDA.tex}
-\input{\commonPath/FPGA_ADC.tex}
+\input{\commonFiles/Media_FPGA_Audio.tex}
+\input{\commonFiles/Media_FPGA_Video_Out.tex}
+\input{\commonFiles/Media_FPGA_Video_In.tex}
+\input{\commonFiles/Media_FPGA_AV_Config.tex}
+\input{\commonFiles/Media_FPGA_PS2.tex}
+\input{\commonFiles/Media_FPGA_IrDA.tex}
+\input{\commonFiles/FPGA_ADC.tex}
 
 \newpage
 % Section: Modifying the System
-\input{\commonPath/System_Modifying.tex}
+\input{\commonFiles/System_Modifying.tex}
 \begin{table}[h]
     \begin{center}
     \begin{tabular}{l|l}
@@ -228,7 +234,7 @@ This section describes the audio in/out, video-out, video-in, PS/2, IrDA*, and A
 \clearpage
 
 % Section: Making the System the Default Configuration
-\input{\commonPath/System_Default_Config.tex}
+\input{\commonFiles/System_Default_Config.tex}
 
 \clearpage
 \section{Memory Layout}
@@ -394,26 +400,20 @@ Table \ref{tab:memorylayout} summarizes the memory map used in the \systemNameFu
 
 
 % Section: AMP Integration
-\input{\commonPath/AMP_Integration.tex}
+\input{\commonFiles/AMP_Integration.tex}
 
 \clearpage
 % Section: Appendix
-\input{\commonPath/Appendix.tex}
-%\section{Appendix A: Timers}
-\input{\commonPath/Code_HPS_Timers.tex}
-%\section{Appendix B: Parallel Ports}
-\input{\commonPath/Code_FPGA_PP_Examples.tex}
-%\section{Appendix C: JTAG UART}
-\input{\commonPath/Code_FPGA_JTAG_UART.tex}
-%\section{Appendix D: Interrupts}
-\input{\commonPath/Code_Interrupts_ARM.tex}
-%\section{Appendix E: Audio}
-\input{\commonPath/Code_Media_FPGA_Audio.tex}
-%\section{Appendix F: Video Out}
-\input{\commonPath/Code_Media_FPGA_Video_Out.tex}
-%\section{Appendix G: PS/2}
-\input{\commonPath/Code_Media_FPGA_PS2.tex}
+\input{\commonFiles/Appendix.tex}
+\input{\commonFiles/Code_HPS_Timers.tex}
+\input{\commonFiles/Code_FPGA_PP_Examples.tex}
+\input{\commonFiles/Code_IncludeFiles_ARM.tex}
+\input{\commonFiles/Code_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Code_Interrupts_ARM.tex}
+\input{\commonFiles/Code_Media_FPGA_Audio.tex}
+\input{\commonFiles/Code_Media_FPGA_Video_Out.tex}
+\input{\commonFiles/Code_Media_FPGA_PS2.tex}
 
-\input{\templatePath/copyright.tex}
+\input{\templatePath/Docs/copyright.tex}
 
 \end{document}

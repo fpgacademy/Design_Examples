@@ -2,11 +2,14 @@
 
 The {\it \systemNameFull} provides a convenient platform for experimenting with {\processor}
 assembly language code, or C code.  A simple example of such code is provided in the Appendix in
-Listings \ref{lst:getting_started_s} and \ref{lst:getting_started_C}. Each of these
-listing {\it includes} a file that specifies the memory-mapped addresses of all peripheral
-devices in the {\it \systemNameFull}. These include files, called {\it address\_map\_niosv.s}
-and {\it address\_map\_niosv.h}, are provided in Listings~\ref{lst:address_map_niosv_s}
-and~\ref{lst:address_map_niosv_h}. These include files are also used in other code
+Listings \ref{lst:getting_started_s} and \ref{lst:getting_started_C}. Both programs perform
+the same operations, and illustrate the use of parallel ports by using either assembly language 
+or C code. Each listing {\it includes} a file that specifies the memory-mapped addresses 
+of all peripheral devices in the {\it \systemNameFull}. These include files, called {\it
+address\_map\_\processorLower.s}
+and {\it address\_map\_\processorLower.h}, are provided in
+Listings~\ref{lst:address_map_\processorLower_s}
+and~\ref{lst:address_map_\processorLower_h}. These include files are also used in other code
 samples described in this document.  
 
 The code in Listing \ref{lst:getting_started_s} and \ref{lst:getting_started_C}

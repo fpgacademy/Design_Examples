@@ -1,7 +1,3 @@
-/*******************************************************************************
- * This file provides address values that exist in the DE1-SoC Computer
- ******************************************************************************/
-
 /* Memory */
 	.equ	DDR_BASE,				0x40000000
 	.equ	DDR_END,				0x7FFFFFFF
@@ -9,13 +5,13 @@
 	.equ	A9_ONCHIP_END,			0xFFFFFFFF
 	.equ	SDRAM_BASE,				0x00000000
 	.equ	SDRAM_END,				0x03FFFFFF
-	.equ	FPGA_PIXEL_BUF_BASE,		0x08000000
+	.equ	FPGA_PIXEL_BUF_BASE,	0x08000000
 	.equ	FPGA_PIXEL_BUF_END,		0x0803FFFF
 	.equ	FPGA_CHAR_BASE,			0x09000000
 	.equ	FPGA_CHAR_END,			0x09001FFF
 
 /* Cyclone V FPGA devices */
-	.equ	LED_BASE, 			0xFF200000
+	.equ	LED_BASE, 			    0xFF200000
 	.equ	LEDR_BASE,				0xFF200000
 	.equ	HEX3_HEX0_BASE,			0xFF200020
 	.equ	HEX5_HEX4_BASE,			0xFF200030

@@ -3,18 +3,25 @@
 % Assembly source files
 
 \begin{center} \begin{minipage}[h]{16.5 cm}
+\lstinputlisting[style=defaultNiosVStyle, name=interrupt_example_s, linerange={1-17}, 
+showlines=true]{\includesPath/address_map_\processorLower.s}
+\texttt{~~~~~~~~...}
 \lstinputlisting[style=defaultNiosVStyle, name=interrupt_example_s, caption={The
 {\it address\_map\_\processorLower.s} include file.}, captionpos=b,
-        label={lst:address_map_\processorLower_s}, 
+        label={lst:address_map_\processorLower_s},linerange={34-58}, 
 showlines=true]{\includesPath/address_map_\processorLower.s}
+
 \end{minipage} \end{center}
 
 \newpage
 % C Source Code
 
 \begin{center} \begin{minipage}[h]{16.5 cm}
+        \lstinputlisting[language=C, linerange={1-17},
+showlines=true]{\includesPath/address_map_\processorLower.h}
+\texttt{~~~~~~~~...}
 \lstinputlisting[language=C, caption={The {\it address\_map\_\processorLower.h} include file.},
-captionpos=b, label={lst:address_map_\processorLower_h},
+        captionpos=b, label={lst:address_map_\processorLower_h}, linerange={34-58},
 showlines=true]{\includesPath/address_map_\processorLower.h}
 \end{minipage} \end{center}
 
