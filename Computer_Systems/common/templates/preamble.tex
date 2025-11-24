@@ -1,4 +1,4 @@
-\documentclass[11pt, twoside, pdftex]{article}
+
 
 \setlength\topmargin{-0.25in}
 \setlength\headheight{0in}
@@ -95,12 +95,9 @@ RE]{\textrm{\href{https://www.fpgacademy.org}{\small \longteamname}} \\ {\small 
 \renewcommand{\floatpagefraction}{0.7}	% require fuller float pages
 % N.B.: floatpagefraction MUST be less than topfraction !!
 \renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-% Add title
-\title{\fontfamily{phv}\selectfont{\doctitle} }
-\chead{ \small{\textsc{\bfseries \dochead} } }
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% remember to use [htp] or [htpb] for placement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % set no indent for paragraph
 \setlength{\parindent}{0em}
@@ -121,7 +118,6 @@ RE]{\textrm{\href{https://www.fpgacademy.org}{\small \longteamname}} \\ {\small 
 \newcommand{\de}{DE-series}
 \newcommand{\up}{FPGAcademy}
 \newcommand{\fabric}{Avalon Switch Fabric}
-\newcommand{\red}[1]{{\color{red}\sf{#1}}}
 \newcommand{\TODO}[1]{\textcolor{red}{\textbf{TODO}: #1}}
 \def\registered{{\ooalign{\hfil\raise .00ex\hbox{\scriptsize R}\hfil\crcr\mathhexbox20D}}}
 
@@ -129,9 +125,9 @@ RE]{\textrm{\href{https://www.fpgacademy.org}{\small \longteamname}} \\ {\small 
 \usepackage{url}
 \usepackage[pdftex, colorlinks]{hyperref}
 \hypersetup{%
-pdftitle={\PDFTitle},
+%pdftitle={\PDFTitle},
 linkcolor=blue,
-hyperindex=true,
+%hyperindex=true,
 pdfauthor={\longteamname},
 pdfkeywords={FPGAcademy, Academic Program, Example System},
 bookmarksnumbered,
@@ -140,14 +136,13 @@ filecolor=blue,
 pdfstartview={FitH},
 urlcolor=blue,
 plainpages=false,
-pdfpagelabels=true,
+%pdfpagelabels=true,
 linkbordercolor={1 1 1} %no color for link border
 }%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setlength{\fboxsep}{0.7pt}
 \setlength{\fboxrule}{0.5pt}
 
-\raggedbottom
-\widowpenalty 10000
-\clubpenalty 10000
+\newcommand{\red}[1]{{\color{red}\sf{#1}}}
+\newcommand{\blue}[1]{{\color{blue}\sf{#1}}}
 
