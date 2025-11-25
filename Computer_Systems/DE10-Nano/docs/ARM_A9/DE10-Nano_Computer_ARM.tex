@@ -1,8 +1,12 @@
+\documentclass[11pt, twoside, pdftex]{article}
+
 % This include all the settings that we should use for the document
 \newcommand{\PDFTitle}{DE10-Nano Computer with ARM* Cortex* A9 Manual}
-\newcommand{\commonPath}{../../../common/doc}
-\newcommand{\templatePath}{../../../common/templates}
+\newcommand{\commonFiles}{../../../common/doc}
+\newcommand{\commonFigs}{../../../common/figs}
 \newcommand{\sampleProgramsPath}{../../../sample_programs}
+\newcommand{\includesPath}{../../software}
+\newcommand{\templatePath}{../../../common/templates}
 \input{\templatePath/defaulttext.tex}
 \input{\templatePath/preamble.tex}
 
@@ -17,6 +21,7 @@
 \newcommand{\DEBoard}{DE10-Nano}
 \newcommand{\systemName}{DE10-Nano Computer}
 \newcommand{\systemNameFull}{DE10-Nano Computer with ARM A9}
+\newcommand{\systemBuilder}{Platform Designer}
 \newcommand{\FPGADeviceFamily}{Cyclone$^{\registered}$ V SoC}
 \newcommand{\processor}{ARM A9}
 \newcommand{\aProcessor}{an ARM A9}
@@ -49,7 +54,7 @@
 \thispagestyle{plain}
 
 % Section: Introduction
-\input{\commonPath/Introduction.tex}
+\input{\commonFiles/Introduction.tex}
 To support such experiments, the system contains
 embedded processors, memory, and various I/O peripherals. 
 The FPGA programming file that implements this system, as well as its 
@@ -65,13 +70,13 @@ processor, a DDR3 memory port, and a set of peripheral devices. The FPGA
 implements two Nios\textsuperscript{\textregistered}~II processors and several peripheral ports: memory, timer modules, 
 analog-to-digital, parallel ports connected to switches and lights, expansion ports, and HDMI*.
 
-\input{\commonPath/HPS.tex}
-\input{\commonPath/Block_Diagram.tex}
+\input{\commonFiles/HPS.tex}
+\input{\commonFiles/Block_Diagram.tex}
 
-\input{\commonPath/HPS_Memory.tex} 
-\input{\commonPath/HPS_GPIO1.tex}
-\input{\commonPath/HPS_Timers.tex}
-\input{\commonPath/HPS_FPGA_Bridges.tex}
+\input{\commonFiles/HPS_Memory.tex} 
+\input{\commonFiles/HPS_GPIO1.tex}
+\input{\commonFiles/HPS_Timers.tex}
+\input{\commonFiles/HPS_FPGA_Bridges.tex}
 
 \subsection{FPGA Components}
 \label{sec:fpga}
@@ -79,8 +84,8 @@ As shown in Figure \ref{fig:block_diagram} a number of components in the \system
 implemented inside the FPGA in the \FPGADeviceFamily~chip.  Several of these components 
 are described in this section, and the others are presented in Section~\ref{sec:multi}.
 
-\input{\commonPath/FPGA_NiosII.tex}
-\input{\commonPath/FPGA_NiosII_Other_Processor.tex}
+\input{\commonFiles/FPGA_NiosII.tex}
+\input{\commonFiles/FPGA_NiosII_Other_Processor.tex}
 
 \subsection{On-Chip Memory}
 
@@ -97,20 +102,20 @@ connected to only one of these memories and can access the memory in the address
 {\sf 0x00000000} to {\sf 0x00007FFF}. Each Nios II processor uses this memory to access its
 reset and exception code, as well as other code or data.
 
-\input{\commonPath/FPGA_PP.tex}
-\input{\commonPath/FPGA_PP_Green_LEDs_8.tex}
-\input{\commonPath/FPGA_PP_Switches_4.tex}
-\input{\commonPath/FPGA_PP_Keys_2.tex}
-\input{\commonPath/FPGA_PP_Dual_40_Pin_Headers.tex}
-\input{\commonPath/FPGA_PP_Arduino.tex}
-\input{\commonPath/FPGA_PP_Examples.tex}
+\input{\commonFiles/FPGA_PP.tex}
+\input{\commonFiles/FPGA_PP_Green_LEDs_8.tex}
+\input{\commonFiles/FPGA_PP_Switches_4.tex}
+\input{\commonFiles/FPGA_PP_Keys_2.tex}
+\input{\commonFiles/FPGA_PP_Dual_40_Pin_Headers.tex}
+\input{\commonFiles/FPGA_PP_Arduino.tex}
+\input{\commonFiles/FPGA_PP_Examples.tex}
 
-\input{\commonPath/FPGA_JTAG_UART.tex}
-\input{\commonPath/FPGA_JTAG_UART_2nd.tex}
-\input{\commonPath/FPGA_Interval_Timers.tex}
+\input{\commonFiles/FPGA_JTAG_UART.tex}
+\input{\commonFiles/FPGA_JTAG_UART_2nd.tex}
+\input{\commonFiles/FPGA_Interval_Timers.tex}
 
 % Section: Exceptions and Interrupts
-\input{\commonPath/Interrupts_ARM.tex}
+\input{\commonFiles/Interrupts_ARM.tex}
 
 \begin{table}[h]
     \begin{center}
@@ -150,16 +155,16 @@ reset and exception code, as well as other code or data.
     \end{center}
 \end{table}
 
-\input{\commonPath/Interrupts_ARM_Private_Timer.tex}
-\input{\commonPath/Interrupts_HPS_Timers.tex}
-\input{\commonPath/Interrupts_FPGA_Interval_Timer.tex}
+\input{\commonFiles/Interrupts_ARM_Private_Timer.tex}
+\input{\commonFiles/Interrupts_HPS_Timers.tex}
+\input{\commonFiles/Interrupts_FPGA_Interval_Timer.tex}
 
-\input{\commonPath/Interrupts_FPGA_PP.tex}
-\input{\commonPath/Interrupts_FPGA_PP_Keys_2.tex}
-\input{\commonPath/Interrupts_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Interrupts_FPGA_PP.tex}
+\input{\commonFiles/Interrupts_FPGA_PP_Keys_2.tex}
+\input{\commonFiles/Interrupts_FPGA_JTAG_UART.tex}
 
-\input{\commonPath/Interrupts_ARM_ASM.tex}
-\input{\commonPath/Interrupts_ARM_C.tex}
+\input{\commonFiles/Interrupts_ARM_ASM.tex}
+\input{\commonFiles/Interrupts_ARM_C.tex}
 
 % Section: Media Components
 \section{Media Components}
@@ -167,12 +172,12 @@ reset and exception code, as well as other code or data.
 
 This section describes the audio-out, video-out, and ADC ports.
 
-\input{\commonPath/Media_FPGA_Audio_HDMI.tex}
-\input{\commonPath/Media_FPGA_Video_Out.tex}
-\input{\commonPath/FPGA_ADC.tex}
+\input{\commonFiles/Media_FPGA_Audio_HDMI.tex}
+\input{\commonFiles/Media_FPGA_Video_Out.tex}
+\input{\commonFiles/FPGA_ADC.tex}
 
 % Section: Modifying the System
-\input{\commonPath/System_Modifying.tex}
+\input{\commonFiles/System_Modifying.tex}
 
 \begin{table}[h]
     \begin{center}
@@ -223,7 +228,7 @@ This section describes the audio-out, video-out, and ADC ports.
 \end{table}
 
 % Section: Making the System the Default Configuration
-\input{\commonPath/System_Default_Config.tex}
+\input{\commonFiles/System_Default_Config.tex}
 
 \section{Memory Layout}
 \label{sec:mm}
@@ -350,15 +355,16 @@ Table \ref{tab:memorylayout} summarizes the memory map used in the DE10-Nano Com
 \end{table}
 
 % Section: AMP Integration
-\input{\commonPath/AMP_Integration.tex}
+\input{\commonFiles/AMP_Integration.tex}
 
 \clearpage
-\input{\commonPath/Appendix.tex}
-\input{\commonPath/Code_HPS_Timers.tex}
-\input{\commonPath/Code_FPGA_PP_Examples.tex}
-\input{\commonPath/Code_FPGA_JTAG_UART.tex}
-\input{\commonPath/Code_Interrupts_ARM.tex}
-\input{\commonPath/Code_Media_FPGA_Video_Out.tex}
+\input{\commonFiles/Appendix.tex}
+\input{\commonFiles/Code_HPS_Timers.tex}
+\input{\commonFiles/Code_FPGA_PP_Examples.tex}
+\input{\commonFiles/Code_IncludeFiles_ARM.tex}
+\input{\commonFiles/Code_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Code_Interrupts_ARM.tex}
+\input{\commonFiles/Code_Media_FPGA_Video_Out.tex}
 
 \input{\templatePath/copyright.tex} 
 

@@ -1,8 +1,12 @@
+\documentclass[11pt, twoside, pdftex]{article}
+
 % This include all the settings that we should use for the document
 \newcommand{\PDFTitle}{DE10-Standard Computer System with Nios\textsuperscript{\textregistered} II Manual}
-\newcommand{\commonPath}{../../../common/doc}
-\newcommand{\templatePath}{../../../common/templates}
+\newcommand{\commonFiles}{../../../common/doc}
+\newcommand{\commonFigs}{../../../common/figs}
 \newcommand{\sampleProgramsPath}{../../../sample_programs}
+\newcommand{\includesPath}{../../software}
+\newcommand{\templatePath}{../../../common/templates}
 \input{\templatePath/defaulttext.tex}
 \input{\templatePath/preamble.tex}
 
@@ -17,6 +21,7 @@
 \newcommand{\DEBoard}{DE10-Standard}
 \newcommand{\systemName}{DE10-Standard Computer}
 \newcommand{\systemNameFull}{DE10-Standard Computer with Nios~II}
+\newcommand{\systemBuilder}{Platform Designer}
 \newcommand{\FPGADeviceFamily}{Cyclone\textsuperscript{\textregistered} V SoC}
 \newcommand{\processor}{Nios~II}
 \newcommand{\aProcessor}{a Nios~II}
@@ -48,47 +53,47 @@
 \thispagestyle{plain}
 
 % Section: Introduction
-\input{\commonPath/Introduction.tex}
+\input{\commonFiles/Introduction.tex}
 To support such experiments, the system contains
 embedded processors, memory, audio and video devices, and some simple I/O peripherals. 
 The FPGA programming file that implements this system, as well as its 
 design source files, can be obtained from the FPGAcademy's Design Example GitHub repository. 
 
 % Section: Contents
-\input{\commonPath/Contents_FPGA_HPS.tex}
-\input{\commonPath/Block_Diagram.tex}
-\input{\commonPath/FPGA_Components.tex}
+\input{\commonFiles/Contents_FPGA_HPS.tex}
+\input{\commonFiles/Block_Diagram.tex}
+\input{\commonFiles/FPGA_Components.tex}
 
-\input{\commonPath/FPGA_NiosII.tex}
-\input{\commonPath/FPGA_NiosII_Extended.tex}
+\input{\commonFiles/FPGA_NiosII.tex}
+\input{\commonFiles/FPGA_NiosII_Extended.tex}
 
 \subsubsection{Memory Components}
 
 The \systemName~has DDR3 and SDRAM ports, as well as two memory modules implemented 
 using the on-chip memory inside the FPGA. These memories are described below.
 
-\input{\commonPath/FPGA_SDRAM.tex}
-\input{\commonPath/FPGA_DDR3.tex}
-\input{\commonPath/FPGA_OnChip_Memory.tex}
-\input{\commonPath/FPGA_Char_Buffer.tex}
+\input{\commonFiles/FPGA_SDRAM.tex}
+\input{\commonFiles/FPGA_DDR3.tex}
+\input{\commonFiles/FPGA_OnChip_Memory.tex}
+\input{\commonFiles/FPGA_Char_Buffer.tex}
 
-\input{\commonPath/FPGA_PP.tex}
-\input{\commonPath/FPGA_PP_Red_LEDs_10.tex}
-\input{\commonPath/FPGA_PP_7_Segs_6.tex}
-\input{\commonPath/FPGA_PP_Switches_10.tex}
-\input{\commonPath/FPGA_PP_Keys_4.tex}
-\input{\commonPath/FPGA_PP_Single_40_Pin_Header.tex}
-\input{\commonPath/FPGA_PP_Examples.tex}
+\input{\commonFiles/FPGA_PP.tex}
+\input{\commonFiles/FPGA_PP_Red_LEDs_10.tex}
+\input{\commonFiles/FPGA_PP_7_Segs_6.tex}
+\input{\commonFiles/FPGA_PP_Switches_10.tex}
+\input{\commonFiles/FPGA_PP_Keys_4.tex}
+\input{\commonFiles/FPGA_PP_Single_40_Pin_Header.tex}
+\input{\commonFiles/FPGA_PP_Examples.tex}
 
-\input{\commonPath/FPGA_JTAG_UART.tex}
+\input{\commonFiles/FPGA_JTAG_UART.tex}
 
-\input{\commonPath/FPGA_Interval_Timers.tex}
+\input{\commonFiles/FPGA_Interval_Timers.tex}
 Each Nios II processor has exclusive access to two interval timers.
-\input{\commonPath/FPGA_FP.tex}
-\input{\commonPath/FPGA_System_ID.tex}
+\input{\commonFiles/FPGA_FP.tex}
+\input{\commonFiles/FPGA_System_ID.tex}
 
 % Section: Exceptions and Interrupts
-\input{\commonPath/Interrupts_FPGA.tex}
+\input{\commonFiles/Interrupts_FPGA.tex}
 
 \begin{table}[h]
     \begin{center}
@@ -123,13 +128,13 @@ Each Nios II processor has exclusive access to two interval timers.
 \end{table}
 \newpage
 
-\input{\commonPath/Interrupts_FPGA_PP.tex}
-\input{\commonPath/Interrupts_FPGA_PP_Keys.tex}
-\input{\commonPath/Interrupts_FPGA_JTAG_UART.tex}
-\input{\commonPath/Interrupts_FPGA_Interval_Timer.tex}
+\input{\commonFiles/Interrupts_FPGA_PP.tex}
+\input{\commonFiles/Interrupts_FPGA_PP_Keys.tex}
+\input{\commonFiles/Interrupts_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Interrupts_FPGA_Interval_Timer.tex}
 
-\input{\commonPath/Interrupts_NiosII_ASM.tex}
-\input{\commonPath/Interrupts_NiosII_C.tex}
+\input{\commonFiles/Interrupts_NiosII_ASM.tex}
+\input{\commonFiles/Interrupts_NiosII_C.tex}
 
 % Section: Media Components
 \section{Media Components}
@@ -137,17 +142,17 @@ Each Nios II processor has exclusive access to two interval timers.
 
 This section describes the audio in/out, video-out, video-in, PS/2, IrDA*, and ADC ports.
 
-\input{\commonPath/Media_FPGA_Audio.tex}
-\input{\commonPath/Media_FPGA_Video_Out.tex}
+\input{\commonFiles/Media_FPGA_Audio.tex}
+\input{\commonFiles/Media_FPGA_Video_Out.tex}
 
-\input{\commonPath/Media_FPGA_Video_In.tex}
-\input{\commonPath/Media_FPGA_AV_Config.tex}
-\input{\commonPath/Media_FPGA_PS2.tex}
-\input{\commonPath/Media_FPGA_IrDA_Serial.tex}
-\input{\commonPath/FPGA_ADC.tex}
+\input{\commonFiles/Media_FPGA_Video_In.tex}
+\input{\commonFiles/Media_FPGA_AV_Config.tex}
+\input{\commonFiles/Media_FPGA_PS2.tex}
+\input{\commonFiles/Media_FPGA_IrDA_Serial.tex}
+\input{\commonFiles/FPGA_ADC.tex}
 
 % Section: Modifying the System
-\input{\commonPath/System_Modifying.tex}
+\input{\commonFiles/System_Modifying.tex}
 
 \begin{table}[h]
     \begin{center}
@@ -216,7 +221,7 @@ This section describes the audio in/out, video-out, video-in, PS/2, IrDA*, and A
 \end{table}
 
 % Section: Making the System the Default Configuration
-\input{\commonPath/System_Default_Config.tex}
+\input{\commonFiles/System_Default_Config.tex}
 
 \section{Memory Layout}
 
@@ -332,18 +337,19 @@ Table \ref{tab:memorylayout} summarizes the memory map used in the \systemName.
 \end{table}
 
 % Section: AMP Integration
-\input{\commonPath/AMP_Integration.tex}
+\input{\commonFiles/AMP_Integration.tex}
 \clearpage
 
 % Appendix
-\input{\commonPath/appendix.tex}
-\input{\commonPath/Code_FPGA_PP_Examples.tex}
-\input{\commonPath/Code_FPGA_JTAG_UART.tex}
-\input{\commonPath/Code_Interrupts_NiosII.tex}
-\input{\commonPath/Code_Media_FPGA_Audio.tex}
-\input{\commonPath/Code_Media_FPGA_Video_Out.tex}
-\input{\commonPath/Code_Media_FPGA_PS2.tex}
-\input{\commonPath/Code_Media_FPGA_FP.tex}
+\input{\commonFiles/appendix.tex}
+\input{\commonFiles/Code_FPGA_PP_Examples.tex}
+\input{\commonFiles/Code_IncludeFiles.tex}
+\input{\commonFiles/Code_FPGA_JTAG_UART.tex}
+\input{\commonFiles/Code_Interrupts_NiosII.tex}
+\input{\commonFiles/Code_Media_FPGA_Audio.tex}
+\input{\commonFiles/Code_Media_FPGA_Video_Out.tex}
+\input{\commonFiles/Code_Media_FPGA_PS2.tex}
+\input{\commonFiles/Code_Media_FPGA_FP.tex}
 
 \input{\templatePath/copyright.tex}
 

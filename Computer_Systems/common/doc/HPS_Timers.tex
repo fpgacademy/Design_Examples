@@ -91,6 +91,12 @@ An example of C code is also included in Listing~\ref{lst:timer_C}. This code pe
 as the assembly language program in Listing~\ref{lst:timer_s}---it flashes on/off the green 
 light connected to GPIO1 at one-second intervals.
 
+Each listing {\it includes} a file that specifies the memory-mapped addresses 
+of all peripheral devices in the {\it \systemNameFull}. These include files, called {\it
+address\_map\_\processorLower.s}
+and {\it address\_map\_\processorLower.h}, are provided in
+Listings~\ref{lst:address_map_\processorLower_s}
+and~\ref{lst:address_map_\processorLower_h}.
 The source code files shown in Listings~\ref{lst:timer_C} and~\ref{lst:timer_s}
 are distributed as part of the  
 \productNameMed{}. The files can be found under the heading {\it sample programs}, 
