@@ -43,7 +43,7 @@ We recommend using the latest version of the *Quartus Prime **Pro** Edition* sof
 
 ### IP Cores
 
-The Computer Systems require a set of IP Core components that can be obtained from their GitHub repository, at https://github.com/fpgacademy/IP_Cores. follow the instructions provided in that repository to install these IP Cores.
+The Computer Systems require a set of IP Core components that can be obtained from their GitHub repository, at https://github.com/fpgacademy/IP_Cores. Follow the instructions provided in that repository to install these IP Cores.
 
 ### Nios II Command Shell
 
