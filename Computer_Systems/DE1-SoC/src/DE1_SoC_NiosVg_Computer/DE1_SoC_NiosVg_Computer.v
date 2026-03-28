@@ -314,7 +314,13 @@ Computer_System The_System (
 	.sdram_dq									(DRAM_DQ),
 	.sdram_dqm									({DRAM_UDQM,DRAM_LDQM}),
 	.sdram_ras_n								(DRAM_RAS_N),
-	.sdram_we_n									(DRAM_WE_N)
+	.sdram_we_n									(DRAM_WE_N),
+
+    .adc_sclk                        (ADC_SCLK),
+	.adc_cs_n                        (ADC_CS_N),
+	.adc_dout                        (ADC_DOUT),
+	.adc_din                         (ADC_DIN)
+
 );
 
 

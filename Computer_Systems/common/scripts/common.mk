@@ -11,9 +11,9 @@ CURPATH  = $(shell pwd)
 
 default: generate_qsys_files
 
-all: generate_qsys_files run_platform_designer reduce_sopcinfo run_quartus generate_rbf release grep_for_errors
+all: generate_qsys_files run_platform_designer reduce_sopcinfo fix_for_niosVg run_quartus generate_rbf release grep_for_errors
 
-continue: run_platform_designer reduce_sopcinfo run_quartus generate_rbf release grep_for_errors
+continue: run_platform_designer reduce_sopcinfo fix_for_niosVg run_quartus generate_rbf release grep_for_errors
 
 generate_qsys_files: $(QSYSOBJS)
 
@@ -29,6 +29,11 @@ run_platform_designer: $(QSYSSRC)
 
 reduce_sopcinfo:
 	cd $(DSTPATH) && python3 $(D2CPATH)/strip_info.py Computer_System.sopcinfo
+
+fix_for_niosVg: # need to repair NiosVg due to platform designer bug
+ifeq ($(findstring NiosVg,$(QP_NAME)), NiosVg)
+	sed -i 's/000000-/1111111/' $(DSTPATH)/Computer_System/synthesis/submodules/Computer_System_NiosVg.v
+endif
 
 run_quartus: $(QP_NAME)
 	cp -r $(SRCPATH) $(DSTPATH)
