@@ -82,4 +82,12 @@ DE10-Nano_Computer_NiosV.pdf
 # outputs produced by the scripts
 Computer_Systems/*/scripts/o_*.txt
 Computer_Systems/*/scripts/*.qsys
+Computer_Systems/*/scripts/.qsys_edit
+Computer_Systems/*/*Computer/.qsys_edi
+
+filters.xml
+preferences.xml
+*.db_info
+*.sld_design*
+*.qws
 
