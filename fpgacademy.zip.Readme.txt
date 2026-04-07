@@ -1,0 +1,5 @@
+The fpgacademy.zip archive contains the Nios V custom cygwin tools, which
+include the C compiler, linker, etc, and the computer systems .sof files. 
+
+To make an update to the fpgacademy.zip file, just unzip it, update as needed,
+then zip again and put into the Release assets of this repository.
