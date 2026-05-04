@@ -91,4 +91,7 @@ preferences.xml
 *.sld_design*
 *.qws
 
-fpgacademy/
+fpgacademy/AMP
+fpgacademy/Computer_Systems
+fpgacademy/GDB
+fpgacademy/*.zip

@@ -5,7 +5,8 @@
  *  1. displays a rotating pattern on the LEDs
  *  2. if a KEY is pressed, uses the SW switches as the pattern
 */
-int main(void) {
+int main(void) 
+{
     /* Declare volatile pointers to I/O registers (volatile means that IO load
      * and store instructions will be used to access these pointer locations,
      * instead of regular memory loads and stores)
@@ -16,15 +17,13 @@ int main(void) {
 
     int LED_bits = 0x0F0F0F0F; // pattern for LED lights
     int SW_value, KEY_value;
-    volatile int
-        delay_count; // volatile so the C compiler doesn't remove the loop
+    volatile int delay_count; // volatile compiler doesn't remove the loop
 
     while (1) {
         SW_value = *(SW_switch_ptr); // read the SW slider (DIP) switch values
 
         KEY_value = *(KEY_ptr); // read the pushbutton KEY values
-        if (KEY_value != 0)     // check if any KEY was pressed
-        {
+        if (KEY_value != 0) {   // check if any KEY was pressed
             /* set pattern using SW values */
             LED_bits = SW_value | (SW_value << 8) | (SW_value << 16) |
                        (SW_value << 24);

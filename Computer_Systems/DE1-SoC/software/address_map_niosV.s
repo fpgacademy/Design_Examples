@@ -3,8 +3,6 @@
  ******************************************************************************/
 
 /* Memory */
-    .equ    DDR_BASE,               0x40000000
-    .equ    DDR_END,                0x7FFFFFFF
     .equ    SDRAM_BASE,             0x00000000
     .equ    SDRAM_END,              0x03FFFFFF
     .equ    FPGA_PIXEL_BUF_BASE,    0x08000000
@@ -37,3 +35,6 @@
 
 /* Nios V memory-mapped registers */
     .equ    MTIME_BASE,             0xFF202100
+
+
+

@@ -1,19 +1,13 @@
 .include    "address_map_niosv.s"
 
 /******************************************************************************
- * This program demonstrates use of parallel ports
- *
- * It performs the following:
+ * This program demonstrates use of parallel ports. It:
  * 	1. displays a rotating pattern on the LEDs
  * 	2. if any KEY is pressed, the SW switches are used as the rotating pattern
  ******************************************************************************/
 
-.text                               # executable code follows
-.global     _start              
-_start:                             
-
-/* initialize base addresses of parallel ports */
-        la      s0, SW_BASE         # SW slider switch base address
+.global _start              
+_start: la      s0, SW_BASE         # SW slider switch base address
         la      s1, LED_BASE        # LED base address
         la      s2, KEY_BASE        # pushbutton KEY base address
         la      t1, LED_bits       
@@ -43,9 +37,7 @@ DELAY:
         j       DO_DISPLAY          
 
 /******************************************************************************/
-.data                           # data follows
-
 LED_bits:                           
 .word       0x0000030F          # 10-bit pattern
 
-.end                            
+

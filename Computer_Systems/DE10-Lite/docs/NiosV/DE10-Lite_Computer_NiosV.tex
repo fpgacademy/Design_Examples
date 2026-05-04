@@ -41,16 +41,8 @@
 %%% DOCUMENT START
 %\begin{document}
 \begin{document}
-\begin{table}
-    \centering
-    \begin{tabular}{p{5cm}p{4cm}}
-        % \hspace{-3cm}\includegraphics[width=0.4\textwidth]{\headerlogofilepath{\templatepath/figures}}
-        \hspace{-3cm}
-        &
-        \raisebox{1\height}{\parbox[h]{0.5\textwidth}{\large\fontfamily{phv}\selectfont{\textsf{\doctitle}}}}
-    \end{tabular}
-    \label{tab:logo}
-\end{table}
+\includegraphics[scale=0.20]{\commonFigs/logo.png}\hfill
+\raisebox{8pt}{\Large\fontfamily{phv}\selectfont{\textsf{\doctitle}}}
 
 \colorbox[rgb]{0,0.384,0.816}{\parbox[h]{\textwidth}{\color{white}\textsf{\textit{\textBar}}}}
 
@@ -97,11 +89,8 @@ processor, memory, and many types of I/O devices. The CPUlator simulator support
 based on a variety of different processors, including {\it \processor}. 
 
 The CPUlator user interface displays all of the information that a programmer needs to
-develop and debug software code running on the {\it \systemNameFull}. CPUlator allows you
-to select a specific processor and computer system; to simulate the {\it \systemNameFull}, we would select
-the system named \texttt{RISC-V RV32 DE1-SoC}. This selection chooses a computer system that is slightly
-different from the {\it \systemNameFull}, but with all of its most important features. The CPUlator shows 
-(and allows you to edit) the values in the processor general-purpose and control registers, as well as the 
+develop and debug software code running on the {\it \systemNameFull}. It shows (and allows
+you to edit) the values in the processor general-purpose and control registers, as well as the 
 contents of memories in the computer system and the values of memory-mapped I/O device 
 registers. The CPUlator allows software code, written either in assembly language or the 
 C language, to be entered into the simulator, assembled to produce machine code, loaded 
@@ -341,55 +330,12 @@ use the floating-point hardware support.
 
 % Section: Modifying the System
 \input{\commonFiles/System_Modifying.tex}
-\begin{table}[h]
-    \begin{center}
-    \begin{tabular}{l|l}
-            \textbf{I/O Peripheral}
-            & \textbf{Qsys Core}
-        \\\hline
-            \rule{0in}{0.2in}SDRAM
-            & SDRAM Controller
-        \\
-            On-chip memory character buffer
-				& Character Buffer for VGA Display
-        \\
-            Red LED parallel port
-				& Parallel Port
-        \\
-            7-segment displays parallel port
-				& Parallel Port
-        \\
-            Expansion parallel ports
-				& Parallel Port
-        \\
-            Slider switch parallel port
-				& Parallel Port
-        \\
-            Pushbutton parallel port
-				& Parallel Port
-        \\
-            JTAG port
-				& JTAG UART
-        \\
-            Interval timer
-				& Interval timer 
-        \\
-            System ID
-				& System ID Peripheral
-        \\
-            Video port
-				& Pixel Buffer DMA Controller
-        \\
-    \end{tabular}
-    \caption{{\systemBuilder} cores used in the {\it \systemNameFull}.}
-    \label{tab:sopcnames}
-    \end{center}
-\end{table}
-\clearpage
 
 % Section: Making the System the Default Configuration
 \input{\commonFiles/System_Default_Config.tex}
 
+~\\
+\newpage
 \section{Memory Layout}
 
 \noindent

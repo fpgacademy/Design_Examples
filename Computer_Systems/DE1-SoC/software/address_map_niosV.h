@@ -8,8 +8,6 @@
 #define BOARD            "DE1-SoC"
 
 /* Memory */
-#define DDR_BASE               0x40000000
-#define DDR_END                0x7FFFFFFF
 #define SDRAM_BASE             0x00000000
 #define SDRAM_END              0x03FFFFFF
 #define FPGA_PIXEL_BUF_BASE    0x08000000

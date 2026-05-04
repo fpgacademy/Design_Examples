@@ -42,16 +42,8 @@
 %%% DOCUMENT START
 %\begin{document}
 \begin{document}
-\begin{table}
-    \centering
-    \begin{tabular}{p{5cm}p{4cm}}
-        % \hspace{-3cm}\includegraphics[width=0.4\textwidth]{\headerlogofilepath{\templatepath/figures}}
-        \hspace{-3cm}
-        &
-        \raisebox{1\height}{\parbox[h]{0.5\textwidth}{\large\fontfamily{phv}\selectfont{\textsf{\doctitle}}}}
-    \end{tabular}
-    \label{tab:logo}
-\end{table}
+\includegraphics[scale=0.20]{\commonFigs/logo.png}\hfill
+\raisebox{8pt}{\Large\fontfamily{phv}\selectfont{\textsf{\doctitle}}}
 
 \colorbox[rgb]{0,0.384,0.816}{\parbox[h]{\textwidth}{\color{white}\textsf{\textit{\textBar}}}}
 
@@ -353,69 +345,6 @@ use the floating-point hardware support.
 
 % Section: Modifying the System
 \input{\commonFiles/System_Modifying.tex}
-\begin{table}[h]
-    \begin{center}
-    \begin{tabular}{l|l}
-            \textbf{I/O Peripheral}
-            & \textbf{Qsys Core}
-        \\\hline
-            \rule{0in}{0.2in}SDRAM
-            & SDRAM Controller
-        \\
-            On-chip memory character buffer
-				& Character Buffer for VGA Display
-        \\
-            Red LED parallel port
-				& Parallel Port
-        \\
-            7-segment displays parallel port
-				& Parallel Port
-        \\
-            Expansion parallel ports
-				& Parallel Port
-        \\
-            Slider switch parallel port
-				& Parallel Port
-        \\
-            Pushbutton parallel port
-				& Parallel Port
-        \\
-            PS/2 port
-				& PS2 Controller
-        \\
-            JTAG port
-				& JTAG UART
-        \\
-            Serial port
-				& RS232 UART
-        \\
-            IrDA port
-				& IrDA UART
-        \\
-            Interval timer
-				& Interval timer 
-        \\
-            System ID
-				& System ID Peripheral
-        \\
-            Audio/video configuration port
-				& Audio and Video Config
-        \\
-            Audio port
-				& Audio
-        \\
-            Video port
-				& Pixel Buffer DMA Controller
-        \\
-            Video In port
-				& DMA Controller
-        \\
-    \end{tabular}
-    \caption{{\systemBuilder} cores used in the {\it \systemNameFull}.}
-    \label{tab:sopcnames}
-    \end{center}
-\end{table}
-\clearpage
 
 % Section: Making the System the Default Configuration
 \input{\commonFiles/System_Default_Config.tex}

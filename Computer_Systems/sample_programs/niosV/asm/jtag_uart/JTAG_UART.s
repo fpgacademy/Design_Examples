@@ -9,7 +9,6 @@
  * 	3. echos the character data back to the JTAG UART
  *****************************************************************************/
 
-.text        # executable code follows
 .global     _start 
 _start:                             
         la      s0, JTAG_UART_BASE  # JTAG UART base address
@@ -52,9 +51,8 @@ END_PUT:
         ret                         
 
 /*****************************************************************************/
-.data        
-
 TEXT_STRING:                        
 .asciz      "\nJTAG UART example code\n> " 
 
-.end         
+
+
