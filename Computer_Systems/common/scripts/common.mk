@@ -20,12 +20,12 @@ generate_qsys_files: $(QSYSOBJS)
 %.tcl: # dummy make target
 	
 %.qsys: %.tcl
-	qsys-script$(EXE) --script=$(S2CPATH)/$< > $(CURPATH)/o_$<.txt 2>&1
+	qsys-script$(EXE) --script=$(S2CPATH)/$< --search-path=$(IPSEARCHPATH),$$ > $(CURPATH)/o_$<.txt 2>&1
 
 run_platform_designer: $(QSYSSRC)
 	mkdir -p $(DSTPATH)
 	cp *.qsys $(DSTPATH)
-	cd $(DSTPATH) && qsys-generate$(EXE) ./$< --synthesis=VERILOG > $(CURPATH)/o_$<.txt 2>&1
+	cd $(DSTPATH) && qsys-generate$(EXE) ./$< --search-path=../$(IPSEARCHPATH),$$ --synthesis=VERILOG > $(CURPATH)/o_$<.txt 2>&1
 
 reduce_sopcinfo:
 	cd $(DSTPATH) && python3 $(D2CPATH)/strip_info.py Computer_System.sopcinfo

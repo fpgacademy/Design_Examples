@@ -9,6 +9,8 @@ RELPATH = ../rel/DE1-SoC/$(QP_NAME)/.
 S2CPATH  = ../../common/scripts
 # The relative path the common scripts directory as compared to the destination directory
 D2CPATH  = ../../../common/scripts
+# Path qsys-script and qsys-generate will search through for additional IP
+IPSEARCHPATH = ../src/ip/**/*
 
 include $(S2CPATH)/common.mk
 
