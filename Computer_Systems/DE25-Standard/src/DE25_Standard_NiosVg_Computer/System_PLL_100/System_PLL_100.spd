@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="altera_iopll_2110/sim/System_PLL_100_altera_iopll_2110_mimltly.vo"
+   type="VERILOG"
+   library="altera_iopll_2110" />
+ <file
+   path="sim/System_PLL_100.v"
+   type="VERILOG"
+   library="System_PLL_100"
+   hasInlineConfiguration="true" />
+ <topLevel name="System_PLL_100.System_PLL_100" />
+ <deviceFamily name="agilex5" />
+ <device name="A5ED065BB32AE4SR0" />
+</simPackage>

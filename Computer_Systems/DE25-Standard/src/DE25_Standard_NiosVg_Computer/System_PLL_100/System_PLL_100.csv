@@ -1,0 +1,18 @@
+# system info System_PLL_100 on 2026.09.16.20:04:29
+system_info:
+name,value
+DEVICE,A5ED065BB32AE4SR0
+DEVICE_FAMILY,Agilex 5
+GENERATION_ID,0
+#
+#
+# Files generated for System_PLL_100 on 2026.09.16.20:04:29
+files:
+filepath,kind,attributes,module,is_top
+sim/System_PLL_100.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,System_PLL_100,true
+altera_iopll_2110/sim/System_PLL_100_altera_iopll_2110_mimltly.vo,VERILOG,,System_PLL_100_altera_iopll_2110_mimltly,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+System_PLL_100.iopll_0,System_PLL_100_altera_iopll_2110_mimltly

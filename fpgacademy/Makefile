@@ -1,6 +1,6 @@
 
 ############################################
-# makefile that changes all design example makefile installation locations
+# used to make fpgacademy.zip
 
 CURRENT_DATE := $(shell date +%Y-%m%d)
 FILE = fpgacademy.zip
