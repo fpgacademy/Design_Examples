@@ -84,6 +84,7 @@ Computer_Systems/*/scripts/o_*.txt
 Computer_Systems/*/scripts/*.qsys
 Computer_Systems/*/scripts/.qsys_edit
 Computer_Systems/*/*Computer/.qsys_edi
+Computer_Systems/*_RevAB
 
 filters.xml
 preferences.xml
@@ -95,3 +96,4 @@ fpgacademy/AMP
 fpgacademy/Computer_Systems
 fpgacademy/GDB
 fpgacademy/*.zip
+

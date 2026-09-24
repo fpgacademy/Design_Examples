@@ -18,7 +18,7 @@ CABLE_NAME = -c "$(shell $(WSL_QUARTUS_DIR)/quartus/bin64/$(QP_PROGRAMMER) --aut
 
 default: clean_qsys generate_qsys_files
 
-all: generate_qsys_files run_platform_designer run_quartus generate_rbf release grep_for_errors
+all: clean_qsys generate_qsys_files run_platform_designer run_quartus generate_rbf release grep_for_errors
 
 continue: run_platform_designer run_quartus generate_rbf release grep_for_errors
 

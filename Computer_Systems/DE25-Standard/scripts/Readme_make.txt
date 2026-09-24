@@ -24,7 +24,7 @@ example:
 
 INSTALL = C:/altera_pro/26.1
 
-You are now ready to run the provided makefiles, and scripts, for building the DE25-Standard
+You are now ready (*1) to run the provided makefiles, and scripts, for building the DE25-Standard
 Computer with Nios V. These scripts have to be executed in a Linux command-line environment. 
 If using a Windows computer:
 
@@ -60,3 +60,10 @@ There are other Makefile targets that you can use, if desired. For examples the 
 runs both steps 2. and 3., above. You can examine the makefile commands by looking at the file
 named ../../common/scripts/common_pro.mk. This makefile executes several Tcl (Tool Command 
 Language) scripts, including common_pro.tcl, gen_niosvg_computer_pro.tcl, and others.
+
+(*1) Footnote: the top-level files that are copied and used in step 3., above, include a 
+Quartus Settings File, .qsf, named ../src/DE25_Standard_NiosVg_Computer.qsf. This is the correct 
+settings file to use for Revisions C and D of the DE25-Standard board (Rev. D is the production
+version of the board). But if you are using Revision A or B of the DE25-Standard board, then
+you have to change the .qsf file in the ../src folder to use the settings provided in the file 
+../src/DE25_Standard_NiosVg_Computer_RevAB.qsf.

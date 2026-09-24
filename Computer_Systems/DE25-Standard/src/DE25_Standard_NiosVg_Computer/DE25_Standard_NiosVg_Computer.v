@@ -35,7 +35,7 @@ module DE25_Standard_NiosVg_Computer (
 	SW,
 
     // Expansion header
-    GPIO,
+    GPIO_D,
 
     // HDMI
     FPGA_I2C_SCL,
@@ -95,7 +95,7 @@ output [ 9: 0] LEDR;
 input  [ 9: 0] SW;
 
 // Expansion header
-inout [35: 0] GPIO;
+inout [35: 0] GPIO_D;
 
 // HDMI
 inout wire FPGA_I2C_SCL;    // used to configure the HDMI output
@@ -178,7 +178,7 @@ Computer_System The_System (
 	.hex5_hex4_export					(hex5_hex4),
 	
 	// Expansion JP1
-	.expansion_jp1_export				(GPIO[31:0]),
+	.expansion_jp1_export				(GPIO_D[31:0]),
     
 	// VGA Subsystem
 	.vga_CLK							(HDMI_TX_CLK),
