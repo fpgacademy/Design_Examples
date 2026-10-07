@@ -1,4 +1,7 @@
 # Define paths
+#
+# Quartus Prime installation directory
+INSTALL = C:/altera_lite/25.1std
 # Quartus Prime project source directory
 SRCPATH = ../src/$(QP_NAME)/.
 # Destination directory of the generated and compiled project

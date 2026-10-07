@@ -33,11 +33,11 @@ and the pixel at location 319,239 has the address {\it base} $+$ (11101111 10011
 
 \begin{figure}[h!]
    \begin{center}
-       \includegraphics{../../../common/figs/Media_FPGA_Video_Pixel_Values_16.pdf}
-			 \caption*{(a) Pixel values}
+           \includegraphics[scale=0.9]{../../../common/figs/Media_FPGA_Video_Pixel_Values_16.pdf}
+			 \caption*{\sffamily\small (a) Pixel values}
 			 \vspace{1cm}
-			 \includegraphics{../../../common/figs/Media_FPGA_Video_Pixel_Address_17_1.pdf}
-			 \caption*{(b) Pixel address}
+             \includegraphics[scale=0.9]{../../../common/figs/Media_FPGA_Video_Pixel_Address_17_1.pdf}
+			 \caption*{\sffamily\small(b) Pixel address}
    \end{center}
    \caption{Pixel values and addresses.}
 	\label{fig:pixels}
@@ -53,13 +53,13 @@ the pixel buffer while it is being displayed, by using the concept of {\it
 double-buffering}.  In this scheme, two pixel buffers are involved, called the {\it front} 
 and {\it back} buffers, described below.
 
-\subsubsection{RGB Resampling}
-The \systemName~contains an RGB Resampler for converting video streams between RGB color
-formats. Reading from the 32-bit \textit{Status} register at address {\sf 0xFF203010}
-provides information about alpha/no alpha, color/grayscale, and mode for the incoming and
-outgoing formats. The incoming format for the \systemName~ video stream is {\sf 0x14},
-which corresponds to no alpha, color, 16-bit RGB (5-bit Red, 6-bit Green, 5-bit Blue).
-More information can be found in the documentation called 
-{\it Video IP Cores for Altera DE-Series Computer Systems}, available as part of the
-\texttt{Hardware Components} tutorials on the 
-{\small \href{https://www.fpgacademy.org/tutorials.html} {FPGAcademy.org}} website.
+%\subsubsection{RGB Resampling}
+%The \systemName~contains an RGB Resampler for converting video streams between RGB color
+%formats. Reading from the 32-bit \textit{Status} register at address {\sf 0xFF203010}
+%provides information about alpha/no alpha, color/grayscale, and mode for the incoming and
+%outgoing formats. The incoming format for the \systemName~ video stream is {\sf 0x14},
+%which corresponds to no alpha, color, 16-bit RGB (5-bit Red, 6-bit Green, 5-bit Blue).
+%More information can be found in the documentation called 
+%{\it Video IP Cores for Altera DE-Series Computer Systems}, available as part of the
+%\texttt{Hardware Components} tutorials on the 
+%{\small \href{https://www.fpgacademy.org/tutorials.html} {FPGAcademy.org}} website.

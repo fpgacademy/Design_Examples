@@ -1,4 +1,4 @@
-#include "address_map_niosv.h"
+#include "../address_map_niosv.h"
 
 /* globals */
 #define BUF_SIZE 80000  // about 10 seconds of buffer (@ 8K samples/sec)
@@ -73,8 +73,7 @@ int main(void) {
                         play           = 0;
                         *(red_LED_ptr) = 0x0; // turn off LEDR
                     }
-                    fifospace = *(audio_ptr +
-                                  1); // read the audio port fifospace register
+                    fifospace = *(audio_ptr + 1); // read the audio port fifospace register
                 }
             }
         }

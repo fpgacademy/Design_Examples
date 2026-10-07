@@ -85,6 +85,7 @@ Computer_Systems/*/scripts/*.qsys
 Computer_Systems/*/scripts/.qsys_edit
 Computer_Systems/*/*Computer/.qsys_edi
 Computer_Systems/*_RevAB
+Computer_Systems/*_Working
 
 filters.xml
 preferences.xml

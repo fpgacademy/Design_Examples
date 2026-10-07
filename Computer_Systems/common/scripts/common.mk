@@ -5,9 +5,21 @@ else
     EXE := 
 endif
 
+# find quartus executables
+WSL_QUARTUS_DIR := $(shell wslpath '$(INSTALL)')
+export PATH := $(WSL_QUARTUS_DIR)/quartus/bin64/:$(PATH)
+export PATH := $(WSL_QUARTUS_DIR)/quartus/sopc_builder/bin/:$(PATH)
+
 QSYSOBJS = $(TCLSRCS:.tcl=.qsys)
 SOPCOBJS = $(QSYSSRC:.qsys=.sopcinfo)
 CURPATH  = $(shell pwd)
+
+QP_PROGRAMMER	:= quartus_pgm.exe
+# for most FPGA boards the JTAG index of the FPGA will be 1. But for the DE1-SoC board it
+# will most often be 2. So, set a default appropriately:
+JTAG_INDEX := $(if $(findstring DE1-SoC,$(CURPATH)),2,1)
+
+CABLE_NAME = -c "$(shell $(WSL_QUARTUS_DIR)/quartus/bin64/$(QP_PROGRAMMER) --auto | grep "Using programming cable" | sed -n 's/.*"\(.*\)".*/\1/p')"
 
 default: generate_qsys_files
 
@@ -60,6 +72,13 @@ grep_for_errors:
 clean:
 	rm -f *.qsys
 	rm -f o_*.txt
+
+detect:
+	$(QP_PROGRAMMER) --auto
+	
+board:
+	$(eval SOF_FILE := $(shell ls $(RELPATH)/*.sof))
+	$(QP_PROGRAMMER) $(CABLE_NAME) -m jtag -o "P;$(SOF_FILE)@$(JTAG_INDEX)"
 
 .PHONY: default all continue generate_qsys_files run_platform_designer run_quartus $(QP_NAME) release grep_for_errors clean
 

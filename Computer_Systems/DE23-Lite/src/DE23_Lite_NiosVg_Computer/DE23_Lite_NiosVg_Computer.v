@@ -184,7 +184,7 @@ Computer_System The_System (
 	.hex5_hex4_export					(hex5_hex4),
 	
 	// Expansion JP1
-	.expansion_jp1_export				({GPIO_D[34:26], GPIO_D[25:13], GPIO_D[9:0]}),
+	.expansion_jp1_export				({GPIO_D[35:19], GPIO_D[17], GPIO_D[15:3], GPIO_D[1]}),
     
 	// VGA Subsystem
 	.vga_CLK							(HDMI_TX_CLK),
