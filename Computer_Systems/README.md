@@ -59,13 +59,13 @@ example:
 
 INSTALL = C:/altera_pro/26.1
 
-In the scripts directory, you'll find one or more Makefile, named *.mk, depending on how many systems exist for the board. For example, the DE1-SoC has 3 systems; one for the ARM and Nios II processors (ARM_NiosII.mk), one for the Nios V/g processor (NiosVg.mk) and (for some boards) one for the Nios V/m processor (NiosVm.mk). The Makefile can be run using the *\"make -f \<system name\>.mk\"*, such as *\"make -f NiosVg.mk\"*. The Makefiles have several targets. The main targets are:
+In the scripts directory, you'll find one or more Makefile, named *.mk, depending on how many systems exist for the board. For example, the DE1-SoC has three systems; one for the ARM and Nios II processors (ARM_NiosII.mk), one for the Nios V/g processor (NiosVg.mk) and one for the Nios V/m processor (NiosVm.mk). The Makefile can be run using the *\"make -f \<system name\>.mk\"*, such as *\"make -f NiosVg.mk\"*. The Makefiles have several targets. The main targets are:
 
 - default: Creates Platform Designer system files for the computer system
 - continue: Generates the computer system's HDL (Verilog) description in Platform Designer and then compiles the circuit using the Quartus Prime software.
 - all: Runs both the default and continue targets
 
-After the Computer System has been built it can be downloaded into your FPGA board. Once you have a board properly connected to your computer using a USB Blaster (I/II/III) connection, execute the command such as
+After the Computer System has been built it can be downloaded into your FPGA board. Once you have a board properly connected to your computer using a USB Blaster (I/II/III) connection, execute a command such as
 
 make -f NiosVg.mk board
 
@@ -75,10 +75,9 @@ code on this system.
 Notes
 -----
 
-There are other Makefile targets that you can use, if desired. For examples the target "all" 
-runs both steps 2. and 3., above. You can examine the makefile commands by looking at the file
-named ../../common/scripts/common_pro.mk. This makefile executes several Tcl (Tool Command 
-Language) scripts, including common_pro.tcl, gen_niosvg_computer_pro.tcl, and others.
+There are other Makefile targets that you can use, if desired. For example the target "detect" 
+checks what devices are found on your JTAG port. You can examine the makefile commands by looking at the file named ../../common/scripts/common[_pro].mk. This makefile executes several Tcl (Tool Command 
+Language) scripts, including common[_pro].tcl, gen_[niosvg]_computer[_pro].tcl, and others.
 
 As an example, to create the Nios Vg Computer System for the DE23-Lite board, navigate to the DE23-Lite/scripts folder, set up the INSTALL variable and then run the command "make -f NiosVg.mk". This command will generate a set of .qsys files in the scripts directory. These files specify all components and their interconnections for the computer system that is being made. Now, you can create the computer system hardware circuit by running the command "make -f NiosVg.mk continue". This command will make a folder called "out" in the filesystem location ..\ (the parent folder of the scripts folder). The makefile will copy into the "out" folder the .qsys files and the top-level Verilog and Quartus project files for the computer system. Then, the makefile will run the Platform Designer software to generate the Verilog code for the computer system (corresponding to the components and connections in the .qsys files), and then compile this Verilog code by using the Quartus Prime software. The compilation process will create an FPGA programming file such as \<system name\>.sof, which can be downloaded into your FPGA board. 
 
