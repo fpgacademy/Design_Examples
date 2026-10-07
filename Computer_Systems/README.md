@@ -1,6 +1,6 @@
 # Computer Systems
 
-This repository provides Computer Systems that have been designed specifically for the DE-series boards. Each board has one or more systems depending on the included processor(s) within the system. In addition to one or more processors, the systems include memory ports, basic input/output ports (for switches, lights, etc.), and multimedia ports (for video, audio, and the like). Accompanying the systems is a set of sample programs. To start using the Computer Systems, please download them from the [Design Examples releases](https://github.com/fpgacademy/Design_Examples/releases) page and read the associated user manual for the target board and processor.
+This repository provides Computer Systems that have been designed specifically for the DE-series boards. Each board has one or more systems depending on the included processor(s) within the system. In addition to one or more processors, the systems include memory ports, basic input/output ports (for switches, lights, etc.), and multimedia ports (for video, audio, and the like). Accompanying the systems is a set of sample programs. An easy way to start using the Computer Systems is to download them from the [Design Examples releases](https://github.com/fpgacademy/Design_Examples/releases) page and read the associated documentation for the target board and processor.
 
 ## Repository Contents
 
