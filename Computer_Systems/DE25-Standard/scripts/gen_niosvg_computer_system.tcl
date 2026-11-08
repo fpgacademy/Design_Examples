@@ -1,4 +1,4 @@
-# Generate the DE23-Lite NiosVg Computer
+# Generate the DE25-Standard NiosVg Computer
 
 ###############################################################################
 # Add components to the system

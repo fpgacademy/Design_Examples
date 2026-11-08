@@ -7,15 +7,15 @@ module DE25_Standard_NiosVg_Computer (
     // SDRAM
     DRAM_ADDR,
     DRAM_BA,
-    DRAM_CAS_N,
+    DRAM_CAS_n,
     DRAM_CKE,
     DRAM_CLK,
-    DRAM_CS_N,
+    DRAM_CS_n,
     DRAM_DQ,
     DRAM_LDQM,
-    DRAM_RAS_N,
+    DRAM_RAS_n,
     DRAM_UDQM,
-    DRAM_WE_N,
+    DRAM_WE_n,
 
 	// Seven Segment Displays
 	HEX0,
@@ -67,15 +67,15 @@ input          CLOCK_50;
 // SDRAM
 output [12: 0] DRAM_ADDR;
 output [ 1: 0] DRAM_BA;
-output         DRAM_CAS_N;
+output         DRAM_CAS_n;
 output         DRAM_CKE;
 output         DRAM_CLK;
-output         DRAM_CS_N;
+output         DRAM_CS_n;
 inout  [15: 0] DRAM_DQ;
 output         DRAM_LDQM;
-output         DRAM_RAS_N;
+output         DRAM_RAS_n;
 output         DRAM_UDQM;
-output         DRAM_WE_N;
+output         DRAM_WE_n;
 
 // Seven Segment Displays
 output [ 6: 0] HEX0;
@@ -193,13 +193,13 @@ Computer_System The_System (
 	// SDRAM
 	.sdram_addr							(DRAM_ADDR),
 	.sdram_ba							(DRAM_BA),
-	.sdram_cas_n						(DRAM_CAS_N),
+	.sdram_cas_n						(DRAM_CAS_n),
 	.sdram_cke							(DRAM_CKE),
-	.sdram_cs_n							(DRAM_CS_N),
+	.sdram_cs_n							(DRAM_CS_n),
 	.sdram_dq							(DRAM_DQ),
 	.sdram_dqm							({DRAM_UDQM,DRAM_LDQM}),
-	.sdram_ras_n						(DRAM_RAS_N),
-	.sdram_we_n							(DRAM_WE_N)
+	.sdram_ras_n						(DRAM_RAS_n),
+	.sdram_we_n							(DRAM_WE_n)
 	
 );
 

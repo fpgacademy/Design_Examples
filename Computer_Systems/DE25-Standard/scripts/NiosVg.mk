@@ -1,5 +1,5 @@
-# This Makefile generates and compiles the DE23-Lite Nios V/g Computer
-# To be run in the Nios II Command shell
+# This Makefile generates and compiles the DE25-Standard Nios V/g Computer
+# To be run under WSL
 
 TCLSRCS = gen_char_buf_subsystem_pro.tcl gen_vga_subsystem_pro.tcl gen_niosvg_computer_system_pro.tcl
 QSYSSRC = Computer_System.qsys

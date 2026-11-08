@@ -1,0 +1,10 @@
+# This Makefile generates and compiles the DE25-Nano Nios V/g Computer
+# To be run under WSL
+
+TCLSRCS = gen_char_buf_subsystem_pro.tcl gen_vga_subsystem_pro.tcl gen_niosvg_computer_system_pro.tcl
+QSYSSRC = Computer_System.qsys
+QP_NAME = DE25_Nano_NiosVg_Computer
+GEN_RBF = 0
+
+include paths.mk
+

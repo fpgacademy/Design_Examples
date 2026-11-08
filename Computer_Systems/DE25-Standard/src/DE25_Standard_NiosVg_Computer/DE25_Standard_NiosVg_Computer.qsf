@@ -20,12 +20,12 @@ set_instance_assignment -name IO_STANDARD "1.2 V" -to CLOCK3_50
 #============================================================
 # KEY
 #============================================================
-set_instance_assignment -name IO_STANDARD "1.2-V" -to CPU_RESET_N
+set_instance_assignment -name IO_STANDARD "1.2-V" -to CPU_RESET_n
 set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[0]
 set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[1]
 set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[2]
 set_instance_assignment -name IO_STANDARD "1.2-V" -to KEY[3]
-set_location_assignment PIN_BM78 -to CPU_RESET_N
+set_location_assignment PIN_BM78 -to CPU_RESET_n
 set_location_assignment PIN_BW59 -to KEY[0]
 set_location_assignment PIN_CA59 -to KEY[1]
 set_location_assignment PIN_CF71 -to KEY[2]
@@ -205,10 +205,10 @@ set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[14]
 set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_DQ[15]
 set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_LDQM
 set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_UDQM
-set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CS_N
-set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_WE_N
-set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CAS_N
-set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_RAS_N
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CS_n
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_WE_n
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_CAS_n
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DRAM_RAS_n
 set_location_assignment PIN_B39  -to DRAM_CLK
 set_location_assignment PIN_B35  -to DRAM_CKE
 set_location_assignment PIN_F27  -to DRAM_ADDR[0]
@@ -244,10 +244,10 @@ set_location_assignment PIN_A35  -to DRAM_DQ[14]
 set_location_assignment PIN_A33  -to DRAM_DQ[15]
 set_location_assignment PIN_K4   -to DRAM_LDQM
 set_location_assignment PIN_G2   -to DRAM_UDQM
-set_location_assignment PIN_H8   -to DRAM_CS_N
-set_location_assignment PIN_J2   -to DRAM_WE_N
-set_location_assignment PIN_J1   -to DRAM_CAS_N
-set_location_assignment PIN_G1   -to DRAM_RAS_N
+set_location_assignment PIN_H8   -to DRAM_CS_n
+set_location_assignment PIN_J2   -to DRAM_WE_n
+set_location_assignment PIN_J1   -to DRAM_CAS_n
+set_location_assignment PIN_G1   -to DRAM_RAS_n
 
 #============================================================
 # HDMI
@@ -353,7 +353,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ADC_CS_n
 set_location_assignment PIN_CH4   -to ADC_SCK
 set_location_assignment PIN_CK4   -to ADC_SDO
 set_location_assignment PIN_BF32  -to ADC_SDI
-set_location_assignment PIN_BP22  -to ADC_CS_N
+set_location_assignment PIN_BP22  -to ADC_CS_n
 
 #============================================================
 # GPIO

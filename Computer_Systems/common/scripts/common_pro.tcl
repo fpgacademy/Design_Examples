@@ -501,6 +501,33 @@ proc ifup_add_sdram_64mb {} {
 	set memory_mapped_slaves($instance_name.s1) [ list [ expr $ifup_flag_video_in_memory | $ifup_flag_video_out_memory ] $offset ]
 }
 #
+# Used for DE25-Nano
+#
+proc ifup_add_sdram_128mb {} {
+	global ifup_flag_hps_h2f_master
+	global ifup_flag_set_fpga_data_masters
+	global ifup_flag_set_fpga_instruction_masters
+
+	set instance_name	SDRAM
+	set offset			0x00000000
+	set bus_connection_flags [ expr $ifup_flag_hps_h2f_master | $ifup_flag_set_fpga_instruction_masters | $ifup_flag_set_fpga_data_masters ]
+
+	add_instance $instance_name core_sdram_axi4_128mb
+
+	set_interface_property sdram	EXPORT_OF $instance_name.sdram
+
+	ifup_connect_system_clock			$instance_name.clock_sink
+	ifup_connect_reset_sources			$instance_name.reset_sink
+	ifup_connect_slave_to_mm_masters	$instance_name.axi4_slave	 $offset $bus_connection_flags
+
+	lock_avalon_base_address $instance_name.axi4_slave
+	
+	# Update connection lists
+	global memory_mapped_slaves
+	global ifup_flag_video_in_memory
+	global ifup_flag_video_out_memory
+	set memory_mapped_slaves($instance_name.axi4_slave) [ list [ expr $ifup_flag_video_in_memory | $ifup_flag_video_out_memory ] $offset ]
+}
 # Used for DE23-Lite
 proc ifup_add_sdram_64mb_32bit {} {
 	global ifup_flag_hps_h2f_master
