@@ -1,14 +1,21 @@
 The fpgacademy.zip archive in the fpgacademy folder contains the Nios V custom cygwin tools, 
 which include the C compiler, linker, etc, and the computer systems .sof files. 
 
-To make an update to the fpgacademy.zip file, in Ubuntu WSL first run:
+To make an update to the fpgacademy.zip file:
+
+1. Extract (if not previously done) into THIS folder all files and folders inside the current
+version of the fpgacademy.zip file. This step is needed so that you have all of the source files
+that have to be included in the fpgacademy.zip archive, before creating your new zip archive.
+The extracted folders will be named AMP, Computer_Systems, and GDB.
+
+2. Then, in Ubuntu WSL run:
 
 make SOF
 
 This command updates the computer systems SOF files in the Computer_Systems
-folder (by copying from the Design_Examples repo source files)
+folder (by copying from the Design_Examples repo source files).
 
-then, Create a new zip file by running
+3. Finally, create a new zip file by running:
 
 make ZIP
 
