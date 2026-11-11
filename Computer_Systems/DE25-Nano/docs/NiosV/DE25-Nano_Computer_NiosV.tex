@@ -1,7 +1,7 @@
 \documentclass[11pt, twoside, pdftex]{article}
 
 % This include all the settings that we should use for the document
-\newcommand{\PDFTitle}{Altera\textsuperscript{\textregistered} DE25-Standard Computer with Nios~V}
+\newcommand{\PDFTitle}{Altera\textsuperscript{\textregistered} DE25-Nano Computer with Nios~V}
 \newcommand{\commonFiles}{../../../common/doc}
 \newcommand{\commonFigs}{../../../common/figs}
 \newcommand{\sampleProgramsPath}{../../../sample_programs}
@@ -12,15 +12,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Add title
-\newcommand{\doctitle}{DE25-Standard Computer System with Nios\textsuperscript{\textregistered} V}
-\newcommand{\dochead}{DE25-Standard Computer System with Nios\textsuperscript{\textregistered} V}
+\newcommand{\doctitle}{DE25-Nano Computer System with Nios\textsuperscript{\textregistered} V}
+\newcommand{\dochead}{DE25-Nano Computer System with Nios\textsuperscript{\textregistered} V}
 % Usually no need to change these two lines
 %\title{\fontfamily{phv}\selectfont{\doctitle} }
 %\chead{ \small{\textsc{\bfseries \dochead} } }
 % Customizations
-\newcommand{\DEBoard}{DE25-Standard}
-\newcommand{\systemName}{DE25-Standard Computer}
-\newcommand{\systemNameFull}{DE25-Standard Computer with Nios~V}
+\newcommand{\DEBoard}{DE25-Nano}
+\newcommand{\systemName}{DE25-Nano Computer}
+\newcommand{\systemNameFull}{DE25-Nano Computer with Nios~V}
 \newcommand{\systemBuilder}{Platform Designer}
 \newcommand{\FPGADeviceFamily}{Agilex\textsuperscript{\textregistered} 5 SoC}
 \newcommand{\FPGADeviceShort}{Agilex\textsuperscript{\textregistered} 5}
@@ -28,10 +28,11 @@
 \newcommand{\baseAddressOffset}{0}
 \newcommand{\BaseAddressOffset}{0}
 \newcommand{\GIC}{processor}
-\newcommand{\videoOutDevice}{VGA}
+\newcommand{\videoOutDevice}{HDMI}
 \newcommand{\PixelBufferInfo}{320240_16}
 \newcommand{\pixelBufferInfo}{320240_16}
 \newcommand{\expansionPortA}{JP1}
+\newcommand{\expansionPortB}{JP2}
 \newcommand{\processorStyle}{defaultNiosVStyle}
 \newcommand{\processorLower}{niosv}
 
@@ -66,8 +67,8 @@ in Figure~\ref{fig:block_diagram}. The \processor\textsuperscript{\textregistere
 processor and ports connected to its peripherals are implemented in the 
 {\it Field-Programmable Gate Array} (FPGA) part of Altera's \FPGADeviceFamily~chip, which is 
 the part of the figure that has a blue color in the background.  The peripheral ports include:
-memory, timer modules, audio-in/out, video-out, analog-to-digital (ADC), 
-infrared (IrDA) receive/transmit, and parallel ports connected to switches and lights.  
+memory, timer modules, video-out, audio-out, analog-to-digital (ADC), 
+and parallel ports connected to switches and lights.  
 
 As indicated in Figure \ref{fig:block_diagram}, in addition to the FPGA the \FPGADeviceFamily~chip
 also contains a {\it Hard Processor System} (HPS), which is the area in the figure
@@ -179,7 +180,7 @@ register in the {\it \systemNameFull}.
 The {\it \systemNameFull} has an SDRAM memory port, as well as two memory modules 
 implemented using the on-chip memory inside the FPGA. These memories are described below.
 
-\input{\commonFiles/FPGA_SDRAM.tex}
+\input{\commonFiles/FPGA_SDRAM_128.tex}
 \input{\commonFiles/FPGA_OnChip_Memory_V.tex}
 \input{\commonFiles/FPGA_Char_Buffer.tex}
 
@@ -190,13 +191,11 @@ in the \FPGADeviceFamily~device. The {\it \systemNameFull} has not been configur
 include access to this memory.
 
 \input{\commonFiles/FPGA_PP.tex}
-\input{\commonFiles/FPGA_PP_Red_LEDs_10.tex}
-\input{\commonFiles/FPGA_PP_7_Segs_6.tex}
-\input{\commonFiles/FPGA_PP_Switches_10.tex}
-\input{\commonFiles/FPGA_PP_Keys_4.tex}
-\input{\commonFiles/FPGA_PP_Single_40_Pin_Header.tex}
+\input{\commonFiles/FPGA_PP_Green_LEDs_8.tex}
+\input{\commonFiles/FPGA_PP_Switches_4.tex}
+\input{\commonFiles/FPGA_PP_Keys_2.tex}
+\input{\commonFiles/FPGA_PP_Dual_40_Pin_Headers.tex}
 \input{\commonFiles/FPGA_PP_Examples.tex}
-
 \input{\commonFiles/FPGA_JTAG_UART.tex}
 
 \input{\commonFiles/FPGA_Interval_Timers.tex}
@@ -224,10 +223,9 @@ with the Nios V machine timer, the FPGA interval timer, parallel ports, and seri
             Interval timer & 16 \\
             Second Interval timer & 17 \\
             Pushbutton KEY port & 18 \\
-            Audio port & 21 \\
             JTAG port & 24 \\
-			IrDA port & 25 \\
             JP1 Expansion port & 27 \\
+            JP1 Expansion port & 28 \\
     \end{tabular}
     \caption{Hardware IRQ interrupt assignment for the {\it \systemNameFull}.}
 	 \label{tab:irq}
@@ -326,12 +324,11 @@ handler is declared with the \texttt{interrupt ("machine")} attribute.
 \section{Media Components}
 \label{sec:multi}
 
-This section describes the audio in/out, video-out, IrDA*, and ADC ports,
+This section describes the video-out, audio-out, and ADC ports,
 as well as floating point support.
 
 \input{\commonFiles/Media_FPGA_Video_Out.tex}
-\input{\commonFiles/Media_FPGA_Audio_V.tex}
-\input{\commonFiles/Media_FPGA_IrDA_Serial_V.tex}
+\input{\commonFiles/Media_FPGA_Audio_HDMI_V.tex}
 \input{\commonFiles/FPGA_ADC_V.tex}
 
 \subsection{Floating-point Hardware}

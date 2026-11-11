@@ -36,9 +36,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="1.976257"
-     inkscape:cx="428.08198"
-     inkscape:cy="245.16042"
+     inkscape:zoom="1.3974247"
+     inkscape:cx="-17.174449"
+     inkscape:cy="371.75527"
      inkscape:window-width="3440"
      inkscape:window-height="1351"
      inkscape:window-x="-9"
@@ -752,16 +752,12 @@
        transform="scale(1,-1)"
        style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.96px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRomanPSMT;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text562"
-       x="495.12"
-       y="-559.79999"><tspan
-         x="495.12 502.31808 509.57596"
-         y="-559.79999"
+       x="492.49951"
+       y="-553.79999"><tspan
+         x="492.49951"
          sodipodi:role="line"
-         id="tspan558">VGA</tspan><tspan
-         x="495.4198 502.61789 509.81598"
-         y="-546.84003"
-         sodipodi:role="line"
-         id="tspan560">DAC</tspan></text>
+         id="tspan560"
+         y="-553.79999">HDMI</tspan></text>
     <path
        d="m 497.22,591.66 h 17.04 v 6.18 h -17.04 z"
        style="fill:#b3b3b3;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -958,23 +954,23 @@
          id="tspan654"
          style="stroke-width:0.968132">CODEC</tspan></text>
     <path
-       d="m 484.2,476.58 h 43.14 v 37.5 H 484.2 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 481.44859,476.58 h 48.83259 v 37.5 h -48.83259 z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1"
        id="path658" />
     <path
-       d="m 484.2,513.3 h 43.92 v 1.5 H 484.2 Z"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="M 481.2228,513.3 H 531.12 v 1.5 h -49.8972 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1"
        id="path660" />
     <path
-       d="m 526.62,475.8 h 1.5 v 38.28 h -1.5 z"
+       d="m 529.62,475.8 h 1.5 v 38.28 h -1.5 z"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path662" />
     <path
-       d="m 483.48,475.8 h 43.86 v 1.5 h -43.86 z"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 480.50281,475.8 h 49.83721 v 1.5 h -49.83721 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1"
        id="path664" />
     <path
-       d="m 483.48,476.58 h 1.5 v 38.22 h -1.5 z"
+       d="m 480.48,476.58 h 1.5 v 38.22 h -1.5 z"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path666" />
     <text

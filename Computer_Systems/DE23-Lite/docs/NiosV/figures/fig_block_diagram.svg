@@ -36,9 +36,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="1.976257"
-     inkscape:cx="708.9159"
-     inkscape:cy="270.46078"
+     inkscape:zoom="1.3974247"
+     inkscape:cx="465.14133"
+     inkscape:cy="368.17726"
      inkscape:window-width="3440"
      inkscape:window-height="1351"
      inkscape:window-x="-9"
@@ -61,7 +61,7 @@
      transform="matrix(1.3333333,0,0,-1.3333333,-81.4544,833.74533)"
      clip-path="url(#clipPath28)">
     <path
-       d="m 222.69169,331.78212 h 324.74268 v 199.92 H 222.69169 Z"
+       d="m 222.69169,346.78212 h 324.74268 v 199.92 H 222.69169 Z"
        style="fill:#80ffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1"
        id="path36"
        inkscape:export-filename="fig_block_diagram.pdf"
@@ -679,16 +679,12 @@
        transform="scale(1,-1)"
        style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.96px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRomanPSMT;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text562"
-       x="427.62"
-       y="-559.79999"><tspan
-         x="427.62 434.81808 442.07596"
-         y="-559.79999"
+       x="424.99951"
+       y="-553.42047"><tspan
+         x="424.99951"
          sodipodi:role="line"
-         id="tspan558">VGA</tspan><tspan
-         x="427.9198 435.11789 442.31598"
-         y="-546.84003"
-         sodipodi:role="line"
-         id="tspan560">DAC</tspan></text>
+         id="tspan560"
+         y="-553.42047">HDMI</tspan></text>
     <path
        d="m 429.72,591.66 h 17.04 v 6.18 h -17.04 z"
        style="fill:#b3b3b3;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -750,23 +746,23 @@
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path592" />
     <path
-       d="m 416.7,476.58 h 43.14 v 37.5 H 416.7 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 413.66396,476.58 h 49.21208 v 37.5 h -49.21208 z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1"
        id="path658" />
     <path
-       d="m 416.7,513.3 h 43.92 v 1.5 H 416.7 Z"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 413.7,513.3 h 49.89081 v 1.5 H 413.7 Z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1"
        id="path660" />
     <path
-       d="m 459.12,475.8 h 1.5 v 38.28 h -1.5 z"
+       d="m 462.12,475.8 h 1.5 v 38.28 h -1.5 z"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path662" />
     <path
-       d="m 415.98,475.8 h 43.86 v 1.5 h -43.86 z"
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 412.96106,475.8 h 50.50167 v 1.5 h -50.50167 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1"
        id="path664" />
     <path
-       d="m 415.98,476.58 h 1.5 v 38.22 h -1.5 z"
+       d="m 412.98,476.58 h 1.5 v 38.22 h -1.5 z"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path666" />
     <text
